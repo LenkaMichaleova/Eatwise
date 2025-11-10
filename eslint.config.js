@@ -7,26 +7,26 @@ export default defineConfig([
   {
     files: ['**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     plugins: {
-      react: pluginReact
+      react: pluginReact,
     },
     languageOptions: {
       globals: {
-        ...globals.browser
+        ...globals.browser,
       },
       parserOptions: {
         ecmaFeatures: {
-          jsx: true
-        }
-      }
+          jsx: true,
+        },
+      },
     },
     settings: {
       react: {
-        version: 'detect'
-      }
+        version: 'detect',
+      },
     },
     rules: {
-      'react/react-in-jsx-scope': 'off'
-    }
+      'react/react-in-jsx-scope': 'off',
+    },
   },
-  tseslint.configs.recommended
+  tseslint.configs.recommended,
 ]);
