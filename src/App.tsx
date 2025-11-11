@@ -1,14 +1,17 @@
 import { BrowserRouter, Routes, Route } from 'react-router';
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from './styles/theme';
+import { Layout } from './components/Layout';
 
 function App() {
   return (
     <BrowserRouter>
       <ThemeProvider theme={theme}>
-        <Routes>
-          <Route path="/" element={<h1>Eatwise</h1>} />
-        </Routes>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<div>Eatwise</div>} />
+          </Routes>
+        </Layout>
       </ThemeProvider>
     </BrowserRouter>
   );
