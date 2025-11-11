@@ -5,17 +5,23 @@ export const theme = createTheme({
     fontFamily: ['Arial', 'sans-serif'].join(','),
     fontSize: 12,
     h1: {
-      padding: '2% 5%',
       color: 'white',
+      textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
       fontSize: '1rem',
       '@media (min-width:600px)': {
-        fontSize: '1.2rem',
+        fontSize: '1.4rem',
       },
       '@media (min-width:960px)': {
         fontSize: '2rem',
       },
     },
+    h6: {
+      fontSize: '0.5rem',
+      '@media (min-width: 600px)': { fontSize: '0.7rem' },
+      '@media (min-width: 960px)': { fontSize: '0.9rem' },
+    },
   },
+
   palette: {
     primary: {
       main: '#6EC6A8',
