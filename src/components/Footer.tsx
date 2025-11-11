@@ -14,10 +14,7 @@ const footerStyles = {
 
 export function Footer() {
   return (
-    <Box
-      component="footer"
-      sx={footerStyles}
-    >
+    <Box component="footer" sx={footerStyles}>
       <Typography variant="h6" color="grey.600">
         © ReactGirls Mentoring 2025 - Eatwise
       </Typography>

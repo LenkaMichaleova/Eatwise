@@ -1,7 +1,8 @@
-import { BrowserRouter, Routes, Route } from 'react-router';
+import { BrowserRouter, Routes } from 'react-router';
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from './styles/theme';
 import { Layout } from './components/Layout';
+import { RoutesPaths } from './RoutesPaths';
 
 function App() {
   return (
@@ -9,7 +10,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <Layout>
           <Routes>
-            <Route path="/" element={<div>Eatwise</div>} />
+            <RoutesPaths />
           </Routes>
         </Layout>
       </ThemeProvider>
