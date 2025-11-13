@@ -1,42 +1,34 @@
 import { Box, Typography } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import logo from '../assets/logo.png'
 
-const headerStyles = {
+const HeaderStyled = styled('header')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
-  bgcolor: 'primary.main',
+  backgroundColor: theme.palette.primary.main,
   boxShadow: '0 0 20px 0 rgba(0, 0, 0, 0.2)',
   width: '100%',
   margin: '0 auto',
-  padding: '1% 5%',
-  '@media(min-width:960px)': { padding: '0 5%' },
-};
+  padding: '0.5rem 1rem',
+  '@media(min-width:960px)': { padding: '0 10rem' },
+}));
+
+const LogoStyled = styled('img')(() => ({
+  width: 50,
+  '@media (min-width: 600px)': { width: 60 },
+  '@media (min-width: 960px)': { width: 70 },
+}));
 
 export function Header() {
   return (
-    <Box component="header" sx={headerStyles}>
-      <Box
-        component="img"
-        src="../public/vite.svg"
-        alt="Logo"
-        sx={{
-          color: 'white',
-          width: 40,
-          '@media (min-width: 600px)': { width: 60 },
-        }}
-      />
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          padding: '2%',
-          '@media(min-width:960px)': { padding: '1% 4%' },
-        }}
-      >
+    <HeaderStyled>
+      <LogoStyled src={logo} alt="Logo" />
+      <Box sx={{ display: 'flex', flexDirection: 'column', padding: '1rem' }}>
         <Typography variant="h1">Eatwise</Typography>
         <Typography variant="h6" color="grey.300">
           Verze: {import.meta.env.VITE_APP_VERSION}
         </Typography>
       </Box>
-    </Box>
+    </HeaderStyled>
   );
 }

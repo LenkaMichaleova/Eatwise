@@ -1,17 +1,20 @@
-import { Box, Typography, Button } from '@mui/material';
+import { Typography, Button } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import { Link } from 'react-router';
+
+const ErrorPageStyled = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  textAlign: 'center',
+  margin: '5rem 2rem',
+  gap: 1,
+});
 
 export function ErrorPage() {
   return (
-    <Box
-      display="flex"
-      flexDirection="column"
-      alignItems="center"
-      justifyContent="center"
-      textAlign="center"
-      margin="5rem 2rem"
-      gap={1}
-    >
+    <ErrorPageStyled>
       <Typography variant="h2" color="primary" fontWeight="bold">
         404
       </Typography>
@@ -24,10 +27,10 @@ export function ErrorPage() {
         to="/"
         variant="outlined"
         color="primary"
-        sx={{ margin: '1%', padding: '1%' }}
+        sx={{ margin: '1rem', padding: '1rem' }}
       >
         Zpět na hlavní stránku
       </Button>
-    </Box>
+    </ErrorPageStyled>
   );
 }

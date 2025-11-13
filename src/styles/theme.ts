@@ -27,7 +27,7 @@ export const theme = createTheme({
       main: '#6EC6A8',
     },
     secondary: {
-      main: '#FFFFFF',
+      main: '#F0F0F0',
     },
   },
 });

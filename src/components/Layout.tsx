@@ -1,4 +1,5 @@
-import { Box } from '@mui/material';
+import { Container } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import type { ReactNode } from 'react';
 import { Header } from './Header';
 import { Footer } from './Footer';
@@ -7,21 +8,21 @@ interface LayoutProps {
   children: ReactNode;
 }
 
+const LayoutStyled = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-between',
+  minHeight: '100vh',
+});
+
 export function Layout({ children }: LayoutProps) {
   return (
-    <Box
-      display="flex"
-      flexDirection="column"
-      justifyContent="space-between"
-      minHeight="100vh"
-    >
+    <LayoutStyled>
       <Header />
-
-      <Box component="main" flex={1}>
+      <Container component="main" sx={{ flex: 1 }}>
         {children}
-      </Box>
-
+      </Container>
       <Footer />
-    </Box>
+    </LayoutStyled>
   );
 }
