@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import logo from '../assets/logo.png'
+import logo from '../assets/logo.png';
 
 const HeaderStyled = styled('header')(({ theme }) => ({
   display: 'flex',

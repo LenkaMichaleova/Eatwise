@@ -1,6 +1,7 @@
 import { Typography, Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { Link } from 'react-router';
+import { ROUTES } from '../routes';
 
 const ErrorPageStyled = styled('div')({
   display: 'flex',
@@ -24,7 +25,7 @@ export function ErrorPage() {
       </Typography>
       <Button
         component={Link}
-        to="/"
+        to={ROUTES.home}
         variant="outlined"
         color="primary"
         sx={{ margin: '1rem', padding: '1rem' }}
