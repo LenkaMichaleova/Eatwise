@@ -1,19 +1,12 @@
 import { Container } from '@mui/material';
-import { styled } from '@mui/material/styles';
 import type { ReactNode } from 'react';
 import { Header } from './Header';
 import { Footer } from './Footer';
+import { LayoutStyled } from './LayoutStyles';
 
 interface LayoutProps {
   children: ReactNode;
 }
-
-const LayoutStyled = styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'space-between',
-  minHeight: '100vh',
-});
 
 export function Layout({ children }: LayoutProps) {
   return (
