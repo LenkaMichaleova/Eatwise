@@ -1,39 +1,31 @@
-import { BrowserRouter, Routes, Route } from 'react-router';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-
-const theme = createTheme({
-  typography: {
-    fontFamily: ['Arial', 'sans-serif'].join(','),
-    fontSize: 12,
-    h1: {
-      padding: '2% 5%',
-      color: 'white',
-      fontSize: '1rem',
-      '@media (min-width:600px)': {
-        fontSize: '1.2rem',
-      },
-      '@media (min-width:960px)': {
-        fontSize: '2rem',
-      },
-    },
-  },
-  palette: {
-    primary: {
-      main: '#6EC6A8',
-    },
-    secondary: {
-      main: '#FFFFFF',
-    },
-  },
-});
+import { BrowserRouter, Route, Routes } from 'react-router';
+import { ThemeProvider } from '@mui/material/styles';
+import { theme } from './styles/theme';
+import { Layout } from './components/Layout';
+import { ErrorPage } from './pages/ErrorPage';
+import { ROUTES } from './routes';
 
 function App() {
   return (
     <BrowserRouter>
       <ThemeProvider theme={theme}>
-        <Routes>
-          <Route path="/" element={<h1>Eatwise</h1>} />
-        </Routes>
+        <Layout>
+          <Routes>
+            <Route path={ROUTES.home} element={<div>Home Page</div>} />
+            <Route path={ROUTES.profile} element={<div>Profil</div>} />
+            <Route path={ROUTES.database} element={<div>Databáze jídel</div>} />
+            <Route path={ROUTES.menu} element={<div>Jídelníček</div>} />
+            <Route
+              path={ROUTES.tables}
+              element={<div>Kalorické tabulky</div>}
+            />
+            <Route
+              path={ROUTES.countCalories}
+              element={<div>Vyfoť jídlo a spočítej kalorie</div>}
+            />
+            <Route path={ROUTES.error} element={<ErrorPage />} />
+          </Routes>
+        </Layout>
       </ThemeProvider>
     </BrowserRouter>
   );
