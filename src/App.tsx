@@ -1,9 +1,14 @@
 import { BrowserRouter, Route, Routes } from 'react-router';
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from './styles/theme';
-import { Layout } from './components/Layout';
+import { Layout } from './components/Layout/Layout';
 import { ErrorPage } from './pages/ErrorPage';
 import { ROUTES } from './routes';
+import { HomePage } from './pages/HomePage/HomePage';
+import { Database } from './pages/Database/Database';
+import { Menu } from './pages/Menu/Menu';
+import { Tables } from './pages/Tables/Tables';
+import { CountCalories } from './pages/CountCalories/CountCalories';
 
 function App() {
   return (
@@ -11,18 +16,12 @@ function App() {
       <ThemeProvider theme={theme}>
         <Layout>
           <Routes>
-            <Route path={ROUTES.home} element={<div>Home Page</div>} />
+            <Route path={ROUTES.home} element={<HomePage />} />
             <Route path={ROUTES.profile} element={<div>Profil</div>} />
-            <Route path={ROUTES.database} element={<div>Databáze jídel</div>} />
-            <Route path={ROUTES.menu} element={<div>Jídelníček</div>} />
-            <Route
-              path={ROUTES.tables}
-              element={<div>Kalorické tabulky</div>}
-            />
-            <Route
-              path={ROUTES.countCalories}
-              element={<div>Vyfoť jídlo a spočítej kalorie</div>}
-            />
+            <Route path={ROUTES.database} element={<Database />} />
+            <Route path={ROUTES.menu} element={<Menu />} />
+            <Route path={ROUTES.tables} element={<Tables />} />
+            <Route path={ROUTES.countCalories} element={<CountCalories />} />
             <Route path={ROUTES.error} element={<ErrorPage />} />
           </Routes>
         </Layout>
