@@ -27,8 +27,7 @@ export function ErrorPage() {
         component={Link}
         to={ROUTES.home}
         variant="outlined"
-        color="primary"
-        sx={{ margin: '1rem', padding: '1rem' }}
+        sx={{ margin: '1rem', padding: '1rem', color: 'primary' }}
       >
         Zpět na hlavní stránku
       </Button>
