@@ -29,6 +29,16 @@ export const theme = createTheme({
       '@media (min-width: 600px)': { fontSize: '0.7rem' },
       '@media (min-width: 960px)': { fontSize: '0.9rem' },
     },
+    body1: {
+      fontSize: '0.6rem',
+      '@media (min-width: 600px)': { fontSize: '0.8rem' },
+      '@media (min-width: 960px)': { fontSize: '1rem' },
+    },
+    body2: {
+      fontSize: '0.5rem',
+      '@media (min-width: 600px)': { fontSize: '0.7rem' },
+      '@media (min-width: 960px)': { fontSize: '0.9rem' },
+    },
   },
   palette: {
     primary: {

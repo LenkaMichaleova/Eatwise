@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material';
-import { FooterStyled } from './LayoutStyles';
+import { FooterStyled } from './styles/LayoutStyles';
 
 export function Footer() {
   return (
