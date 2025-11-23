@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles';
-import bg from '../../assets/background.png';
+import bg from '../../../assets/background.png';
 
 export const LayoutStyled = styled('div')({
   display: 'flex',
