@@ -1,6 +1,6 @@
-import { rows } from "../rows";
-import { DatabaseBoxSmallStyled } from "../styles/DatabaseStyles";
-import { FoodCardSmall } from "./FoodCardSmall";
+import { rows } from '../rows';
+import { DatabaseBoxSmallStyled } from '../styles/DatabaseStyles';
+import { FoodCardSmall } from './FoodCardSmall';
 
 export const DatabaseBoxSmall = () => {
   return (

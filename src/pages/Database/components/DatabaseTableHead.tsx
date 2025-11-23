@@ -1,4 +1,4 @@
-import { TableCell, TableHead, TableRow } from "@mui/material";
+import { TableCell, TableHead, TableRow } from '@mui/material';
 
 export const DatabaseTableHead = () => {
   return (

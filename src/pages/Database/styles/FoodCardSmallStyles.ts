@@ -1,5 +1,5 @@
-import { Card } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import { Card } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
 export const FoodCardSmallStyled = styled(Card)(({ theme }) => ({
   width: '100%',

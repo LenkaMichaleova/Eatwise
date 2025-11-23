@@ -9,7 +9,7 @@ export const Database = () => {
   return (
     <DatabaseStyled>
       <DatabaseHeaderStylled>
-        <SectionTitle title="Databáze jídel"/>
+        <SectionTitle title="Databáze jídel" />
         <Button>
           <FilterListAltIcon fontSize="large" />
         </Button>
@@ -18,4 +18,4 @@ export const Database = () => {
       <DatabaseTable />
     </DatabaseStyled>
   );
-}
+};
