@@ -1,7 +1,7 @@
 import { Button, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { Link } from 'react-router';
-import { ROUTES } from '../../routes';
+import { ROUTES } from '../../constants/routes';
 
 const MenuStyled = styled('div')({
   display: 'flex',

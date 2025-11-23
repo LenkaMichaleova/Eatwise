@@ -2,7 +2,7 @@ import { TableCell, TableRow } from '@mui/material';
 import type { Row } from '../models/row';
 import { tableRowStyles } from '../styles/TableStyles';
 import { generatePath, useNavigate } from 'react-router-dom';
-import { ROUTES } from '../../../routes';
+import { ROUTES } from '../../../constants/routes';
 
 interface RowDataProps {
   rowData: Row;

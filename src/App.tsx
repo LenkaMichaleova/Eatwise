@@ -3,7 +3,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { theme } from './styles/theme';
 import { Layout } from './components/Layout/Layout';
 import { ErrorPage } from './pages/ErrorPage';
-import { ROUTES } from './routes';
+import { ROUTES } from './constants/routes';
 import { HomePage } from './pages/HomePage/HomePage';
 import { Database } from './pages/Database/Database';
 import { Menu } from './pages/Menu/Menu';

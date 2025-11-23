@@ -1,6 +1,6 @@
 import { CardActionArea, Typography } from '@mui/material';
 import { generatePath, Link } from 'react-router-dom';
-import { ROUTES } from '../../../routes';
+import { ROUTES } from '../../../constants/routes';
 import type { Row } from '../models/row';
 import {
   FoodCardActionStyles,
