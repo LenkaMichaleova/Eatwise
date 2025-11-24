@@ -1,27 +1,28 @@
-import { Button, Typography } from '@mui/material';
-import { styled } from '@mui/material/styles';
-import { Link } from 'react-router';
-import { ROUTES } from '../../routes';
+import FilterListAltIcon from '@mui/icons-material/FilterListAlt';
+import { Button } from '@mui/material';
+import { SectionTitle } from '../../components/SectionTitle';
+import { DatabaseTable } from './components/DatabaseTable';
+import { DatabaseBoxSmall } from './components/DatabaseBoxSmall';
+import { DatabaseHeaderStylled, DatabaseStyled } from './styles/DatabaseStyles';
 
-const DatabaseStyled = styled('div')({
-  display: 'flex',
-  flexWrap: 'wrap',
-  justifyContent: 'flex-start',
-  margin: '2rem auto',
-  maxWidth: '1200px',
-  width: '100%',
-  gap: '1rem',
-});
-
-export function Database() {
+export const Database = () => {
   return (
     <DatabaseStyled>
-      <Button component={Link} to={ROUTES.home}>
-        Zpět
-      </Button>
-      <Typography variant="h2" color="primary">
-        Databáze
-      </Typography>
+      <DatabaseHeaderStylled>
+        <SectionTitle title="Databáze jídel" />
+        <Button>
+          <FilterListAltIcon fontSize="large" />
+        </Button>
+      </DatabaseHeaderStylled>
+      <DatabaseBoxSmall />
+      {/* TODO handle responsivity here (using e.g. Box) rather than styling components */}
+      {/* <Box sx={{ display: { sm: 'flex', md: 'none' } }}>
+        <DatabaseBoxSmall />
+      </Box>
+      <Box sx={{ display: { sm: 'none', md: 'block' } }}>
+        <DatabaseTable />
+      </Box> */}
+      <DatabaseTable />
     </DatabaseStyled>
   );
-}
+};

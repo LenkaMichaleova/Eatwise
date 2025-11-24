@@ -2,7 +2,7 @@ import { Container } from '@mui/material';
 import type { ReactNode } from 'react';
 import { Header } from './Header';
 import { Footer } from './Footer';
-import { LayoutStyled } from './LayoutStyles';
+import { LayoutStyled } from './styles/LayoutStyles';
 
 interface LayoutProps {
   children: ReactNode;

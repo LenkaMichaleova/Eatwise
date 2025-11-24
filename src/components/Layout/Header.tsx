@@ -1,5 +1,5 @@
 import { Box, Container, Typography } from '@mui/material';
-import { HeaderStyled, LogoStyled } from './LayoutStyles';
+import { HeaderStyled, LogoStyled } from './styles/LayoutStyles';
 import logo from '../../assets/logo.png';
 
 export function Header() {
