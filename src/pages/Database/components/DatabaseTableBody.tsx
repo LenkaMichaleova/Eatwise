@@ -1,15 +1,13 @@
 import { TableBody } from '@mui/material';
-import { rows } from '../rows';
 import { DatabaseTableRow } from './DatabaseTableRow';
+import type { Row } from '../models/row';
 
-export const DatabaseTableBody = () => {
+export const DatabaseTableBody = ({data} : {data: Row[]}) => {
   return (
     <TableBody>
-      {rows.map((row) => {
+      {data.map((row) => {
         return <DatabaseTableRow rowData={row} key={row.name} />;
       })}
     </TableBody>
   );
 };
-
-// TODO fetch rows from server
