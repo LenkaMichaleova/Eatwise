@@ -1,9 +1,10 @@
 import { foodData } from '../../foodData';
+import type { foodTypes } from './models/row';
 
 function createData(
   id: number,
   name: string,
-  type: 'snídaně' | 'svačina1' | 'oběd' | 'svačina2' | 'večeře',
+  type: foodTypes,
   calories: number,
   fat: number,
   carbs: number,

@@ -11,3 +11,5 @@ export const DatabaseBoxSmall = () => {
     </DatabaseBoxSmallStyled>
   );
 };
+
+// TODO fetch rows from server
