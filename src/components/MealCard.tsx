@@ -1,4 +1,4 @@
-import type { MealData } from '../models/MealData.ts';
+import type { MealData } from '../models/MealData';
 import CircularProgress from '@mui/material/CircularProgress';
 import {
   Card,
