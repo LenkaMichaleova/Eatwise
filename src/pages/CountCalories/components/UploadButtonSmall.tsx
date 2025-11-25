@@ -22,7 +22,6 @@ export const UploadButtonSmall = ({ icon }: UploadButtonSmallProps) => {
 // TODO 1:
 // good job thinking about form id/htmlFor 👍 on the other hand there is no connection between real id and html for. so in case you change id=uploadCamera to id=newUploadCameraId, this is going to fail. another note. if you think about it the button and input belong to each other. so if you move the input inside of the Button component, youll solve the first problem
 
-
 // TODO 2:
 // another comment 😄 you can keep it as is. but in long term. imagine you need to have 10 other icons here. dont ask me which ones, you'll simply need it. would you have 12 ifs down bellow? No. the simplest way is to convert icon to icon: ReactNode and use it as <UploadButtonSmall icon={<CameraAltIcon color="primary" sx={{ fontSize: 25 }} />} /> etc. what do you think about it?
 // combined with the comment bellow the component looks like this
