@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { fetchItemsFromOpenAI } from '../../../services/aiService';
-import type { MealData } from '../../../models/MealData';
+import type { mealData } from '../../../models/mealData';
 import { useMutation } from '@tanstack/react-query';
 
 const useMealRecognition = () =>
-  useMutation<MealData, Error, string>({
+  useMutation<mealData, Error, string>({
     mutationFn: async (imageBase64: string) => {
       return await fetchItemsFromOpenAI(imageBase64);
     },

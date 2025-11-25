@@ -5,15 +5,6 @@ import { defineConfig } from 'eslint/config';
 
 export default defineConfig([
   {
-    ignores: [
-      'node_modules/**',
-      'dist/**',
-      'build/**',
-      'public/**',
-      '.next/**',
-    ],
-  },
-  {
     files: ['**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     plugins: {
       react: pluginReact,

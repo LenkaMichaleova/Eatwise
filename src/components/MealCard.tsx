@@ -1,4 +1,3 @@
-import type { MealData } from '../models/MealData';
 import CircularProgress from '@mui/material/CircularProgress';
 import {
   Card,
@@ -7,9 +6,10 @@ import {
   CardMedia,
   Typography,
 } from '@mui/material';
+import type { mealData } from '../models/mealData';
 
 export interface MealCardProps {
-  data: MealData | undefined;
+  data: mealData | undefined;
   image: string | null;
   loading: boolean;
   error?: Error | null;

@@ -1,7 +1,0 @@
-node_modules/
-dist/
-build/
-out/
-public/
-*.bundle.js
-*.min.js
