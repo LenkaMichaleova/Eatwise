@@ -1,5 +1,3 @@
-//TODO - delete foodData.json or foodData.ts
-
 export type FoodType = 'snídaně' | 'svačina1' | 'oběd' | 'svačina2' | 'večeře';
 
 type KjEntry = {

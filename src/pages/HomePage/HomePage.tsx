@@ -1,5 +1,6 @@
 import { styled } from '@mui/material/styles';
 import { NavCard } from './components/NavCard';
+import { ROUTES } from '../../constants/routes';
 
 const HomePageStyled = styled('div')({
   display: 'flex',
@@ -18,10 +19,10 @@ const HomePageStyled = styled('div')({
 export function HomePage() {
   return (
     <HomePageStyled>
-      <NavCard path="database" title="Databáze" />
-      <NavCard path="menu" title="Jídelníček" />
-      <NavCard path="tables" title="Kalorické tabulky" />
-      <NavCard path="count-calories" title="Vyfoť jídlo" />
+      <NavCard path={ROUTES.database} title="Databáze jídel" />
+      <NavCard path={ROUTES.menu} title="Jídelníček" />
+      <NavCard path={ROUTES.tables} title="Kalorické tabulky" />
+      <NavCard path={ROUTES.countCalories} title="Vyfoť jídlo" />
     </HomePageStyled>
   );
 }

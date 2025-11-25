@@ -9,25 +9,28 @@ import { Database } from './pages/Database/Database';
 import { Menu } from './pages/Menu/Menu';
 import { Tables } from './pages/Tables/Tables';
 import { CountCalories } from './pages/CountCalories/CountCalories';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-function App() {
+const queryClient = new QueryClient();
+
+export const App = () => {
   return (
-    <BrowserRouter>
-      <ThemeProvider theme={theme}>
-        <Layout>
-          <Routes>
-            <Route path={ROUTES.home} element={<HomePage />} />
-            <Route path={ROUTES.profile} element={<div>Profil</div>} />
-            <Route path={ROUTES.database} element={<Database />} />
-            <Route path={ROUTES.menu} element={<Menu />} />
-            <Route path={ROUTES.tables} element={<Tables />} />
-            <Route path={ROUTES.countCalories} element={<CountCalories />} />
-            <Route path={ROUTES.error} element={<ErrorPage />} />
-          </Routes>
-        </Layout>
-      </ThemeProvider>
-    </BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <ThemeProvider theme={theme}>
+          <Layout>
+            <Routes>
+              <Route path={ROUTES.home} element={<HomePage />} />
+              <Route path={ROUTES.profile} element={<div>Profil</div>} />
+              <Route path={ROUTES.database} element={<Database />} />
+              <Route path={ROUTES.menu} element={<Menu />} />
+              <Route path={ROUTES.tables} element={<Tables />} />
+              <Route path={ROUTES.countCalories} element={<CountCalories />} />
+              <Route path={ROUTES.error} element={<ErrorPage />} />
+            </Routes>
+          </Layout>
+        </ThemeProvider>
+      </BrowserRouter>
+    </QueryClientProvider>
   );
-}
-
-export default App;
+};

@@ -1,10 +1,10 @@
-import { Button, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { Link } from 'react-router';
-import { ROUTES } from '../../constants/routes';
+import { SectionTitle } from '../../components/SectionTitle';
+import { MealReader } from './components/MealReader';
 
 const CountCaloriesStyled = styled('div')({
   display: 'flex',
+  flexDirection: 'column',
   flexWrap: 'wrap',
   justifyContent: 'flex-start',
   margin: '2rem auto',
@@ -16,12 +16,8 @@ const CountCaloriesStyled = styled('div')({
 export function CountCalories() {
   return (
     <CountCaloriesStyled>
-      <Button component={Link} to={ROUTES.home}>
-        Zpět
-      </Button>
-      <Typography variant="h2" color="primary">
-        Vyfoť jídlo a spočítej kalorie
-      </Typography>
+      <SectionTitle title="Vyfoť jídlo a spočítej kalorie" />
+      <MealReader />
     </CountCaloriesStyled>
   );
 }
