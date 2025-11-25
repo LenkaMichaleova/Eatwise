@@ -1,4 +1,4 @@
-import { openAiApi } from '../hooks/openAiApi';
+import { openAiApi } from '../api/openAiApi';
 
 export const fetchItemsFromOpenAI = async (img: string) => {
   const response = await openAiApi.post('', {
@@ -28,9 +28,17 @@ export const fetchItemsFromOpenAI = async (img: string) => {
   if (!resp) throw new Error('Žádná odpověď od OpenAI');
 
   const cleaned = resp.match(/\{[\s\S]*\}/)?.[0];
+  try {
+    JSON.parse(cleaned);
+  } catch {
+    throw new Error('Jídlo se nepodařilo rozpoznat');
+  }
+
   const parsed = JSON.parse(cleaned);
   if (!parsed.name || !parsed.value) {
     throw new Error('Jídlo se nepodařilo rozpoznat');
+  } else if (isNaN(Number(parsed.value))) {
+    throw new Error('Kalorická hodnota není platné číslo');
   }
 
   return {
