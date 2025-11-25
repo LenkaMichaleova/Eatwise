@@ -1,51 +1,39 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { fetchItemsFromOpenAI } from '../../../services/aiService';
 import type { mealData } from '../../../models/mealData';
+import { useMutation } from '@tanstack/react-query';
+
+const useMealRecognition = () => {
+  return useMutation<mealData, Error, string>({
+    mutationFn: async (imageBase64: string) => {
+      return await fetchItemsFromOpenAI(imageBase64);
+    },
+  });
+};
 
 export const useMealReaderControler = () => {
   const [image, setImage] = useState<null | string>(null);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string>('');
-  const [result, setResult] = useState<mealData>({
-    name: '',
-    value: 0,
-    description: '',
-  });
+
+  const {
+    mutate: analyze,
+    data: result,
+    error,
+    isPending: loading,
+    reset,
+  } = useMealRecognition();
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-
     const reader = new FileReader();
     reader.onloadend = () => {
-      setImage(reader.result as string);
-      setResult({
-        name: '',
-        value: 0,
-        description: '',
-      });
-      setError('');
+      const base64 = reader.result as string;
+      setImage(base64);
+      reset();
+      analyze(base64);
     };
     reader.readAsDataURL(file);
   };
-
-  useEffect(() => {
-    const handleAI = async () => {
-      if (!image) return;
-
-      setLoading(true);
-      setError('');
-      try {
-        setResult(await fetchItemsFromOpenAI(image));
-      } catch (err) {
-        setError('Nepodařilo se rozpoznat jídlo z obrázku.');
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    handleAI();
-  }, [image]);
 
   return { image, loading, error, result, handleImageChange };
 };

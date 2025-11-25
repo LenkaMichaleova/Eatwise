@@ -9,10 +9,10 @@ import {
 } from '@mui/material';
 
 export interface MealCardProps {
-  data: mealData;
+  data: mealData | undefined;
   image: string | null;
   loading: boolean;
-  error?: string;
+  error?: Error | null;
 }
 
 export const MealCard = ({ data, image, loading, error }: MealCardProps) => {
@@ -25,13 +25,13 @@ export const MealCard = ({ data, image, loading, error }: MealCardProps) => {
         <CardMedia component="img" src={image} alt="Paella dish" width={100} />
       )}
       <CardHeader
-        title={data.name}
-        subheader={data.value ? `${data.value} KCal` : undefined}
+        title={data?.name}
+        subheader={data?.value ? `${data.value} KCal` : undefined}
       />
-      <CardContent sx={{ display: 'flex', justifyContent: 'center' }}>
-        <Typography variant="body1"> {data.description}</Typography>
+      <CardContent sx={{ display: 'flex' }}>
+        <Typography variant="body1"> {data?.description}</Typography>
         {loading && <CircularProgress />}
-        {error && <p>{error}</p>}
+        {error && <Typography variant="body2">{error.message}</Typography>}
       </CardContent>
     </Card>
   );

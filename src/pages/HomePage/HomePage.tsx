@@ -19,7 +19,7 @@ const HomePageStyled = styled('div')({
 export function HomePage() {
   return (
     <HomePageStyled>
-      <NavCard path={ROUTES.database} title="Databáze" />
+      <NavCard path={ROUTES.database} title="Databáze jídel" />
       <NavCard path={ROUTES.menu} title="Jídelníček" />
       <NavCard path={ROUTES.tables} title="Kalorické tabulky" />
       <NavCard path={ROUTES.countCalories} title="Vyfoť jídlo" />
