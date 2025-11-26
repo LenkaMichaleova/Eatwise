@@ -1,5 +1,5 @@
 export type mealData = {
-  title: string;
+  name: string;
   value: number;
   description: string;
 };
