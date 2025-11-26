@@ -1,6 +1,7 @@
 import { UploadButtonLargeStyled } from '../styles/uploadLargeStyles';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
+import { Typography } from '@mui/material';
 
 interface UploadButtonLargeProps {
   icon: 'Camera' | 'File';
@@ -16,7 +17,9 @@ export const UploadButtonLarge = ({ icon, text }: UploadButtonLargeProps) => {
       {icon === 'File' && (
         <DriveFolderUploadIcon color="primary" sx={{ fontSize: 30 }} />
       )}
-      <span>{text}</span>
+      <span>
+        <Typography variant="body1">{text}</Typography>
+      </span>
     </UploadButtonLargeStyled>
   );
 };

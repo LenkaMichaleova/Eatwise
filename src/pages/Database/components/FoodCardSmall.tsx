@@ -23,10 +23,10 @@ export const FoodCardSmall = ({ row }: FoodCardProps) => {
         })}
         sx={FoodCardActionStyles}
       >
-        <Typography variant="body1" sx={FoodCardTitleStyles}>
+        <Typography variant="body2" sx={FoodCardTitleStyles}>
           {row.name}
         </Typography>
-        <Typography variant="body2" sx={FoodCardCalolriesStyles}>
+        <Typography variant="h6" sx={FoodCardCalolriesStyles}>
           {row.calories} KCal
         </Typography>
       </CardActionArea>
