@@ -1,6 +1,8 @@
+import type { CalTablesRow } from './models/CalTableRow';
+
 export type CalTables = Record<string, number | string>;
 
-export const calTables: CalTables[] = [
+export const calTables: CalTablesRow[] = [
   {
     OrigFdCd: 562,
     OrigFdNm: ' Agar',
