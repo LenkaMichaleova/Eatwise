@@ -27,9 +27,9 @@ export const MealCard = ({ data, image, loading, error }: MealCardProps) => {
         subheader={data?.value ? `${data.value} kcal` : undefined}
       />
       <CardContent sx={{ display: 'flex' }}>
-        <Typography variant="body1"> {data?.description}</Typography>
+        <Typography variant="body2"> {data?.description}</Typography>
         {loading && <CircularProgress />}
-        {error && <Typography variant="body1">{error.message}</Typography>}
+        {error && <Typography variant="body2">{error.message}</Typography>}
       </CardContent>
     </Card>
   );
