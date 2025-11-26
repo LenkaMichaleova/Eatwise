@@ -1,27 +1,28 @@
-import { Button, Typography } from '@mui/material';
-import { styled } from '@mui/material/styles';
-import { Link } from 'react-router';
-import { ROUTES } from '../../constants/routes';
-
-const TablesStyled = styled('div')({
-  display: 'flex',
-  flexWrap: 'wrap',
-  justifyContent: 'flex-start',
-  margin: '2rem auto',
-  maxWidth: '1200px',
-  width: '100%',
-  gap: '1rem',
-});
+import FilterListAltIcon from '@mui/icons-material/FilterListAlt';
+import { Box, Button } from '@mui/material';
+import { CalTablesHeaderStylled, CalTablesStyled } from './styles/calTablesStyles';
+import { SectionTitle } from '../../components/SectionTitle';
+import { CalTablesBoxSmall } from './components/CalTablesBoxSmall';
+import { CalTablesTable } from './components/CalTablesTable';
+import { getAllIngredients } from '../../services/ingredientsService';
 
 export function Tables() {
+  const tableData = getAllIngredients();
+  
   return (
-    <TablesStyled>
-      <Button component={Link} to={ROUTES.home}>
-        Zpět
-      </Button>
-      <Typography variant="h2" color="primary">
-        Kalorické tabulky
-      </Typography>
-    </TablesStyled>
+    <CalTablesStyled>
+      <CalTablesHeaderStylled>
+        <SectionTitle title="Kalorické tabulky" />
+        <Button>
+          <FilterListAltIcon fontSize="large" />
+        </Button>
+      </CalTablesHeaderStylled>
+      <Box sx={{ display: { sm: 'flex', md: 'none' }, width: '100%' }}>
+        <CalTablesBoxSmall data={tableData} />
+      </Box>
+      <Box sx={{ display: { sm: 'none', md: 'block' }, width: '100%' }}>
+        <CalTablesTable data={tableData} />
+      </Box>
+    </CalTablesStyled>
   );
 }
