@@ -24,3 +24,5 @@ export const DatabaseDetail = () => {
     </>
   );
 };
+
+// TODO handle foodItem not found
