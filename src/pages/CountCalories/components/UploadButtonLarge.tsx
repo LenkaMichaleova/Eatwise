@@ -17,7 +17,9 @@ export const UploadButtonLarge = ({ icon, text }: UploadButtonLargeProps) => {
       {icon === 'File' && (
         <DriveFolderUploadIcon color="primary" sx={{ fontSize: 30 }} />
       )}
-      <span><Typography variant='body1'>{text}</Typography></span>
+      <span>
+        <Typography variant="body1">{text}</Typography>
+      </span>
     </UploadButtonLargeStyled>
   );
 };
