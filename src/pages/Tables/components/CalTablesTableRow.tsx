@@ -10,10 +10,7 @@ export const CalTablesTableRow = ({ rowData }: RowDataProps) => {
   const { OrigFdNm, ENERC, FAT, CHOT, PROT } = rowData;
 
   return (
-    <TableRow
-      hover
-      sx={tableRowStyles}
-    >
+    <TableRow hover sx={tableRowStyles}>
       <TableCell component="th" scope="row">
         {OrigFdNm}
       </TableCell>

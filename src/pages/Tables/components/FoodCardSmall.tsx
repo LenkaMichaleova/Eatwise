@@ -14,9 +14,7 @@ interface FoodCardProps {
 export const FoodCardSmall = ({ row }: FoodCardProps) => {
   return (
     <FoodCardSmallStyled>
-      <CardActionArea
-        sx={FoodCardActionStyles}
-      >
+      <CardActionArea sx={FoodCardActionStyles}>
         <Typography variant="body2" sx={FoodCardTitleStyles}>
           {row.OrigFdNm}
         </Typography>

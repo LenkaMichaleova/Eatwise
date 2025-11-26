@@ -1,6 +1,9 @@
 import FilterListAltIcon from '@mui/icons-material/FilterListAlt';
 import { Box, Button } from '@mui/material';
-import { CalTablesHeaderStylled, CalTablesStyled } from './styles/calTablesStyles';
+import {
+  CalTablesHeaderStylled,
+  CalTablesStyled,
+} from './styles/calTablesStyles';
 import { SectionTitle } from '../../components/SectionTitle';
 import { CalTablesBoxSmall } from './components/CalTablesBoxSmall';
 import { CalTablesTable } from './components/CalTablesTable';
@@ -8,7 +11,7 @@ import { getAllIngredients } from '../../services/ingredientsService';
 
 export function Tables() {
   const tableData = getAllIngredients();
-  
+
   return (
     <CalTablesStyled>
       <CalTablesHeaderStylled>
