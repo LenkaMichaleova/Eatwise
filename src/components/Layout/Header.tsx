@@ -5,7 +5,7 @@ import logo from '../../assets/logo.png';
 export function Header() {
   return (
     <HeaderStyled>
-      <Container sx={{ display: 'flex' }}>
+      <Container sx={{ display: 'flex', alignItems: 'center' }}>
         <LogoStyled src={logo} alt="Logo" />
         <Box sx={{ display: 'flex', flexDirection: 'column', padding: '1rem' }}>
           <Typography variant="h1">Eatwise</Typography>

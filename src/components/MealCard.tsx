@@ -24,12 +24,12 @@ export const MealCard = ({ data, image, loading, error }: MealCardProps) => {
       <CardMedia component="img" src={image} alt="Paella dish" width={100} />
       <CardHeader
         title={data?.name}
-        subheader={data?.value ? `${data.value} KCal` : undefined}
+        subheader={data?.value ? `${data.value} kcal` : undefined}
       />
       <CardContent sx={{ display: 'flex' }}>
         <Typography variant="body1"> {data?.description}</Typography>
         {loading && <CircularProgress />}
-        {error && <Typography variant="body2">{error.message}</Typography>}
+        {error && <Typography variant="body1">{error.message}</Typography>}
       </CardContent>
     </Card>
   );
