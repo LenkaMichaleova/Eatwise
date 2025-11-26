@@ -23,7 +23,7 @@ export const MealCard = ({ data, image, loading, error }: MealCardProps) => {
     <Card sx={{ width: '80vw', maxWidth: '350px', borderRadius: '5px' }}>
       <CardMedia component="img" src={image} alt="Paella dish" width={100} />
       <CardHeader
-        title={data?.name}
+        title={data?.title}
         subheader={data?.value ? `${data.value} kcal` : undefined}
       />
       <CardContent sx={{ display: 'flex' }}>
