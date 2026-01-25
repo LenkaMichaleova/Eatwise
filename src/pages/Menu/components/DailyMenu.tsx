@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { generateDailyMenu } from '../utils/generateDailyMenu';
-import { foodData } from '../../../foodData2';
+import { foodData } from '../../../foodData';
 import {
   Box,
   Button,

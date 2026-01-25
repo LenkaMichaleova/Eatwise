@@ -1,4 +1,4 @@
-import type { Food } from '../../../foodData2';
+import type { Food } from '../../../foodData';
 
 const dailyKJ = 6000;
 
