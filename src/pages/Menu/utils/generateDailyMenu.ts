@@ -3,8 +3,12 @@ import type { Food } from '../../../foodData';
 
 const dailyKJ = 6000;
 
-const randomItem = <T>(array: T[]): T =>
-  array[Math.floor(Math.random() * array.length)];
+const randomItem = <T>(array: T[]): T => {
+  if (!array?.length) {
+    throw new Error('Pro tuto kategorii nejsou dostupná jídla.');
+  }
+  return array[Math.floor(Math.random() * array.length)];
+};
 
 export const generateDailyMenu = (foodData: Food[]) => {
   const groups = groupBy(foodData, 'type');
