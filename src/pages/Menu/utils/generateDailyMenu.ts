@@ -1,3 +1,4 @@
+import { groupBy } from 'lodash';
 import type { Food } from '../../../foodData';
 
 const dailyKJ = 6000;
@@ -5,18 +6,8 @@ const dailyKJ = 6000;
 const randomItem = <T>(array: T[]): T =>
   array[Math.floor(Math.random() * array.length)];
 
-const groupFoodsByType = (foods: Food[]) => {
-  return {
-    snidane: foods.filter((food) => food.type === 'snídaně'),
-    svacina1: foods.filter((food) => food.type === 'svačina1'),
-    obed: foods.filter((food) => food.type === 'oběd'),
-    svacina2: foods.filter((food) => food.type === 'svačina2'),
-    vecere: foods.filter((food) => food.type === 'večeře'),
-  };
-};
-
 export const generateDailyMenu = (foodData: Food[]) => {
-  const groups = groupFoodsByType(foodData);
+  const groups = groupBy(foodData, 'type');
 
   const attempts = 5;
   let bestCombo: Food[] = [];
@@ -24,11 +15,11 @@ export const generateDailyMenu = (foodData: Food[]) => {
 
   for (let i = 0; i < attempts; i++) {
     const candidate = [
-      randomItem(groups.snidane),
-      randomItem(groups.svacina1),
-      randomItem(groups.obed),
-      randomItem(groups.svacina2),
-      randomItem(groups.vecere),
+      randomItem(groups['snídaně']),
+      randomItem(groups['svačina1']),
+      randomItem(groups['oběd']),
+      randomItem(groups['svačina2']),
+      randomItem(groups['večeře']),
     ];
 
     const totalKJ = candidate.reduce((sum, meal) => sum + meal.kj, 0);
