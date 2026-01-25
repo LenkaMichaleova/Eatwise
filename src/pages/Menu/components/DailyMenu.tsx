@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { generateDailyMenu } from '../utils/generateDailyMenu';
-import { foodData } from '../../../foodData';
+import { type Food } from '../../../foodData';
 import {
   Box,
   Button,
@@ -11,8 +11,12 @@ import {
 } from '@mui/material';
 import { DailyMenuCard, DailyMenuMeals } from '../styles/dailyMenuStyles';
 
-export const DailyMenu = () => {
-  const [menu, setMenu] = useState(() => generateDailyMenu(foodData));
+export const DailyMenu = ({ data }: { data: Food[] }) => {
+  const [menu, setMenu] = useState(() => generateDailyMenu(data));
+
+  const handleGenerateMenu = useCallback(() => {
+    setMenu(generateDailyMenu(data));
+  }, [data]);
 
   return (
     <DailyMenuCard>
@@ -42,7 +46,7 @@ export const DailyMenu = () => {
           <Typography variant="h5">Celkem: {menu.totalKJ} kJ</Typography>
         </Box>
 
-        <Button onClick={() => setMenu(generateDailyMenu(foodData))}>
+        <Button onClick={handleGenerateMenu} variant="contained" fullWidth>
           Vygenerovat nový jídelníček
         </Button>
       </CardContent>
