@@ -23,7 +23,11 @@ export const DailyMenu = ({ data }: { data: Food[] }) => {
       <CardHeader
         title={
           <Typography variant="h4" color="primary">
-            Pondělí
+            {`Pondělí`}
+            {/*TODO: FYI check Luxon npm library (alternatively Day.js 
+            or do your own research) or native Temporal API for work with dates. 
+            regardless of the choice you will be able to work with dates easily 
+            and format different date format etc*/}
           </Typography>
         }
         sx={{ margin: '0 0 -2rem 0' }}
@@ -34,7 +38,7 @@ export const DailyMenu = ({ data }: { data: Food[] }) => {
             <DailyMenuMeals key={meal.id}>
               <Typography variant="body2">{meal.title}</Typography>
               <Typography variant="body2" color="gray">
-                ({meal.kj} kJ)
+                {`(${meal.kj} kJ)`}
               </Typography>
             </DailyMenuMeals>
           ))}
@@ -43,11 +47,11 @@ export const DailyMenu = ({ data }: { data: Food[] }) => {
         <Divider />
 
         <Box sx={{ padding: '1rem 0' }}>
-          <Typography variant="h5">Celkem: {menu.totalKJ} kJ</Typography>
+          <Typography variant="h5">{`Celkem: ${menu.totalKJ} kJ`}</Typography>
         </Box>
 
         <Button onClick={handleGenerateMenu} variant="contained" fullWidth>
-          Vygenerovat nový jídelníček
+          {`Vygenerovat nový jídelníček`}
         </Button>
       </CardContent>
     </DailyMenuCard>
