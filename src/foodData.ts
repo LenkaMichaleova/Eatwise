@@ -1,4 +1,4 @@
-export type FoodType = 'snídaně' | 'svačina1' | 'oběd' | 'svačina2' | 'večeře';
+export type FoodType = 'breakfast' | 'snack1' | 'lunch' | 'snack2' | 'dinner';
 
 type Ingredients = {
   name: string;
@@ -21,7 +21,7 @@ export const foodData: Food[] = [
   {
     id: 1,
     title: 'Granola s jogurtem',
-    type: 'snídaně',
+    type: 'breakfast',
     calories: 350,
     kj: 1465,
     proteins: 14,
@@ -37,7 +37,7 @@ export const foodData: Food[] = [
   {
     id: 2,
     title: 'Brokolicová pomazánka, opečený toast',
-    type: 'svačina1',
+    type: 'snack1',
     calories: 190,
     kj: 795,
     proteins: 8,
@@ -53,7 +53,7 @@ export const foodData: Food[] = [
   {
     id: 3,
     title: 'Vepřový mexický guláš s rýží',
-    type: 'oběd',
+    type: 'lunch',
     calories: 420,
     kj: 1760,
     proteins: 30,
@@ -71,7 +71,7 @@ export const foodData: Food[] = [
   {
     id: 4,
     title: 'Obložené knuspi',
-    type: 'svačina2',
+    type: 'snack2',
     calories: 160,
     kj: 670,
     proteins: 7,
@@ -87,7 +87,7 @@ export const foodData: Food[] = [
   {
     id: 5,
     title: 'Salát s kuřecími kousky, dresink',
-    type: 'večeře',
+    type: 'dinner',
     calories: 322,
     kj: 1340,
     proteins: 27,
@@ -104,7 +104,7 @@ export const foodData: Food[] = [
   {
     id: 6,
     title: 'Wrap se šunkou a sýrem, zeleninová obloha',
-    type: 'snídaně',
+    type: 'breakfast',
     calories: 345,
     kj: 1443,
     proteins: 20,
@@ -122,7 +122,7 @@ export const foodData: Food[] = [
   {
     id: 7,
     title: 'Meruňkový dezert s tvarohem',
-    type: 'svačina1',
+    type: 'snack1',
     calories: 185,
     kj: 774,
     proteins: 11,
@@ -138,7 +138,7 @@ export const foodData: Food[] = [
   {
     id: 8,
     title: 'Hovězí rajská omáčka, celozrnné těstoviny',
-    type: 'oběd',
+    type: 'lunch',
     calories: 435,
     kj: 1820,
     proteins: 29,
@@ -155,7 +155,7 @@ export const foodData: Food[] = [
   {
     id: 9,
     title: 'Zeleninový salát s vajíčkem a ořechy',
-    type: 'svačina2',
+    type: 'snack2',
     calories: 165,
     kj: 690,
     proteins: 8,
@@ -172,7 +172,7 @@ export const foodData: Food[] = [
   {
     id: 10,
     title: 'Tuňákové karbanátky, okurkový salát',
-    type: 'večeře',
+    type: 'dinner',
     calories: 320,
     kj: 1338,
     proteins: 27,

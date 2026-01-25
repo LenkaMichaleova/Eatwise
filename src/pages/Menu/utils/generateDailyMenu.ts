@@ -19,11 +19,11 @@ export const generateDailyMenu = (foodData: Food[]) => {
 
   for (let i = 0; i < attempts; i++) {
     const candidate = [
-      randomItem(groups['snídaně']),
-      randomItem(groups['svačina1']),
-      randomItem(groups['oběd']),
-      randomItem(groups['svačina2']),
-      randomItem(groups['večeře']),
+      randomItem(groups['breakfast']),
+      randomItem(groups['snack1']),
+      randomItem(groups['lunch']),
+      randomItem(groups['snack2']),
+      randomItem(groups['dinner']),
     ];
 
     const totalKJ = candidate.reduce((sum, meal) => sum + meal.kj, 0);

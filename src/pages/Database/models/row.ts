@@ -1,4 +1,4 @@
-export type foodTypes = 'snídaně' | 'svačina1' | 'oběd' | 'svačina2' | 'večeře';
+export type foodTypes = 'breakfast' | 'snack1' | 'lunch' | 'snack2' | 'dinner';
 
 export type Row = {
   id: number;
