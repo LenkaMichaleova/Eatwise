@@ -18,9 +18,9 @@ export const rows = foodData.map((food) =>
     food.id,
     food.title,
     food.type,
-    food.kjPerDay['6000'].calories,
-    food.kjPerDay['6000'].fats,
-    food.kjPerDay['6000'].carbohydrates,
-    food.kjPerDay['6000'].proteins
+    food.calories,
+    food.fats,
+    food.carbohydrates,
+    food.proteins
   )
 );
