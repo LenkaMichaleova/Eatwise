@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles';
-import { SectionTitle } from '../../components/SectionTitle';
+import { SectionTitle } from '../../components/SectionTitle/SectionTitle';
 import { MealReader } from './components/MealReader';
 
 const CountCaloriesStyled = styled('div')({

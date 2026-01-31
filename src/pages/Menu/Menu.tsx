@@ -1,4 +1,4 @@
-import { SectionTitle } from '../../components/SectionTitle';
+import { SectionTitle } from '../../components/SectionTitle/SectionTitle';
 import { getAllFoods } from '../../services/foodService';
 import { DailyMenu } from './components/DailyMenu';
 import { FoodMenuHeaderStylled, FoodMenuStyled } from './styles/foodMenuStyles';

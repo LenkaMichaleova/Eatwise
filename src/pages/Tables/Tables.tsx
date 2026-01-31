@@ -4,7 +4,7 @@ import {
   CalTablesHeaderStylled,
   CalTablesStyled,
 } from './styles/calTablesStyles';
-import { SectionTitle } from '../../components/SectionTitle';
+import { SectionTitle } from '../../components/SectionTitle/SectionTitle';
 import { CalTablesBoxSmall } from './components/CalTablesBoxSmall';
 import { CalTablesTable } from './components/CalTablesTable';
 import { getAllIngredients } from '../../services/ingredientsService';
