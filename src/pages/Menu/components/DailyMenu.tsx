@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback } from 'react';
 import { generateDailyMenu } from '../utils/generateDailyMenu';
 import { type Food } from '../../../foodData';
 import {
@@ -19,46 +19,24 @@ import {
 import { IconLabel } from '../../../components/IconLabel/IconLabel';
 // import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
 
-export const DailyMenu = ({ data, day }: { data: Food[]; day: string }) => {
-  const STORAGE_KEY = 'dailyMenu';
-  type DailyMenuResult = ReturnType<typeof generateDailyMenu>;
+type DailyMenuResult = ReturnType<typeof generateDailyMenu>;
 
-  const isDailyMenuResult = (value: unknown): value is DailyMenuResult => {
-    return (
-      !!value &&
-      typeof value === 'object' &&
-      Array.isArray((value as DailyMenuResult).meals) &&
-      typeof (value as DailyMenuResult).totalKJ === 'number'
-    );
-  };
+interface DailyMenuProps {
+  data: Food[];
+  day: string;
+  menu: DailyMenuResult;
+  onMenuChange: (menu: DailyMenuResult) => void;
+}
 
-  const loadSavedMenu = (): DailyMenuResult | null => {
-    if (typeof window === 'undefined') return null;
-
-    const storedValue = window.localStorage.getItem(STORAGE_KEY);
-    if (!storedValue) return null;
-
-    const parsed = JSON.parse(storedValue);
-
-    if (isDailyMenuResult(parsed)) return parsed;
-
-    return null;
-  };
-
-  const [menu, setMenu] = useState<DailyMenuResult>(() => {
-    const savedMenu = loadSavedMenu();
-    return savedMenu ?? generateDailyMenu(data);
-  });
-
+export const DailyMenu = ({
+  data,
+  day,
+  menu,
+  onMenuChange,
+}: DailyMenuProps) => {
   const handleGenerateMenu = useCallback(() => {
-    setMenu(generateDailyMenu(data));
-  }, [data]);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(menu));
-    }
-  }, [menu]);
+    onMenuChange(generateDailyMenu(data));
+  }, [data, onMenuChange]);
 
   return (
     <DailyMenuCard>
