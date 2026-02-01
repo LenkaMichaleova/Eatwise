@@ -6,10 +6,18 @@ import {
   Button,
   CardContent,
   CardHeader,
-  Paper,
+  // IconButton,
+  // Tooltip,
   Typography,
 } from '@mui/material';
-import { DailyMenuCard, DailyMenuMeals } from '../styles/dailyMenuStyles';
+import {
+  DailyMenuCard,
+  DailyMenuMealKjBox,
+  DailyMenuMealPaper,
+  DailyMenuMealsBox,
+} from '../styles/dailyMenuStyles';
+import { IconLabel } from '../../../components/IconLabel/IconLabel';
+// import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
 
 export const DailyMenu = ({ data, day }: { data: Food[]; day: string }) => {
   const STORAGE_KEY = 'dailyMenu';
@@ -53,10 +61,10 @@ export const DailyMenu = ({ data, day }: { data: Food[]; day: string }) => {
   }, [menu]);
 
   return (
-    <DailyMenuCard variant="outlined">
+    <DailyMenuCard>
       <CardHeader
         title={
-          <Typography variant="h4" color="primary">
+          <Typography variant="h5" color="primary">
             {day}
             {/*TODO: FYI check Luxon npm library (alternatively Day.js 
             or do your own research) or native Temporal API for work with dates. 
@@ -67,42 +75,33 @@ export const DailyMenu = ({ data, day }: { data: Food[]; day: string }) => {
         sx={{ margin: '0 0 -2rem 0' }}
       />
       <CardContent>
-        <Box
-          sx={{
-            padding: '1rem 0',
-            gap: '0.2rem',
-            display: 'flex',
-            flexDirection: 'column',
-          }}
-        >
+        <DailyMenuMealsBox>
           {menu.meals.map((meal) => (
-            <DailyMenuMeals key={meal.id}>
-              <Paper
-                variant="outlined"
-                elevation={3}
-                sx={{
-                  padding: '0.5rem 1rem',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  width: '100%',
-                  gap: '1rem',
-                }}
-              >
+            <DailyMenuMealPaper key={meal.id} variant="outlined" elevation={3}>
+              <Box display="flex" alignItems="center" gap={1}>
+                <IconLabel type={meal.type} />
                 <Typography variant="caption">{meal.title}</Typography>
+              </Box>
+              <DailyMenuMealKjBox>
                 <Typography
                   variant="caption"
-                  color="gray"
+                  color="grey.500"
                   sx={{ flexShrink: 0 }}
                 >
                   {`(${meal.kj} kJ)`}
                 </Typography>
-              </Paper>
-            </DailyMenuMeals>
+                {/* <Tooltip title="Změnit jídlo" placement="down">
+                    <IconButton>
+                      <ChangeCircleIcon color="primary" />
+                    </IconButton>
+                  </Tooltip> */}
+              </DailyMenuMealKjBox>
+            </DailyMenuMealPaper>
           ))}
-        </Box>
+        </DailyMenuMealsBox>
 
         <Box sx={{ padding: '1rem 0' }}>
-          <Typography variant="h5">{`Celkem: ${menu.totalKJ} kJ`}</Typography>
+          <Typography variant="body1">{`Celkem: ${menu.totalKJ} kJ`}</Typography>
         </Box>
 
         <Button onClick={handleGenerateMenu} variant="contained" fullWidth>

@@ -21,10 +21,10 @@ export const FoodMenuContentStylled = styled(Box)(({ theme }) => ({
   display: 'grid',
   gap: theme.spacing(4),
   gridTemplateColumns: '1fr',
-  [theme.breakpoints.up('sm')]: {
+  [theme.breakpoints.up('md')]: {
     gridTemplateColumns: '1fr 1fr',
   },
-  [theme.breakpoints.up('md')]: {
+  [theme.breakpoints.up('lg')]: {
     gridTemplateColumns: '1fr 1fr 1fr',
   },
 }));
