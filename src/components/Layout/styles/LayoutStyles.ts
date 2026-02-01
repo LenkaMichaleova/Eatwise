@@ -25,8 +25,6 @@ export const HeaderStyled = styled('header')(({ theme }) => ({
   boxShadow: '0 0 20px 0 rgba(0, 0, 0, 0.2)',
   width: '100%',
   margin: '0 auto',
-  padding: '0 1rem',
-  '@media(min-width:960px)': { padding: '0 10rem' },
 }));
 
 export const LogoStyled = styled('img')(() => ({
