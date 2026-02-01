@@ -6,7 +6,6 @@ export const FoodMenuStyled = styled(Box)(({ theme }) => ({
   flexWrap: 'wrap',
   justifyContent: 'center',
   margin: theme.spacing(4, 'auto'),
-  maxWidth: '1200px',
   width: '100%',
   gap: theme.spacing(2),
 }));
