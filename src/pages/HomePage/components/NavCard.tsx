@@ -3,10 +3,11 @@ import { Link } from 'react-router';
 import { CardHeaderStyled, CardStyled } from '../styles/NavCardStyles';
 import type { RoutePath } from '../../../constants/routes';
 import { NavCardIcon } from './NavCardIcon';
+import type { NavCardType } from '../../../models/navCard';
 
 interface NavCardProps {
   path: RoutePath;
-  title: string;
+  title: NavCardType;
 }
 
 export function NavCard({ path, title }: NavCardProps) {
