@@ -1,6 +1,6 @@
 import { createTheme } from '@mui/material/styles';
 
-export const theme = createTheme({
+export const mainTheme = createTheme({
   typography: {
     fontFamily: ['Arial', 'sans-serif'].join(','),
     fontSize: 14,
@@ -46,6 +46,27 @@ export const theme = createTheme({
     },
     secondary: {
       main: '#F0F0F0',
+    },
+  },
+});
+
+export const theme = createTheme(mainTheme, {
+  components: {
+    MuiTooltip: {
+      styleOverrides: {
+        tooltip: {
+          backgroundColor: mainTheme.palette.grey[50],
+          color: mainTheme.palette.primary.main,
+          border: `1px solid ${mainTheme.palette.grey[300]}`,
+          boxShadow: mainTheme.shadows[3],
+          padding: '0.5rem 1rem',
+          fontSize: '0.9rem',
+          borderRadius: '8px',
+          '@media(max-width: 350px)': {
+            maxWidth: '120px',
+          },
+        },
+      },
     },
   },
 });
