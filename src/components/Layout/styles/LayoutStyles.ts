@@ -27,13 +27,6 @@ export const HeaderStyled = styled('header')(({ theme }) => ({
   margin: '0 auto',
 }));
 
-export const LogoStyled = styled('img')(() => ({
-  width: 50,
-  height: 50,
-  '@media (min-width: 600px)': { width: 60, height: 60 },
-  '@media (min-width: 960px)': { width: 70, height: 70 },
-}));
-
 export const FooterStyled = styled('footer')(({ theme }) => ({
   display: 'block',
   backgroundColor: theme.palette.secondary.light,
