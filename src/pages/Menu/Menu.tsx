@@ -9,18 +9,8 @@ import {
   FoodMenuStyled,
 } from './styles/foodMenuStyles';
 import type { Food } from '../../foodData';
-import type { WeeklyMenu } from '../../models/weeklyMenu';
-
-const DAYS = [
-  'Pondělí',
-  'Úterý',
-  'Středa',
-  'Čtvrtek',
-  'Pátek',
-  'Sobota',
-  'Neděle',
-] as const;
-const STORAGE_KEY = 'weeklyMenu';
+import { DAYS, type Days, type WeeklyMenu } from '../../models/weeklyMenu';
+import { getAllMealPlans, postMealPlan } from '../../services/mealPlanService';
 
 export const Menu = () => {
   const foodData = getAllFoods();
@@ -37,32 +27,24 @@ export const Menu = () => {
     };
   };
 
-  const loadSavedWeeklyMenu = (): WeeklyMenu | null => {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (!stored) return null;
-    return JSON.parse(stored);
-  };
-
   const [weeklyMenu, setWeeklyMenu] = useState<WeeklyMenu>(() => {
-    const saved = loadSavedWeeklyMenu();
+    const saved = getAllMealPlans();
     if (!saved) {
       return generateInitialWeeklyMenu(foodData);
     }
     return saved;
   });
 
-  const handleDayMenuChange = (
-    day: (typeof DAYS)[number],
-    menu: ReturnType<typeof generateDailyMenu>
-  ) => {
+  const handleDayMenuChange = (day: Days) => {
     setWeeklyMenu((prev) => ({
       ...prev,
-      [day]: menu,
+      [day]: generateDailyMenu(foodData),
     }));
   };
+  // TODO : [day]: generateDailyMenu(filterUsed(foodData, prev))  -> to avoid duplicates in week
 
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(weeklyMenu));
+    postMealPlan(weeklyMenu);
   }, [weeklyMenu]);
 
   return (
@@ -74,10 +56,9 @@ export const Menu = () => {
         {DAYS.map((day) => (
           <DailyMenu
             key={day}
-            data={foodData}
             day={day}
             menu={weeklyMenu[day]}
-            onMenuChange={(menu) => handleDayMenuChange(day, menu)}
+            onMenuChange={() => handleDayMenuChange(day)}
           />
         ))}
       </FoodMenuContentStylled>

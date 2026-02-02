@@ -1,6 +1,5 @@
 import { useCallback } from 'react';
 import { generateDailyMenu } from '../utils/generateDailyMenu';
-import { type Food } from '../../../foodData';
 import {
   Box,
   Button,
@@ -22,21 +21,16 @@ import { IconLabel } from '../../../components/IconLabel/IconLabel';
 type DailyMenuResult = ReturnType<typeof generateDailyMenu>;
 
 interface DailyMenuProps {
-  data: Food[];
+  // data: Food[];
   day: string;
   menu: DailyMenuResult;
-  onMenuChange: (menu: DailyMenuResult) => void;
+  onMenuChange: () => void;
 }
 
-export const DailyMenu = ({
-  data,
-  day,
-  menu,
-  onMenuChange,
-}: DailyMenuProps) => {
+export const DailyMenu = ({ day, menu, onMenuChange }: DailyMenuProps) => {
   const handleGenerateMenu = useCallback(() => {
-    onMenuChange(generateDailyMenu(data));
-  }, [data, onMenuChange]);
+    onMenuChange();
+  }, [onMenuChange]);
 
   return (
     <DailyMenuCard>
@@ -68,7 +62,7 @@ export const DailyMenu = ({
                 >
                   {`(${meal.kj} kJ)`}
                 </Typography>
-                {/* <Tooltip title="Změnit jídlo" placement="down">
+                {/* <Tooltip title="Změnit jídlo" placement="bottom">
                     <IconButton>
                       <ChangeCircleIcon color="primary" />
                     </IconButton>

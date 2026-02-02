@@ -1,11 +1,15 @@
-import type { generateDailyMenu } from '../pages/Menu/utils/generateDailyMenu';
+import type { GeneratedDailyMenu } from '../pages/Menu/utils/generateDailyMenu';
 
-export type WeeklyMenu = {
-  Pondělí: ReturnType<typeof generateDailyMenu>;
-  Úterý: ReturnType<typeof generateDailyMenu>;
-  Středa: ReturnType<typeof generateDailyMenu>;
-  Čtvrtek: ReturnType<typeof generateDailyMenu>;
-  Pátek: ReturnType<typeof generateDailyMenu>;
-  Sobota: ReturnType<typeof generateDailyMenu>;
-  Neděle: ReturnType<typeof generateDailyMenu>;
-};
+export const DAYS = [
+  'Pondělí',
+  'Úterý',
+  'Středa',
+  'Čtvrtek',
+  'Pátek',
+  'Sobota',
+  'Neděle',
+] as const;
+
+export type Days = (typeof DAYS)[number];
+
+export type WeeklyMenu = Record<Days, GeneratedDailyMenu>;
