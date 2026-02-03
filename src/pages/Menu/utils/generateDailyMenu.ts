@@ -8,6 +8,8 @@ const randomItem = <T>(array?: T[]): T | undefined => {
   return array[Math.floor(Math.random() * array.length)];
 };
 
+export type GeneratedDailyMenu = ReturnType<typeof generateDailyMenu>;
+
 export const generateDailyMenu = (foodData: Food[]) => {
   const groups = groupBy(foodData, 'type');
 

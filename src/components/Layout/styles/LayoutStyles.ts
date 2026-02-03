@@ -25,15 +25,6 @@ export const HeaderStyled = styled('header')(({ theme }) => ({
   boxShadow: '0 0 20px 0 rgba(0, 0, 0, 0.2)',
   width: '100%',
   margin: '0 auto',
-  padding: '0 1rem',
-  '@media(min-width:960px)': { padding: '0 10rem' },
-}));
-
-export const LogoStyled = styled('img')(() => ({
-  width: 50,
-  height: 50,
-  '@media (min-width: 600px)': { width: 60, height: 60 },
-  '@media (min-width: 960px)': { width: 70, height: 70 },
 }));
 
 export const FooterStyled = styled('footer')(({ theme }) => ({

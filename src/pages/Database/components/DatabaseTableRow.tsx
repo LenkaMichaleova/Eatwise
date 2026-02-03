@@ -3,6 +3,7 @@ import type { Row } from '../models/row';
 import { tableRowStyles } from '../styles/TableStyles';
 import { generatePath, useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../../constants/routes';
+import { IconLabel } from '../../../components/IconLabel/IconLabel';
 
 interface RowDataProps {
   rowData: Row;
@@ -25,7 +26,9 @@ export const DatabaseTableRow = ({ rowData }: RowDataProps) => {
       <TableCell component="th" scope="row">
         {name}
       </TableCell>
-      <TableCell align="right">{type}</TableCell>
+      <TableCell align="right">
+        <IconLabel type={type} />
+      </TableCell>
       <TableCell align="right">{calories}</TableCell>
       <TableCell align="right">{fat}</TableCell>
       <TableCell align="right">{carbs}</TableCell>

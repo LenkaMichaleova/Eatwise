@@ -4,16 +4,20 @@ import { styled } from '@mui/material/styles';
 export const CardStyled = styled(Card)(({ theme }) => ({
   width: '100%',
   maxWidth: '400px',
-  margin: '0 1rem 1rem 1rem',
-  opacity: '60%',
+  margin: theme.spacing(2),
   textAlign: 'center',
-  '@media(min-width: 960px)': {
+  boxShadow: '0 0 10px 0 rgba(0,0,0,0.05)',
+  borderRadius: theme.spacing(1),
+  [theme.breakpoints.down('sm')]: {
+    width: '80%',
+  },
+  [theme.breakpoints.up('md')]: {
     width: '42%',
   },
+
   '&:hover': {
     boxShadow: '0 0 10px 0 rgba(0,0,0,0.1)',
     borderColor: theme.palette.primary.main,
-    opacity: '100%',
   },
   '&:active': {
     transform: 'translateY(-1px) scale(0.98)',
@@ -26,10 +30,10 @@ export const CardHeaderStyled = styled(CardHeader)(({ theme }) => ({
   color: theme.palette.primary.main,
   alignContent: 'center',
   height: '15vh',
-  '@media(min-width: 600px)': {
+  [theme.breakpoints.up('sm')]: {
     height: '20vh',
   },
-  '@media(min-width: 960px)': {
+  [theme.breakpoints.up('md')]: {
     height: '25vh',
   },
 }));

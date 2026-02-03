@@ -1,6 +1,6 @@
 import FilterListAltIcon from '@mui/icons-material/FilterListAlt';
 import { Box, Button } from '@mui/material';
-import { SectionTitle } from '../../components/SectionTitle';
+import { SectionTitle } from '../../components/SectionTitle/SectionTitle';
 import { DatabaseTable } from './components/DatabaseTable';
 import { DatabaseBoxSmall } from './components/DatabaseBoxSmall';
 import { DatabaseHeaderStylled, DatabaseStyled } from './styles/DatabaseStyles';

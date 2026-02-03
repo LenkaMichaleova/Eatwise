@@ -1,29 +1,43 @@
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import { generateDailyMenu } from '../utils/generateDailyMenu';
-import { type Food } from '../../../foodData';
 import {
   Box,
   Button,
   CardContent,
   CardHeader,
-  Divider,
+  // IconButton,
+  // Tooltip,
   Typography,
 } from '@mui/material';
-import { DailyMenuCard, DailyMenuMeals } from '../styles/dailyMenuStyles';
+import {
+  DailyMenuCard,
+  DailyMenuMealKjBox,
+  DailyMenuMealPaper,
+  DailyMenuMealsBox,
+} from '../styles/dailyMenuStyles';
+import { IconLabel } from '../../../components/IconLabel/IconLabel';
+// import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
 
-export const DailyMenu = ({ data }: { data: Food[] }) => {
-  const [menu, setMenu] = useState(() => generateDailyMenu(data));
+type DailyMenuResult = ReturnType<typeof generateDailyMenu>;
 
+interface DailyMenuProps {
+  // data: Food[];
+  day: string;
+  menu: DailyMenuResult;
+  onMenuChange: () => void;
+}
+
+export const DailyMenu = ({ day, menu, onMenuChange }: DailyMenuProps) => {
   const handleGenerateMenu = useCallback(() => {
-    setMenu(generateDailyMenu(data));
-  }, [data]);
+    onMenuChange();
+  }, [onMenuChange]);
 
   return (
     <DailyMenuCard>
       <CardHeader
         title={
-          <Typography variant="h4" color="primary">
-            {`Pondělí`}
+          <Typography variant="h5" color="primary">
+            {day}
             {/*TODO: FYI check Luxon npm library (alternatively Day.js 
             or do your own research) or native Temporal API for work with dates. 
             regardless of the choice you will be able to work with dates easily 
@@ -33,21 +47,33 @@ export const DailyMenu = ({ data }: { data: Food[] }) => {
         sx={{ margin: '0 0 -2rem 0' }}
       />
       <CardContent>
-        <Box sx={{ padding: '1rem 0' }}>
+        <DailyMenuMealsBox>
           {menu.meals.map((meal) => (
-            <DailyMenuMeals key={meal.id}>
-              <Typography variant="body2">{meal.title}</Typography>
-              <Typography variant="body2" color="gray">
-                {`(${meal.kj} kJ)`}
-              </Typography>
-            </DailyMenuMeals>
+            <DailyMenuMealPaper key={meal.id} variant="outlined" elevation={3}>
+              <Box display="flex" alignItems="center" gap={1}>
+                <IconLabel type={meal.type} />
+                <Typography variant="caption">{meal.title}</Typography>
+              </Box>
+              <DailyMenuMealKjBox>
+                <Typography
+                  variant="caption"
+                  color="grey.500"
+                  sx={{ flexShrink: 0 }}
+                >
+                  {`(${meal.kj} kJ)`}
+                </Typography>
+                {/* <Tooltip title="Změnit jídlo" placement="bottom">
+                    <IconButton>
+                      <ChangeCircleIcon color="primary" />
+                    </IconButton>
+                  </Tooltip> */}
+              </DailyMenuMealKjBox>
+            </DailyMenuMealPaper>
           ))}
-        </Box>
-
-        <Divider />
+        </DailyMenuMealsBox>
 
         <Box sx={{ padding: '1rem 0' }}>
-          <Typography variant="h5">{`Celkem: ${menu.totalKJ} kJ`}</Typography>
+          <Typography variant="body1">{`Celkem: ${menu.totalKJ} kJ`}</Typography>
         </Box>
 
         <Button onClick={handleGenerateMenu} variant="contained" fullWidth>
