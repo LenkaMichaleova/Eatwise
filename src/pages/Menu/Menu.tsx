@@ -16,15 +16,9 @@ export const Menu = () => {
   const foodData = getAllFoods();
 
   const generateInitialWeeklyMenu = (data: Food[]): WeeklyMenu => {
-    return {
-      Pondělí: generateDailyMenu(data),
-      Úterý: generateDailyMenu(data),
-      Středa: generateDailyMenu(data),
-      Čtvrtek: generateDailyMenu(data),
-      Pátek: generateDailyMenu(data),
-      Sobota: generateDailyMenu(data),
-      Neděle: generateDailyMenu(data),
-    };
+    return Object.fromEntries(
+      DAYS.map((day) => [day, generateDailyMenu(data)])
+    ) as WeeklyMenu;
   };
 
   const [weeklyMenu, setWeeklyMenu] = useState<WeeklyMenu>(() => {

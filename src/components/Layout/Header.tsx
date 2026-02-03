@@ -1,4 +1,4 @@
-import { Container } from '@mui/material';
+import { Box, Container } from '@mui/material';
 import { HeaderStyled } from './styles/LayoutStyles';
 import logo from '../../assets/logo.png';
 import { Link } from 'react-router-dom';
@@ -16,7 +16,7 @@ export function Header() {
             textDecoration: 'none',
           }}
         >
-          <img src={logo} alt="Logo" width={200} />
+          <Box component="img" src={logo} alt="Logo" width={200} />
         </Link>
       </Container>
     </HeaderStyled>

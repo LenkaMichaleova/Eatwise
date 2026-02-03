@@ -14,5 +14,5 @@ const ICON_MAP: Record<NavCardType, React.ReactNode> = {
 };
 
 export const NavCardIcon = ({ type }: { type: NavCardType }) => {
-  return <>{ICON_MAP[type]}</>;
+  return ICON_MAP[type];
 };
