@@ -1,5 +1,5 @@
-import { calTables } from '../pages/Tables/calTables';
+import { ingredientsDb } from '../pages/Tables/calTables';
 
 export const getAllIngredients = () => {
-  return calTables;
+  return ingredientsDb;
 };

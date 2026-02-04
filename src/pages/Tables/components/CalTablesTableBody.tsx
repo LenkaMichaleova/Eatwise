@@ -1,12 +1,12 @@
 import { TableBody } from '@mui/material';
-import type { CalTablesRow } from '../models/CalTableRow';
+import type { Ingredient } from '../models/Ingredient';
 import { CalTablesTableRow } from './CalTablesTableRow';
 
-export const CalTablesTableBody = ({ data }: { data: CalTablesRow[] }) => {
+export const CalTablesTableBody = ({ data }: { data: Ingredient[] }) => {
   return (
     <TableBody>
       {data.map((row) => {
-        return <CalTablesTableRow rowData={row} key={row.OrigFdCd} />;
+        return <CalTablesTableRow rowData={row} key={row.id} />;
       })}
     </TableBody>
   );

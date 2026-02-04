@@ -8,9 +8,10 @@ import {
   FoodMenuHeaderStylled,
   FoodMenuStyled,
 } from './styles/foodMenuStyles';
-import type { Food } from '../../foodData';
+
 import { DAYS, type Days, type WeeklyMenu } from '../../models/weeklyMenu';
 import { getAllMealPlans, postMealPlan } from '../../services/mealPlanService';
+import type { Food } from '../../foodData';
 
 export const Menu = () => {
   const foodData = getAllFoods();

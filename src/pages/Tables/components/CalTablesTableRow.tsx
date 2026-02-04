@@ -1,23 +1,23 @@
 import { TableCell, TableRow } from '@mui/material';
-import type { CalTablesRow } from '../models/CalTableRow';
+import type { Ingredient } from '../models/Ingredient';
 import { tableRowStyles } from '../styles/TableStyles';
 
 interface RowDataProps {
-  rowData: CalTablesRow;
+  rowData: Ingredient;
 }
 
 export const CalTablesTableRow = ({ rowData }: RowDataProps) => {
-  const { OrigFdNm, ENERC, FAT, CHOT, PROT } = rowData;
+  const { name, kcal, fats, carbohydrates, proteins } = rowData;
 
   return (
     <TableRow hover sx={tableRowStyles}>
       <TableCell component="th" scope="row">
-        {OrigFdNm}
+        {name}
       </TableCell>
-      <TableCell align="right">{ENERC}</TableCell>
-      <TableCell align="right">{FAT}</TableCell>
-      <TableCell align="right">{CHOT}</TableCell>
-      <TableCell align="right">{PROT}</TableCell>
+      <TableCell align="right">{kcal}</TableCell>
+      <TableCell align="right">{fats}</TableCell>
+      <TableCell align="right">{carbohydrates}</TableCell>
+      <TableCell align="right">{proteins}</TableCell>
     </TableRow>
   );
 };
