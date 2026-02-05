@@ -1,26 +1,26 @@
-// 1xxx – obiloviny / kaše / těsta / snídaňové směsi
-// 2xxx – ovoce
-// 3xxx – zelenina
-// 4xxx – přílohy / rýže / těstoviny / luštěniny
-// 5xxx – maso / ryby / uzeniny
-// 6xxx – mléčné / vejce / sýry
-// 7xxx – pečivo / knuspi / tortilla
-// 8xxx – tuky / ořechy / sladidla
-// 9xxx – koření / dochucovadla / bylinky
+// 1xxx – cereals / porridge / dough / breakfast mixes
+// 2xxx – fruits
+// 3xxx – vegetables
+// 4xxx – side dishes / rice / pasta / legumes
+// 5xxx – meat / fish / processed meats
+// 6xxx – dairy / eggs / cheeses
+// 7xxx – bread / crispbread / tortilla
+// 8xxx – fats / nuts / sweeteners
+// 9xxx – spices / seasonings / herbs
 
 export type Ingredient = {
   id: number;
   name: string;
-  kcal: number; // na 100 g
-  proteins: number; // g / 100 g
-  carbohydrates: number; // g / 100 g
-  fats: number; // g / 100 gx§
+  kcal: number; // per 100 g
+  proteins: number; // per 100 g
+  carbohydrates: number; // per 100 g
+  fats: number; // per 100 g
 };
 
-// Databáze ingrediencí (hodnoty na 100 g)
+// Ingredients database (values per 100 g)
 export const ingredientsDb: Ingredient[] = [
   // ==================================================
-  // 1xxx — obiloviny, kaše, těsta, snídaňové směsi
+  // 1xxx — cereals, porridge, dough, breakfast mixes
   // ==================================================
   {
     id: 1001,
@@ -72,7 +72,7 @@ export const ingredientsDb: Ingredient[] = [
   },
 
   // ==================================================
-  // 2xxx — ovoce
+  // 2xxx — fruits
   // ==================================================
   {
     id: 2001,
@@ -164,7 +164,7 @@ export const ingredientsDb: Ingredient[] = [
   },
 
   // ==================================================
-  // 3xxx — zelenina
+  // 3xxx — vegetables
   // ==================================================
   {
     id: 3001,
@@ -312,7 +312,7 @@ export const ingredientsDb: Ingredient[] = [
   },
 
   // ==================================================
-  // 4xxx — přílohy, rýže, těstoviny, luštěniny
+  // 4xxx — side dishes, rice, pasta, legumes
   // ==================================================
   {
     id: 4001,
@@ -396,7 +396,7 @@ export const ingredientsDb: Ingredient[] = [
   },
 
   // ==================================================
-  // 5xxx — maso, ryby, uzeniny
+  // 5xxx — meat, fish, processed meats
   // ==================================================
   {
     id: 5001,
@@ -480,7 +480,7 @@ export const ingredientsDb: Ingredient[] = [
   },
 
   // ==================================================
-  // 6xxx — mléčné výrobky, vejce, sýry
+  // 6xxx — dairy products, eggs, cheeses
   // ==================================================
   {
     id: 6001,
@@ -588,7 +588,7 @@ export const ingredientsDb: Ingredient[] = [
   },
 
   // ==================================================
-  // 7xxx — pečivo, knuspi, wrapy
+  // 7xxx — bread, crispbread, wraps
   // ==================================================
   {
     id: 7001,
@@ -680,7 +680,7 @@ export const ingredientsDb: Ingredient[] = [
   },
 
   // ==================================================
-  // 8xxx — tuky, ořechy, sladidla, dochucovadla
+  // 8xxx — fats, nuts, sweeteners, flavorings
   // ==================================================
   {
     id: 8001,
@@ -780,7 +780,7 @@ export const ingredientsDb: Ingredient[] = [
   },
 
   // ==================================================
-  // 9xxx — koření, dochucovadla, bylinky
+  // 9xxx — spices, seasonings, herbs
   // ==================================================
   {
     id: 9001,
