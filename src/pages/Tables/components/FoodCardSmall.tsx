@@ -1,5 +1,5 @@
 import { CardActionArea, Typography } from '@mui/material';
-import type { CalTablesRow } from '../models/CalTableRow';
+import type { Ingredient } from '../models/Ingredient';
 import {
   FoodCardActionStyles,
   FoodCardCalolriesStyles,
@@ -8,7 +8,7 @@ import {
 } from '../styles/FoodCardSmallStyles';
 
 interface FoodCardProps {
-  row: CalTablesRow;
+  row: Ingredient;
 }
 
 export const FoodCardSmall = ({ row }: FoodCardProps) => {
@@ -16,10 +16,10 @@ export const FoodCardSmall = ({ row }: FoodCardProps) => {
     <FoodCardSmallStyled>
       <CardActionArea sx={FoodCardActionStyles}>
         <Typography variant="body2" sx={FoodCardTitleStyles}>
-          {row.OrigFdNm}
+          {row.name}
         </Typography>
         <Typography variant="h6" sx={FoodCardCalolriesStyles}>
-          {row.ENERC} KCal
+          {`${row.kcal} KCal`}
         </Typography>
       </CardActionArea>
     </FoodCardSmallStyled>
