@@ -16,18 +16,24 @@ import {
   DailyMenuMealsBox,
 } from '../styles/dailyMenuStyles';
 import { IconLabel } from '../../../components/IconLabel/IconLabel';
+import type { Dayjs } from 'dayjs';
 // import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
 
 type DailyMenuResult = ReturnType<typeof generateDailyMenu>;
 
 interface DailyMenuProps {
-  // data: Food[];
   day: string;
+  date: Dayjs;
   menu: DailyMenuResult;
   onMenuChange: () => void;
 }
 
-export const DailyMenu = ({ day, menu, onMenuChange }: DailyMenuProps) => {
+export const DailyMenu = ({
+  day,
+  date,
+  menu,
+  onMenuChange,
+}: DailyMenuProps) => {
   const handleGenerateMenu = useCallback(() => {
     onMenuChange();
   }, [onMenuChange]);
@@ -36,13 +42,14 @@ export const DailyMenu = ({ day, menu, onMenuChange }: DailyMenuProps) => {
     <DailyMenuCard>
       <CardHeader
         title={
-          <Typography variant="h5" color="primary">
-            {day}
-            {/*TODO: FYI check Luxon npm library (alternatively Day.js 
-            or do your own research) or native Temporal API for work with dates. 
-            regardless of the choice you will be able to work with dates easily 
-            and format different date format etc*/}
-          </Typography>
+          <Box>
+            <Typography variant="h5" color="primary">
+              {day}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {date.format('DD.MM.YYYY')}
+            </Typography>
+          </Box>
         }
         sx={{ margin: '0 0 -2rem 0' }}
       />
