@@ -29,7 +29,6 @@ interface DailyMenuProps {
 }
 
 export const DailyMenu = ({ date, menu, onMenuChange }: DailyMenuProps) => {
-  const day = formatWeekday(date);
   const handleGenerateMenu = useCallback(() => {
     onMenuChange();
   }, [onMenuChange]);
@@ -40,7 +39,7 @@ export const DailyMenu = ({ date, menu, onMenuChange }: DailyMenuProps) => {
         title={
           <Box>
             <Typography variant="h5" color="primary">
-              {day}
+              {formatWeekday(date)}
             </Typography>
             <Typography variant="body2" color="text.secondary">
               {formatDate(date)}
