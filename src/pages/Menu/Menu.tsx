@@ -29,10 +29,6 @@ const getWeekRange = (date: Dayjs): { start: Dayjs; end: Dayjs } => {
   return { start, end };
 };
 
-const getDateForDay = (weekStart: Dayjs, dayIndex: number): Dayjs => {
-  return weekStart.add(dayIndex, 'day');
-};
-
 export const Menu = () => {
   const foodData = getAllFoods();
   const [selectedWeek, setSelectedWeek] = useState<Dayjs>(dayjs());
@@ -46,10 +42,8 @@ export const Menu = () => {
   }, [selectedWeek]);
 
   const handleDayMenuChange = useCallback(
-    (dayIndex: number) => {
-      const weekStart = getWeekRange(selectedWeek).start;
-      const dayDate = getDateForDay(weekStart, dayIndex);
-      const day = DAYS[dayIndex];
+    (dayDate: Dayjs) => {
+      const day = DAYS[dayDate.isoWeekday() - 1];
       const newDayMenu = generateDailyMenu(foodData);
 
       setWeeklyMenu((prev) => {
@@ -61,7 +55,7 @@ export const Menu = () => {
         return updated;
       });
     },
-    [foodData, selectedWeek]
+    [foodData]
   );
   // TODO : [day]:DailyMenu(filterUsed(foodData, prev))  -> to avoid duplicates in week
 
@@ -83,13 +77,13 @@ export const Menu = () => {
 
       <FoodMenuContentStyled>
         {DAYS.map((day, index) => {
-          const dayDate = getDateForDay(weekStart, index);
+          const dayDate = weekStart.add(index, 'day');
           return (
             <DailyMenu
               key={day}
               date={dayDate}
               menu={weeklyMenu[day]}
-              onMenuChange={() => handleDayMenuChange(index)}
+              onMenuChange={() => handleDayMenuChange(dayDate)}
             />
           );
         })}
