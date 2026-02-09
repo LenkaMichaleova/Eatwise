@@ -10,13 +10,22 @@ export const FoodMenuStyled = styled(Box)(({ theme }) => ({
   gap: theme.spacing(2),
 }));
 
-export const FoodMenuHeaderStylled = styled(Box)({
+export const FoodMenuHeaderStyled = styled(Box)({
   width: '100%',
   display: 'flex',
   justifyContent: 'space-between',
 });
 
-export const FoodMenuContentStylled = styled(Box)(({ theme }) => ({
+export const FoodMenuCalendarStyled = styled(Box)(({ theme }) => ({
+  width: '100%',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  gap: theme.spacing(2),
+  marginBottom: theme.spacing(2),
+}));
+
+export const FoodMenuContentStyled = styled(Box)(({ theme }) => ({
   display: 'grid',
   gap: theme.spacing(4),
   gridTemplateColumns: '1fr',

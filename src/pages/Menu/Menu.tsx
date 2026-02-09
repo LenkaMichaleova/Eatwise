@@ -1,62 +1,83 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { SectionTitle } from '../../components/SectionTitle/SectionTitle';
 import { getAllFoods } from '../../services/foodService';
 import { generateDailyMenu } from './utils/generateDailyMenu';
 import { DailyMenu } from './components/DailyMenu';
 import {
-  FoodMenuContentStylled,
-  FoodMenuHeaderStylled,
+  FoodMenuCalendarStyled,
+  FoodMenuContentStyled,
+  FoodMenuHeaderStyled,
   FoodMenuStyled,
 } from './styles/foodMenuStyles';
-
-import { DAYS, type Days, type WeeklyMenu } from '../../models/weeklyMenu';
-import { getAllMealPlans, postMealPlan } from '../../services/mealPlanService';
-import type { Food } from '../../foodData';
+import { DAYS, type WeeklyMenu } from '../../models/weeklyMenu';
+import {
+  getMealPlanForWeek,
+  saveMealPlanForDay,
+} from '../../services/mealPlanService';
+import { Typography } from '@mui/material';
+import { WeekPicker } from './components/WeekPicker';
+import dayjs, { Dayjs } from 'dayjs';
+import { getWeekRange, formatDate } from '../../utils/dateUtils';
 
 export const Menu = () => {
   const foodData = getAllFoods();
-
-  const generateInitialWeeklyMenu = (data: Food[]): WeeklyMenu => {
-    return Object.fromEntries(
-      DAYS.map((day) => [day, generateDailyMenu(data)])
-    ) as WeeklyMenu;
-  };
-
-  const [weeklyMenu, setWeeklyMenu] = useState<WeeklyMenu>(() => {
-    const saved = getAllMealPlans();
-    if (!saved) {
-      return generateInitialWeeklyMenu(foodData);
-    }
-    return saved;
-  });
-
-  const handleDayMenuChange = (day: Days) => {
-    setWeeklyMenu((prev) => ({
-      ...prev,
-      [day]: generateDailyMenu(foodData),
-    }));
-  };
-  // TODO : [day]: generateDailyMenu(filterUsed(foodData, prev))  -> to avoid duplicates in week
+  const [selectedWeek, setSelectedWeek] = useState<Dayjs>(dayjs());
+  const [weeklyMenu, setWeeklyMenu] = useState<WeeklyMenu>(
+    getMealPlanForWeek(dayjs())
+  );
 
   useEffect(() => {
-    postMealPlan(weeklyMenu);
-  }, [weeklyMenu]);
+    const saved = getMealPlanForWeek(selectedWeek);
+    setWeeklyMenu(saved);
+  }, [selectedWeek]);
+
+  const handleDayMenuChange = useCallback(
+    (dayDate: Dayjs) => {
+      const day = DAYS[dayDate.isoWeekday() - 1];
+      const newDayMenu = generateDailyMenu(foodData);
+
+      setWeeklyMenu((prev) => {
+        const updated = {
+          ...prev,
+          [day]: newDayMenu,
+        };
+        saveMealPlanForDay(dayDate, newDayMenu);
+        return updated;
+      });
+    },
+    [foodData]
+  );
+  // TODO : [day]:DailyMenu(filterUsed(foodData, prev))  -> to avoid duplicates in week
+
+  const weekRange = getWeekRange(selectedWeek);
+  const weekStart = weekRange.start;
 
   return (
     <FoodMenuStyled>
-      <FoodMenuHeaderStylled>
+      <FoodMenuHeaderStyled>
         <SectionTitle title="Jídelníček" />
-      </FoodMenuHeaderStylled>
-      <FoodMenuContentStylled>
-        {DAYS.map((day) => (
-          <DailyMenu
-            key={day}
-            day={day}
-            menu={weeklyMenu[day]}
-            onMenuChange={() => handleDayMenuChange(day)}
-          />
-        ))}
-      </FoodMenuContentStylled>
+      </FoodMenuHeaderStyled>
+
+      <FoodMenuCalendarStyled>
+        <Typography variant="body1">
+          {`Týden ${formatDate(weekStart)} - ${formatDate(weekRange.end)}`}
+        </Typography>
+        <WeekPicker value={selectedWeek} onChange={setSelectedWeek} />
+      </FoodMenuCalendarStyled>
+
+      <FoodMenuContentStyled>
+        {DAYS.map((day, index) => {
+          const dayDate = weekStart.add(index, 'day');
+          return (
+            <DailyMenu
+              key={day}
+              date={dayDate}
+              menu={weeklyMenu[day]}
+              onMenuChange={() => handleDayMenuChange(dayDate)}
+            />
+          );
+        })}
+      </FoodMenuContentStyled>
     </FoodMenuStyled>
   );
 };
