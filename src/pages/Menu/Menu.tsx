@@ -9,10 +9,10 @@ import {
   FoodMenuHeaderStyled,
   FoodMenuStyled,
 } from './styles/foodMenuStyles';
-import { DAYS, type Days, type WeeklyMenu } from '../../models/weeklyMenu';
+import { DAYS, type WeeklyMenu } from '../../models/weeklyMenu';
 import {
   getMealPlanForWeek,
-  saveMealPlanForWeek,
+  saveMealPlanForDay,
 } from '../../services/mealPlanService';
 import { Typography } from '@mui/material';
 import { WeekPicker } from './components/WeekPicker';
@@ -22,10 +22,6 @@ import 'dayjs/locale/cs';
 
 dayjs.extend(isoWeek);
 dayjs.locale('cs');
-
-const getWeekKey = (date: Dayjs): string => {
-  return `${date.year()}-W${date.isoWeek()}`;
-};
 
 const getWeekRange = (date: Dayjs): { start: Dayjs; end: Dayjs } => {
   const start = date.startOf('isoWeek');
@@ -37,43 +33,37 @@ const getDateForDay = (weekStart: Dayjs, dayIndex: number): Dayjs => {
   return weekStart.add(dayIndex, 'day');
 };
 
-const createEmptyWeeklyMenu = (): WeeklyMenu => {
-  return DAYS.reduce<WeeklyMenu>((acc, day) => {
-    acc[day] = { meals: [], totalKJ: 0 };
-    return acc;
-  }, {} as WeeklyMenu);
-};
-
 export const Menu = () => {
   const foodData = getAllFoods();
   const [selectedWeek, setSelectedWeek] = useState<Dayjs>(dayjs());
   const [weeklyMenu, setWeeklyMenu] = useState<WeeklyMenu>(
-    createEmptyWeeklyMenu
+    getMealPlanForWeek(dayjs())
   );
 
   useEffect(() => {
-    const weekKey = getWeekKey(selectedWeek);
-    const saved = getMealPlanForWeek(weekKey);
-    setWeeklyMenu(saved || createEmptyWeeklyMenu());
+    const saved = getMealPlanForWeek(selectedWeek);
+    setWeeklyMenu(saved);
   }, [selectedWeek]);
 
   const handleDayMenuChange = useCallback(
-    (day: Days) => {
+    (dayIndex: number) => {
+      const weekStart = getWeekRange(selectedWeek).start;
+      const dayDate = getDateForDay(weekStart, dayIndex);
+      const day = DAYS[dayIndex];
       const newDayMenu = generateDailyMenu(foodData);
+
       setWeeklyMenu((prev) => {
         const updated = {
           ...prev,
           [day]: newDayMenu,
         };
-
-        const weekKey = getWeekKey(selectedWeek);
-        saveMealPlanForWeek(weekKey, updated);
+        saveMealPlanForDay(dayDate, newDayMenu);
         return updated;
       });
     },
     [foodData, selectedWeek]
   );
-  // TODO : [day]: generateDailyMenu(filterUsed(foodData, prev))  -> to avoid duplicates in week
+  // TODO : [day]:DailyMenu(filterUsed(foodData, prev))  -> to avoid duplicates in week
 
   const weekRange = getWeekRange(selectedWeek);
   const weekStart = weekRange.start;
@@ -97,10 +87,9 @@ export const Menu = () => {
           return (
             <DailyMenu
               key={day}
-              day={day}
               date={dayDate}
               menu={weeklyMenu[day]}
-              onMenuChange={() => handleDayMenuChange(day)}
+              onMenuChange={() => handleDayMenuChange(index)}
             />
           );
         })}
