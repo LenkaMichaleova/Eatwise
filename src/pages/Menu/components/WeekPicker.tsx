@@ -3,11 +3,13 @@ import { Box, Button, Popper, Paper, Typography } from '@mui/material';
 import { TextField } from '@mui/material';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import dayjs, { Dayjs } from 'dayjs';
-import isoWeek from 'dayjs/plugin/isoWeek';
+import { Dayjs } from 'dayjs';
+import {
+  formatDate,
+  formatShortDate,
+  formatMonthYear,
+} from '../../../utils/dateUtils';
 import { WeekCalendarHeaderStyled } from '../styles/weekCalendarStyles';
-
-dayjs.extend(isoWeek);
 
 interface WeekPickerProps {
   value: Dayjs;
@@ -64,7 +66,7 @@ export const WeekPicker = ({ value, onChange }: WeekPickerProps) => {
       <TextField
         size="small"
         label="Vyberte týden"
-        value={`${value.startOf('isoWeek').format('DD.MM.YYYY')} - ${value.endOf('isoWeek').format('DD.MM.YYYY')}`}
+        value={`${formatDate(value.startOf('isoWeek'))} - ${formatDate(value.endOf('isoWeek'))}`}
         onClick={handleClick}
         sx={{ width: 220, cursor: 'pointer' }}
       />
@@ -81,7 +83,7 @@ export const WeekPicker = ({ value, onChange }: WeekPickerProps) => {
               variant="subtitle2"
               sx={{ minWidth: 150, textAlign: 'center' }}
             >
-              {displayMonth.format('MMMM YYYY')}
+              {formatMonthYear(displayMonth)}
             </Typography>
             <Button
               size="small"
@@ -113,7 +115,7 @@ export const WeekPicker = ({ value, onChange }: WeekPickerProps) => {
                     {`Týden ${weekStart.isoWeek()}`}
                   </Typography>
                   <Typography variant="caption" sx={{ opacity: 0.7 }}>
-                    {weekStart.format('DD.MM')} - {weekEnd.format('DD.MM')}
+                    {formatShortDate(weekStart)} - {formatShortDate(weekEnd)}
                   </Typography>
                 </Button>
               );

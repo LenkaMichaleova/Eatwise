@@ -17,17 +17,7 @@ import {
 import { Typography } from '@mui/material';
 import { WeekPicker } from './components/WeekPicker';
 import dayjs, { Dayjs } from 'dayjs';
-import isoWeek from 'dayjs/plugin/isoWeek';
-import 'dayjs/locale/cs';
-
-dayjs.extend(isoWeek);
-dayjs.locale('cs');
-
-const getWeekRange = (date: Dayjs): { start: Dayjs; end: Dayjs } => {
-  const start = date.startOf('isoWeek');
-  const end = date.endOf('isoWeek');
-  return { start, end };
-};
+import { getWeekRange, formatDate } from '../../utils/dateUtils';
 
 export const Menu = () => {
   const foodData = getAllFoods();
@@ -70,7 +60,7 @@ export const Menu = () => {
 
       <FoodMenuCalendarStyled>
         <Typography variant="body1">
-          {`Týden ${weekStart.format('DD.MM.YYYY')} - ${weekRange.end.format('DD.MM.YYYY')}`}
+          {`Týden ${formatDate(weekStart)} - ${formatDate(weekRange.end)}`}
         </Typography>
         <WeekPicker value={selectedWeek} onChange={setSelectedWeek} />
       </FoodMenuCalendarStyled>

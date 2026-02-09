@@ -17,6 +17,7 @@ import {
 } from '../styles/dailyMenuStyles';
 import { IconLabel } from '../../../components/IconLabel/IconLabel';
 import type { Dayjs } from 'dayjs';
+import { formatWeekday, formatDate } from '../../../utils/dateUtils';
 // import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
 
 type DailyMenuResult = ReturnType<typeof generateDailyMenu>;
@@ -28,7 +29,7 @@ interface DailyMenuProps {
 }
 
 export const DailyMenu = ({ date, menu, onMenuChange }: DailyMenuProps) => {
-  const day = date.format('dddd');
+  const day = formatWeekday(date);
   const handleGenerateMenu = useCallback(() => {
     onMenuChange();
   }, [onMenuChange]);
@@ -42,7 +43,7 @@ export const DailyMenu = ({ date, menu, onMenuChange }: DailyMenuProps) => {
               {day}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              {date.format('DD.MM.YYYY')}
+              {formatDate(date)}
             </Typography>
           </Box>
         }
