@@ -22,18 +22,13 @@ import type { Dayjs } from 'dayjs';
 type DailyMenuResult = ReturnType<typeof generateDailyMenu>;
 
 interface DailyMenuProps {
-  day: string;
   date: Dayjs;
   menu: DailyMenuResult;
   onMenuChange: () => void;
 }
 
-export const DailyMenu = ({
-  day,
-  date,
-  menu,
-  onMenuChange,
-}: DailyMenuProps) => {
+export const DailyMenu = ({ date, menu, onMenuChange }: DailyMenuProps) => {
+  const day = date.format('dddd');
   const handleGenerateMenu = useCallback(() => {
     onMenuChange();
   }, [onMenuChange]);
