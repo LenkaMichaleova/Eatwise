@@ -1,5 +1,5 @@
-import { rows } from '../pages/Database/rows';
+import { meals } from '../pages/Database/meals';
 
 export const getAllMeals = () => {
-  return rows;
+  return meals;
 };

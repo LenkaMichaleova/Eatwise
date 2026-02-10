@@ -1,5 +1,5 @@
 import { foodData } from '../../foodData';
-import type { foodTypes } from './models/row';
+import type { foodTypes } from './models/meal';
 
 function createData(
   id: number,
@@ -13,7 +13,7 @@ function createData(
   return { id, name, type, calories, fat, carbs, protein };
 }
 
-export const rows = foodData.map((food) =>
+export const meals = foodData.map((food) =>
   createData(
     food.id,
     food.title,

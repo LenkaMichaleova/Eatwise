@@ -17,12 +17,15 @@ export const DatabaseHeaderStylled = styled(Box)({
   justifyContent: 'space-between',
 });
 
-export const DatabaseBoxSmallStyled = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
+export const DatabaseContentStyled = styled(Box)(({ theme }) => ({
+  display: 'grid',
+  gridTemplateColumns: 'repeat(auto-fill, minmax(270px, 1fr))',
+  gridAutoRows: '1fr',
   width: '100%',
-  [theme.breakpoints.up('md')]: {
-    display: 'none',
+  gap: theme.spacing(2),
+  [theme.breakpoints.down('sm')]: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
 }));

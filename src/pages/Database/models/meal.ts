@@ -1,6 +1,6 @@
 export type foodTypes = 'breakfast' | 'snack1' | 'lunch' | 'snack2' | 'dinner';
 
-export type Row = {
+export type Meal = {
   id: number;
   name: string;
   type: foodTypes;
