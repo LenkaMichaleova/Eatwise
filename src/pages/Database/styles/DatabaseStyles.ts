@@ -14,7 +14,7 @@ export const DatabaseStyled = styled(Box)(({ theme }) => ({
 export const DatabaseHeaderStylled = styled(Box)({
   width: '100%',
   display: 'flex',
-  justifyContent: 'space-between',
+  flexDirection: 'column',
 });
 
 export const DatabaseContentStyled = styled(Box)(({ theme }) => ({
