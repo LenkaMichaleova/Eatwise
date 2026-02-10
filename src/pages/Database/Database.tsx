@@ -1,8 +1,6 @@
 import FilterListAltIcon from '@mui/icons-material/FilterListAlt';
 import { Button } from '@mui/material';
 import { SectionTitle } from '../../components/SectionTitle/SectionTitle';
-// import { DatabaseTable } from './components/DatabaseTable';
-// import { DatabaseBoxSmall } from './components/DatabaseBoxSmall';
 import {
   DatabaseContentStyled,
   DatabaseHeaderStylled,
@@ -13,6 +11,9 @@ import { DatabaseMealCard } from './components/DatabaseMealCard';
 
 export const Database = () => {
   const mealsData = getAllMeals();
+  const mealsDataSorted = [...mealsData].sort((a, b) =>
+    a.name.localeCompare(b.name, 'cs')
+  );
 
   return (
     <DatabaseStyled>
@@ -23,7 +24,7 @@ export const Database = () => {
         </Button>
       </DatabaseHeaderStylled>
       <DatabaseContentStyled>
-        {mealsData.map((meal) => (
+        {mealsDataSorted.map((meal) => (
           <DatabaseMealCard key={meal.id} data={meal} />
         ))}
       </DatabaseContentStyled>
