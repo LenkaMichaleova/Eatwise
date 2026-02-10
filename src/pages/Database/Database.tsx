@@ -1,13 +1,14 @@
 import FilterListAltIcon from '@mui/icons-material/FilterListAlt';
 import { Button } from '@mui/material';
 import { SectionTitle } from '../../components/SectionTitle/SectionTitle';
+
+import { getAllMeals } from '../../services/mealsService';
+import { DatabaseMealCard } from './components/DatabaseMealCard';
 import {
   DatabaseContentStyled,
   DatabaseHeaderStylled,
   DatabaseStyled,
-} from './styles/DatabaseStyles';
-import { getAllMeals } from '../../services/mealsService';
-import { DatabaseMealCard } from './components/DatabaseMealCard';
+} from './styles/databaseStyles';
 
 export const Database = () => {
   const mealsData = getAllMeals();

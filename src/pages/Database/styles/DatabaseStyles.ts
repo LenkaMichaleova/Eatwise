@@ -1,15 +1,15 @@
 import { Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
-export const DatabaseStyled = styled(Box)({
+export const DatabaseStyled = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexWrap: 'wrap',
   justifyContent: 'flex-start',
-  margin: '2rem auto',
+  margin: theme.spacing(4, 'auto'),
   maxWidth: '1200px',
   width: '100%',
-  gap: '1rem',
-});
+  gap: theme.spacing(2),
+}));
 
 export const DatabaseHeaderStylled = styled(Box)({
   width: '100%',

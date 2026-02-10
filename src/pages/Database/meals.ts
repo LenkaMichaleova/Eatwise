@@ -1,5 +1,5 @@
 import { foodData } from '../../foodData';
-import type { foodTypes } from './models/meal';
+import type { foodTypes } from '../../models/meal';
 
 function createData(
   id: number,

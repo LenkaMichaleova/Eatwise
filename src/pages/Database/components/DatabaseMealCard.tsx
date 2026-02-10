@@ -1,57 +1,34 @@
 import {
   Box,
-  Card,
   CardActionArea,
   CardContent,
   CardHeader,
-  Chip,
   Typography,
 } from '@mui/material';
 import { IconLabel } from '../../../components/IconLabel/IconLabel';
-import type { FoodType } from '../../../foodData';
 import { generatePath, Link } from 'react-router-dom';
 import { ROUTES } from '../../../constants/routes';
-
-interface MealProps {
-  id: number;
-  name: string;
-  type: FoodType;
-  calories: number;
-  protein: number;
-  carbs: number;
-  fat: number;
-}
+import {
+  databaseMealCardActionAreaStyles,
+  DatabaseMealCardStyled,
+} from '../styles/mealCardStyles';
+import type { Meal } from '../../../models/meal';
+import { NutritionValueChip } from './NutritionValueChip';
 
 interface DatabaseMealCardProps {
-  data: MealProps;
+  data: Meal;
 }
 
 export const DatabaseMealCard = ({ data }: DatabaseMealCardProps) => {
   const { id, name, type, calories, protein, carbs, fat } = data;
   return (
-    <Card
-      variant="outlined"
-      sx={{
-        width: '100%',
-        height: '100%',
-        maxWidth: '270px',
-        alignSelf: 'center',
-        '@media (min-width: 600px)': {
-          maxWidth: 'none',
-        },
-      }}
-    >
+    <DatabaseMealCardStyled variant="outlined">
       <CardActionArea
         component={Link}
         to={generatePath(ROUTES.databaseDetail, {
           databaseId: id.toString(),
         })}
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-          height: '100%',
-        }}
+        sx={databaseMealCardActionAreaStyles}
       >
         <CardHeader
           sx={{ alignSelf: 'start', flex: 1, alignItems: 'flex-start' }}
@@ -65,7 +42,7 @@ export const DatabaseMealCard = ({ data }: DatabaseMealCardProps) => {
               >
                 {name}
               </Typography>
-              <Box sx={{ position: 'absolute', top: 20, right: 8 }}>
+              <Box sx={{ position: 'absolute', top: 15, right: 8 }}>
                 <IconLabel type={type} />
               </Box>
             </Box>
@@ -77,50 +54,15 @@ export const DatabaseMealCard = ({ data }: DatabaseMealCardProps) => {
             >{`${calories} kJ / ${Math.round(calories / 4.184)} KCal`}</Typography>
           }
         />
+
         <CardContent sx={{ mt: -2, width: '100%' }}>
-          <Box
-            sx={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              gap: '0.5rem',
-            }}
-          >
-            <Chip
-              label={
-                <Typography variant="caption">{`Bílkoviny: ${protein}g`}</Typography>
-              }
-              size="small"
-              sx={{
-                backgroundColor: '#F5E8EC',
-                color: '#6B5E62',
-                fontWeight: 500,
-              }}
-            />
-            <Chip
-              label={
-                <Typography variant="caption">{`Sacharidy: ${carbs}g`}</Typography>
-              }
-              size="small"
-              sx={{
-                backgroundColor: '#FFF8E8',
-                color: '#6E6A5D',
-                fontWeight: 500,
-              }}
-            />
-            <Chip
-              label={
-                <Typography variant="caption">{`Tuky: ${fat}g`}</Typography>
-              }
-              size="small"
-              sx={{
-                backgroundColor: '#E8F2F5',
-                color: '#5D676B',
-                fontWeight: 500,
-              }}
-            />
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+            <NutritionValueChip type="protein" value={protein} />
+            <NutritionValueChip type="carbs" value={carbs} />
+            <NutritionValueChip type="fat" value={fat} />
           </Box>
         </CardContent>
       </CardActionArea>
-    </Card>
+    </DatabaseMealCardStyled>
   );
 };
