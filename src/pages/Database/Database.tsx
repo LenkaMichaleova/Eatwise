@@ -1,18 +1,20 @@
-import FilterListAltIcon from '@mui/icons-material/FilterListAlt';
-import { Button } from '@mui/material';
 import { SectionTitle } from '../../components/SectionTitle/SectionTitle';
-
-import { getAllMeals } from '../../services/mealsService';
+import { filterMeals } from '../../services/filterService';
 import { DatabaseMealCard } from './components/DatabaseMealCard';
+import { MealSearchBar } from './components/MealSearchBar';
+import MealFilterBar from './components/MealFilterBar';
 import {
   DatabaseContentStyled,
   DatabaseHeaderStylled,
   DatabaseStyled,
 } from './styles/databaseStyles';
+import { SearchBarBoxStyled } from './styles/SearchBarStyles';
+import { useFiltersStore } from '../../store/store';
 
 export const Database = () => {
-  const mealsData = getAllMeals();
-  const mealsDataSorted = [...mealsData].sort((a, b) =>
+  const { type, ingredient } = useFiltersStore();
+  const filteredMeals = filterMeals(type, ingredient);
+  const mealsDataSorted = [...filteredMeals].sort((a, b) =>
     a.name.localeCompare(b.name, 'cs')
   );
 
@@ -20,10 +22,11 @@ export const Database = () => {
     <DatabaseStyled>
       <DatabaseHeaderStylled>
         <SectionTitle title="Databáze jídel" />
-        <Button>
-          <FilterListAltIcon fontSize="large" />
-        </Button>
       </DatabaseHeaderStylled>
+      <SearchBarBoxStyled>
+        <MealSearchBar />
+        <MealFilterBar />
+      </SearchBarBoxStyled>
       <DatabaseContentStyled>
         {mealsDataSorted.map((meal) => (
           <DatabaseMealCard key={meal.id} data={meal} />
