@@ -32,7 +32,7 @@ export const DatabaseMealCard = ({ data }: DatabaseMealCardProps) => {
         sx={databaseMealCardActionAreaStyles}
       >
         <CardHeader
-          sx={{ alignSelf: 'start', flex: 1, alignItems: 'flex-start' }}
+          sx={{ width: '100%', alignSelf: 'start', display: 'flex' }}
           title={
             <Box>
               <Typography
