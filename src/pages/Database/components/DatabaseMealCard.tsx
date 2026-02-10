@@ -21,6 +21,7 @@ interface DatabaseMealCardProps {
 
 export const DatabaseMealCard = ({ data }: DatabaseMealCardProps) => {
   const { id, name, type, calories, protein, carbs, fat } = data;
+
   return (
     <DatabaseMealCardStyled variant="outlined">
       <CardActionArea
