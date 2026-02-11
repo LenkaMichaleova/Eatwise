@@ -17,24 +17,25 @@ export const MealSearchBar = () => {
   const options: MealSearchOption[] = useMemo(() => {
     if (!data) return [];
 
+    const searchText = inputValue.trim().toLowerCase();
+    const matches = (label: string) =>
+      searchText ? label.toLowerCase().includes(searchText) : true;
+
+    const buildLimitedOptions = <T extends { id: number; name: string }>(
+      items: T[],
+      type: MealSearchOptionType
+    ) =>
+      items
+        .map((item) => ({ type, id: item.id, label: item.name }))
+        .filter((option) => matches(option.label))
+        .slice(0, 5);
+
     return [
-      ...data.meals.map((meal) => ({
-        type: MealSearchOptionType.MEAL,
-        id: meal.id,
-        label: meal.name,
-      })),
-      ...data.types.map((type) => ({
-        type: MealSearchOptionType.TYPE,
-        id: type.id,
-        label: type.name,
-      })),
-      ...data.ingredients.map((ingredient) => ({
-        type: MealSearchOptionType.INGREDIENT,
-        id: ingredient.id,
-        label: ingredient.name,
-      })),
+      ...buildLimitedOptions(data.meals, MealSearchOptionType.MEAL),
+      ...buildLimitedOptions(data.types, MealSearchOptionType.TYPE),
+      ...buildLimitedOptions(data.ingredients, MealSearchOptionType.INGREDIENT),
     ];
-  }, [data]);
+  }, [data, inputValue]);
 
   const handleChange = (_: unknown, value: MealSearchOption | null) => {
     if (!value) return;
