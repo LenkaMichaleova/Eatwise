@@ -88,3 +88,6 @@ export const MealSearchBar = () => {
     </SearchBarStyled>
   );
 };
+
+// TODO: UX comment -> I want to add all flours, so i type "mouka",
+// I click celozrnna, i need to type "mouka" again. leaving the decision up to you. nothing major
