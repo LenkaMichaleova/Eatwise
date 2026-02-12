@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router';
 import { getMealsSearchData } from '../../../services/mealsSearchService.ts';
 import { useFiltersStore } from '../../../store/store.ts';
 import { SearchBarStyled } from '../styles/SearchBarStyles.ts';
+import { buildLimitedOptions } from '../utils/buildLimitedOptions.ts';
 
 export const MealSearchBar = () => {
   const [inputValue, setInputValue] = useState('');
@@ -18,22 +19,15 @@ export const MealSearchBar = () => {
     if (!data) return [];
 
     const searchText = inputValue.trim().toLowerCase();
-    const matches = (label: string) =>
-      searchText ? label.toLowerCase().includes(searchText) : true;
-
-    const buildLimitedOptions = <T extends { id: number; name: string }>(
-      items: T[],
-      type: MealSearchOptionType
-    ) =>
-      items
-        .filter((item) => matches(item.name))
-        .slice(0, 5)
-        .map((item) => ({ type, id: item.id, label: item.name }));
 
     return [
-      ...buildLimitedOptions(data.meals, MealSearchOptionType.MEAL),
-      ...buildLimitedOptions(data.types, MealSearchOptionType.TYPE),
-      ...buildLimitedOptions(data.ingredients, MealSearchOptionType.INGREDIENT),
+      ...buildLimitedOptions(data.meals, MealSearchOptionType.MEAL, searchText),
+      ...buildLimitedOptions(data.types, MealSearchOptionType.TYPE, searchText),
+      ...buildLimitedOptions(
+        data.ingredients,
+        MealSearchOptionType.INGREDIENT,
+        searchText
+      ),
     ];
   }, [data, inputValue]);
 
