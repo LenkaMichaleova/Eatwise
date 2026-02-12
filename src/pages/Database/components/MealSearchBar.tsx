@@ -69,7 +69,7 @@ export const MealSearchBar = () => {
         onChange={handleChange}
         inputValue={inputValue}
         onInputChange={(_, value, reason) => {
-          if (reason !== 'reset') {
+          if (reason === 'input') {
             setInputValue(value);
           }
         }}
