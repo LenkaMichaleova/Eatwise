@@ -10,12 +10,14 @@ import {
 } from './styles/databaseStyles';
 import { SearchBarBoxStyled } from './styles/SearchBarStyles';
 import { useFiltersStore } from '../../store/store';
+import { useMemo } from 'react';
 
 export const Database = () => {
   const { type, ingredient } = useFiltersStore();
   const filteredMeals = filterMeals(type, ingredient);
-  const mealsDataSorted = [...filteredMeals].sort((a, b) =>
-    a.name.localeCompare(b.name, 'cs')
+  const mealsDataSorted = useMemo(
+    () => [...filteredMeals].sort((a, b) => a.name.localeCompare(b.name, 'cs')),
+    [filteredMeals]
   );
 
   return (
