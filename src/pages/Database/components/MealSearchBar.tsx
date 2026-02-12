@@ -26,9 +26,9 @@ export const MealSearchBar = () => {
       type: MealSearchOptionType
     ) =>
       items
-        .map((item) => ({ type, id: item.id, label: item.name }))
-        .filter((option) => matches(option.label))
-        .slice(0, 5);
+        .filter((item) => matches(item.name))
+        .slice(0, 5)
+        .map((item) => ({ type, id: item.id, label: item.name }));
 
     return [
       ...buildLimitedOptions(data.meals, MealSearchOptionType.MEAL),
