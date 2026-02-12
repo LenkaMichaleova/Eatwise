@@ -14,7 +14,10 @@ import { useMemo } from 'react';
 
 export const Database = () => {
   const { type, ingredient } = useFiltersStore();
-  const filteredMeals = filterMeals(type, ingredient);
+  const filteredMeals = filterMeals({
+    typeFilters: type,
+    ingredientFilters: ingredient,
+  });
   const mealsDataSorted = useMemo(
     () =>
       [...filteredMeals].sort((a, b) => a.title.localeCompare(b.title, 'cs')),
