@@ -9,8 +9,9 @@ export const HomePageStyled = styled(Box)(({ theme }) => ({
   maxWidth: '1200px',
   width: '100%',
   gap: theme.spacing(2),
-  '@media(max-width: 960px)': {
+  [theme.breakpoints.down('md')]: {
     flexDirection: 'column',
     alignItems: 'center',
+    gap: 0,
   },
 }));
