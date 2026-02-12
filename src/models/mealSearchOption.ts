@@ -2,6 +2,6 @@ import type { MealSearchOptionType } from './mealSearchOptionType';
 
 export type MealSearchOption = {
   type: MealSearchOptionType;
-  id: number;
+  id: number | string;
   label: string;
 };

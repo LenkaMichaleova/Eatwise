@@ -13,11 +13,11 @@ export const getMealsSearchData = () => {
       fat: food.fats,
     })),
     types: [
-      { id: 1, name: 'Snídaně' },
-      { id: 2, name: 'Svačina 1' },
-      { id: 3, name: 'Oběd' },
-      { id: 4, name: 'Svačina 2' },
-      { id: 5, name: 'Večeře' },
+      { id: 'breakfast', name: 'Snídaně' },
+      { id: 'snack1', name: 'Svačina 1' },
+      { id: 'lunch', name: 'Oběd' },
+      { id: 'snack2', name: 'Svačina 2' },
+      { id: 'dinner', name: 'Večeře' },
     ],
     ingredients: ingredientsDb.map((ing) => ({
       id: ing.id,

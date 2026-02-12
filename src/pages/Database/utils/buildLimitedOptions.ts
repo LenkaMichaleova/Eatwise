@@ -1,7 +1,9 @@
 import type { MealSearchOption } from '../../../models/mealSearchOption';
 import type { MealSearchOptionType } from '../../../models/mealSearchOptionType';
 
-export const buildLimitedOptions = <T extends { id: number; name: string }>(
+export const buildLimitedOptions = <
+  T extends { id: number | string; name: string },
+>(
   items: T[],
   type: MealSearchOptionType,
   searchText: string,
