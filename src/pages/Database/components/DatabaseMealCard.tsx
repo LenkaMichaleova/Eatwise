@@ -20,7 +20,7 @@ interface DatabaseMealCardProps {
 }
 
 export const DatabaseMealCard = ({ data }: DatabaseMealCardProps) => {
-  const { id, name, type, calories, protein, carbs, fat } = data;
+  const { id, title, type, calories, proteins, carbohydrates, fats } = data;
 
   return (
     <DatabaseMealCardStyled variant="outlined">
@@ -41,7 +41,7 @@ export const DatabaseMealCard = ({ data }: DatabaseMealCardProps) => {
                 width="80%"
                 gutterBottom
               >
-                {name}
+                {title}
               </Typography>
               <Box sx={{ position: 'absolute', top: 15, right: 8 }}>
                 <IconLabel type={type} />
@@ -58,9 +58,9 @@ export const DatabaseMealCard = ({ data }: DatabaseMealCardProps) => {
 
         <CardContent sx={{ mt: -2, width: '100%' }}>
           <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-            <NutritionValueChip type="protein" value={protein} />
-            <NutritionValueChip type="carbs" value={carbs} />
-            <NutritionValueChip type="fat" value={fat} />
+            <NutritionValueChip type="protein" value={proteins} />
+            <NutritionValueChip type="carbs" value={carbohydrates} />
+            <NutritionValueChip type="fat" value={fats} />
           </Box>
         </CardContent>
       </CardActionArea>

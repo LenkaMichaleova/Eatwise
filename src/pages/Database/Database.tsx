@@ -16,7 +16,8 @@ export const Database = () => {
   const { type, ingredient } = useFiltersStore();
   const filteredMeals = filterMeals(type, ingredient);
   const mealsDataSorted = useMemo(
-    () => [...filteredMeals].sort((a, b) => a.name.localeCompare(b.name, 'cs')),
+    () =>
+      [...filteredMeals].sort((a, b) => a.title.localeCompare(b.title, 'cs')),
     [filteredMeals]
   );
 

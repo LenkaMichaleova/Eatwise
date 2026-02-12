@@ -13,35 +13,23 @@ export const filterMeals = (
   typeFilters: Filter[],
   ingredientFilters: Filter[]
 ) => {
-  return foodData
-    .filter((meal) => {
-      if (typeFilters.length > 0) {
-        const matchesType = typeFilters.some((f) => {
-          const foodType = FOOD_TYPE_LABELS[f.label] || f.label;
-          return meal.type === foodType;
-        });
-        if (!matchesType) return false;
-      }
+  return foodData.filter((meal) => {
+    if (typeFilters.length > 0) {
+      const matchesType = typeFilters.some((f) => {
+        const foodType = FOOD_TYPE_LABELS[f.label] || f.label;
+        return meal.type === foodType;
+      });
+      if (!matchesType) return false;
+    }
 
-      if (ingredientFilters.length > 0) {
-        const mealIngredientIds = meal.ingredients.map(
-          (ing) => ing.ingredientId
-        );
-        const matchesIngredient = ingredientFilters.every((f) =>
-          mealIngredientIds.includes(f.id)
-        );
-        if (!matchesIngredient) return false;
-      }
+    if (ingredientFilters.length > 0) {
+      const mealIngredientIds = meal.ingredients.map((ing) => ing.ingredientId);
+      const matchesIngredient = ingredientFilters.every((f) =>
+        mealIngredientIds.includes(f.id)
+      );
+      if (!matchesIngredient) return false;
+    }
 
-      return true;
-    })
-    .map((food) => ({
-      id: food.id,
-      name: food.title,
-      type: food.type,
-      calories: food.calories,
-      protein: food.proteins,
-      carbs: food.carbohydrates,
-      fat: food.fats,
-    }));
+    return true;
+  });
 };
