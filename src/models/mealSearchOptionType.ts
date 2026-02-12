@@ -1,7 +1,7 @@
 const MealSearchOptionType = {
-  MEAL: 0,
-  TYPE: 1,
-  INGREDIENT: 2,
+  MEAL: 'MEAL',
+  TYPE: 'TYPE',
+  INGREDIENT: 'INGREDIENT',
 } as const;
 
 type MealSearchOptionType =
