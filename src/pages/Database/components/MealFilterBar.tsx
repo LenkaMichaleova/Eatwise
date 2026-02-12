@@ -5,7 +5,7 @@ import {
   FilterBarStyled,
 } from '../styles/filterBarStyles';
 
-const FilterBar = () => {
+export const MealFilterBar = () => {
   const { type, ingredient, removeType, removeIngredient, clear } =
     useFiltersStore();
 
@@ -38,5 +38,3 @@ const FilterBar = () => {
     </FilterBarStyled>
   );
 };
-
-export default FilterBar;

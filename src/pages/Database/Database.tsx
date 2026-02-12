@@ -2,7 +2,7 @@ import { SectionTitle } from '../../components/SectionTitle/SectionTitle';
 import { filterMeals } from '../../services/filterService';
 import { DatabaseMealCard } from './components/DatabaseMealCard';
 import { MealSearchBar } from './components/MealSearchBar';
-import MealFilterBar from './components/MealFilterBar';
+import { MealFilterBar } from './components/MealFilterBar';
 import {
   DatabaseContentStyled,
   DatabaseHeaderStylled,
