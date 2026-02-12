@@ -24,7 +24,7 @@ export const ingredientsDb: Ingredient[] = [
   // ==================================================
   {
     id: 1001,
-    name: 'ovesné vločky',
+    name: 'Ovesné vločky',
     kcal: 372,
     proteins: 13,
     carbohydrates: 60,
@@ -32,7 +32,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 1002,
-    name: 'celozrnná mouka',
+    name: 'Celozrnná mouka',
     kcal: 340,
     proteins: 13,
     carbohydrates: 72,
@@ -40,7 +40,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 1003,
-    name: 'pšeničná mouka',
+    name: 'Pšeničná mouka',
     kcal: 364,
     proteins: 10,
     carbohydrates: 76,
@@ -48,7 +48,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 1004,
-    name: 'strouhanka',
+    name: 'Strouhanka',
     kcal: 351,
     proteins: 13,
     carbohydrates: 71,
@@ -56,7 +56,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 1005,
-    name: 'mák',
+    name: 'Mák',
     kcal: 525,
     proteins: 18,
     carbohydrates: 28,
@@ -64,7 +64,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 1010,
-    name: 'granola / müsli (granule)',
+    name: 'Granola / müsli (granule)',
     kcal: 450,
     proteins: 10,
     carbohydrates: 64,
@@ -76,7 +76,7 @@ export const ingredientsDb: Ingredient[] = [
   // ==================================================
   {
     id: 2001,
-    name: 'jablko',
+    name: 'Jablko',
     kcal: 52,
     proteins: 0.3,
     carbohydrates: 14,
@@ -84,7 +84,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 2002,
-    name: 'hruška',
+    name: 'Hruška',
     kcal: 57,
     proteins: 0.4,
     carbohydrates: 15,
@@ -92,7 +92,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 2003,
-    name: 'banán',
+    name: 'Banán',
     kcal: 89,
     proteins: 1.1,
     carbohydrates: 23,
@@ -100,7 +100,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 2004,
-    name: 'mandarinka',
+    name: 'Mandarinka',
     kcal: 53,
     proteins: 0.8,
     carbohydrates: 13,
@@ -108,7 +108,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 2005,
-    name: 'borůvky',
+    name: 'Borůvky',
     kcal: 57,
     proteins: 0.7,
     carbohydrates: 14.5,
@@ -116,7 +116,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 2006,
-    name: 'lesní ovoce',
+    name: 'Lesní ovoce',
     kcal: 45,
     proteins: 1,
     carbohydrates: 10,
@@ -124,7 +124,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 2007,
-    name: 'meruňky',
+    name: 'Meruňky',
     kcal: 48,
     proteins: 1.4,
     carbohydrates: 11,
@@ -132,7 +132,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 2008,
-    name: 'mandarinková šťáva',
+    name: 'Mandarinková šťáva',
     kcal: 43,
     proteins: 0.6,
     carbohydrates: 10,
@@ -140,7 +140,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 2009,
-    name: 'švestky',
+    name: 'Švestky',
     kcal: 46,
     proteins: 0.7,
     carbohydrates: 11.4,
@@ -148,7 +148,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 2010,
-    name: 'avokádo',
+    name: 'Avokádo',
     kcal: 160,
     proteins: 2.0,
     carbohydrates: 8.5,
@@ -156,7 +156,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 2011,
-    name: 'pomeranč',
+    name: 'Pomeranč',
     kcal: 47,
     proteins: 0.9,
     carbohydrates: 12,
@@ -168,7 +168,7 @@ export const ingredientsDb: Ingredient[] = [
   // ==================================================
   {
     id: 3001,
-    name: 'rajče',
+    name: 'Rajče',
     kcal: 18,
     proteins: 0.9,
     carbohydrates: 3.9,
@@ -176,7 +176,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 3002,
-    name: 'okurka',
+    name: 'Okurka',
     kcal: 15,
     proteins: 0.7,
     carbohydrates: 3.6,
@@ -184,7 +184,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 3003,
-    name: 'paprika',
+    name: 'Paprika',
     kcal: 31,
     proteins: 1,
     carbohydrates: 6,
@@ -192,7 +192,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 3004,
-    name: 'cibule',
+    name: 'Cibule',
     kcal: 40,
     proteins: 1.1,
     carbohydrates: 9.3,
@@ -200,7 +200,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 3005,
-    name: 'česnek',
+    name: 'Česnek',
     kcal: 149,
     proteins: 6.4,
     carbohydrates: 33,
@@ -208,7 +208,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 3006,
-    name: 'brokolice',
+    name: 'Brokolice',
     kcal: 34,
     proteins: 2.8,
     carbohydrates: 7,
@@ -216,7 +216,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 3007,
-    name: 'květák',
+    name: 'Květák',
     kcal: 25,
     proteins: 1.9,
     carbohydrates: 5,
@@ -224,7 +224,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 3008,
-    name: 'červená řepa',
+    name: 'Červená řepa',
     kcal: 43,
     proteins: 1.6,
     carbohydrates: 10,
@@ -232,7 +232,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 3009,
-    name: 'listový salát',
+    name: 'Listový salát',
     kcal: 15,
     proteins: 1.5,
     carbohydrates: 2,
@@ -240,7 +240,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 3010,
-    name: 'zeleninový mix',
+    name: 'Zeleninový mix',
     kcal: 30,
     proteins: 1.5,
     carbohydrates: 5,
@@ -248,7 +248,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 3011,
-    name: 'bílé zelí',
+    name: 'Bílé zelí',
     kcal: 25,
     proteins: 1.3,
     carbohydrates: 5.8,
@@ -256,7 +256,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 3012,
-    name: 'rajčatové pyré / passata',
+    name: 'Rajčatové pyré / passata',
     kcal: 30,
     proteins: 1.5,
     carbohydrates: 6,
@@ -264,7 +264,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 3013,
-    name: 'kyselá okurka',
+    name: 'Kyselá okurka',
     kcal: 12,
     proteins: 0.3,
     carbohydrates: 2.2,
@@ -272,7 +272,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 3014,
-    name: 'žampiony (houby)',
+    name: 'Žampiony (houby)',
     kcal: 22,
     proteins: 3.1,
     carbohydrates: 3.3,
@@ -280,7 +280,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 3015,
-    name: 'rajská omáčka',
+    name: 'Rajská omáčka',
     kcal: 65,
     proteins: 1.5,
     carbohydrates: 12,
@@ -288,7 +288,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 3016,
-    name: 'hříbky (houby)',
+    name: 'Hříbky (houby)',
     kcal: 34,
     proteins: 3.7,
     carbohydrates: 6.0,
@@ -296,7 +296,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 3017,
-    name: 'špenát',
+    name: 'Špenát',
     kcal: 23,
     proteins: 2.9,
     carbohydrates: 3.6,
@@ -304,7 +304,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 3018,
-    name: 'paprika (lusk)',
+    name: 'Paprika (lusk)',
     kcal: 31,
     proteins: 1.0,
     carbohydrates: 6.0,
@@ -316,7 +316,7 @@ export const ingredientsDb: Ingredient[] = [
   // ==================================================
   {
     id: 4001,
-    name: 'brambory vařené',
+    name: 'Brambory vařené',
     kcal: 87,
     proteins: 2,
     carbohydrates: 20,
@@ -324,7 +324,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 4002,
-    name: 'batáty',
+    name: 'Batáty',
     kcal: 86,
     proteins: 1.6,
     carbohydrates: 20,
@@ -332,7 +332,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 4003,
-    name: 'rýže vařená',
+    name: 'Rýže vařená',
     kcal: 130,
     proteins: 2.7,
     carbohydrates: 28,
@@ -340,7 +340,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 4004,
-    name: 'divoká rýže',
+    name: 'Divoká rýže',
     kcal: 101,
     proteins: 4,
     carbohydrates: 21,
@@ -348,7 +348,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 4005,
-    name: 'celozrnné těstoviny vařené',
+    name: 'Celozrnné těstoviny vařené',
     kcal: 124,
     proteins: 5,
     carbohydrates: 26,
@@ -356,7 +356,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 4006,
-    name: 'bulgur vařený',
+    name: 'Bulgur vařený',
     kcal: 83,
     proteins: 3.1,
     carbohydrates: 18.6,
@@ -364,7 +364,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 4007,
-    name: 'čočka vařená',
+    name: 'Čočka vařená',
     kcal: 116,
     proteins: 9,
     carbohydrates: 20,
@@ -372,7 +372,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 4008,
-    name: 'cizrna vařená',
+    name: 'Cizrna vařená',
     kcal: 164,
     proteins: 9,
     carbohydrates: 27,
@@ -380,7 +380,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 4009,
-    name: 'fazole vařené (kidney)',
+    name: 'Fazole vařené (kidney)',
     kcal: 127,
     proteins: 8.7,
     carbohydrates: 22.8,
@@ -388,7 +388,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 4010,
-    name: 'rýžové nudle',
+    name: 'Rýžové nudle',
     kcal: 109,
     proteins: 1.8,
     carbohydrates: 24.9,
@@ -400,7 +400,7 @@ export const ingredientsDb: Ingredient[] = [
   // ==================================================
   {
     id: 5001,
-    name: 'kuřecí prsa',
+    name: 'Kuřecí prsa',
     kcal: 110,
     proteins: 23,
     carbohydrates: 0,
@@ -408,7 +408,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 5002,
-    name: 'krůtí prsa',
+    name: 'Krůtí prsa',
     kcal: 110,
     proteins: 24,
     carbohydrates: 0,
@@ -416,7 +416,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 5003,
-    name: 'hovězí libové',
+    name: 'Hovězí libové',
     kcal: 160,
     proteins: 26,
     carbohydrates: 0,
@@ -424,7 +424,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 5004,
-    name: 'vepřové libové',
+    name: 'Vepřové libové',
     kcal: 165,
     proteins: 25,
     carbohydrates: 0,
@@ -432,7 +432,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 5005,
-    name: 'losos',
+    name: 'Losos',
     kcal: 208,
     proteins: 20,
     carbohydrates: 0,
@@ -440,7 +440,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 5006,
-    name: 'tuňák ve vlastní šťávě',
+    name: 'Tuňák ve vlastní šťávě',
     kcal: 116,
     proteins: 26,
     carbohydrates: 0,
@@ -448,7 +448,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 5007,
-    name: 'šunka',
+    name: 'Šunka',
     kcal: 110,
     proteins: 19,
     carbohydrates: 1,
@@ -456,7 +456,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 5008,
-    name: 'frankfurtský párek',
+    name: 'Frankfurtský párek',
     kcal: 280,
     proteins: 12,
     carbohydrates: 2,
@@ -464,7 +464,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 5009,
-    name: 'bílá ryba (treska)',
+    name: 'Bílá ryba (treska)',
     kcal: 82,
     proteins: 18,
     carbohydrates: 0,
@@ -472,7 +472,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 5010,
-    name: 'parmská šunka',
+    name: 'Parmská šunka',
     kcal: 270,
     proteins: 26,
     carbohydrates: 0.5,
@@ -484,7 +484,7 @@ export const ingredientsDb: Ingredient[] = [
   // ==================================================
   {
     id: 6001,
-    name: 'polotučný tvaroh',
+    name: 'Polotučný tvaroh',
     kcal: 90,
     proteins: 16,
     carbohydrates: 3,
@@ -492,7 +492,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 6002,
-    name: 'tvaroh',
+    name: 'Tvaroh',
     kcal: 90,
     proteins: 16,
     carbohydrates: 3,
@@ -500,7 +500,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 6003,
-    name: 'řecký jogurt 2%',
+    name: 'Řecký jogurt 2%',
     kcal: 73,
     proteins: 9,
     carbohydrates: 4,
@@ -508,7 +508,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 6004,
-    name: 'jogurt bílý',
+    name: 'Jogurt bílý',
     kcal: 60,
     proteins: 5,
     carbohydrates: 4,
@@ -516,7 +516,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 6005,
-    name: 'mléko 1.5%',
+    name: 'Mléko 1.5%',
     kcal: 47,
     proteins: 3.4,
     carbohydrates: 4.8,
@@ -524,7 +524,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 6006,
-    name: 'vejce',
+    name: 'Vejce',
     kcal: 143,
     proteins: 13,
     carbohydrates: 1.1,
@@ -532,7 +532,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 6007,
-    name: 'cottage',
+    name: 'Cottage',
     kcal: 98,
     proteins: 11,
     carbohydrates: 3.5,
@@ -540,7 +540,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 6008,
-    name: 'eidam 30%',
+    name: 'Eidam 30%',
     kcal: 260,
     proteins: 28,
     carbohydrates: 1.5,
@@ -548,7 +548,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 6009,
-    name: 'mozzarella',
+    name: 'Mozzarella',
     kcal: 250,
     proteins: 18,
     carbohydrates: 2,
@@ -556,7 +556,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 6010,
-    name: 'hermelín',
+    name: 'Hermelín',
     kcal: 330,
     proteins: 19,
     carbohydrates: 1,
@@ -564,7 +564,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 6011,
-    name: 'balkánský sýr',
+    name: 'Balkánský sýr',
     kcal: 260,
     proteins: 14,
     carbohydrates: 2,
@@ -572,7 +572,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 6012,
-    name: 'parmazán',
+    name: 'Parmazán',
     kcal: 431,
     proteins: 38,
     carbohydrates: 4,
@@ -580,7 +580,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 6013,
-    name: 'tavený sýr trojúhelník',
+    name: 'Tavený sýr trojúhelník',
     kcal: 270,
     proteins: 12,
     carbohydrates: 4,
@@ -592,7 +592,7 @@ export const ingredientsDb: Ingredient[] = [
   // ==================================================
   {
     id: 7001,
-    name: 'kváskový chléb',
+    name: 'Kváskový chléb',
     kcal: 240,
     proteins: 8,
     carbohydrates: 46,
@@ -600,7 +600,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 7002,
-    name: 'knuspi chléb',
+    name: 'Knuspi chléb',
     kcal: 360,
     proteins: 10,
     carbohydrates: 70,
@@ -608,7 +608,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 7003,
-    name: 'rýžové chlebíčky',
+    name: 'Rýžové chlebíčky',
     kcal: 387,
     proteins: 8,
     carbohydrates: 82,
@@ -616,7 +616,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 7004,
-    name: 'celozrnná bagetka',
+    name: 'Celozrnná bagetka',
     kcal: 270,
     proteins: 9,
     carbohydrates: 50,
@@ -624,7 +624,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 7005,
-    name: 'tortilla',
+    name: 'Tortilla',
     kcal: 310,
     proteins: 8,
     carbohydrates: 52,
@@ -632,7 +632,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 7006,
-    name: 'krekry',
+    name: 'Krekry',
     kcal: 430,
     proteins: 9,
     carbohydrates: 72,
@@ -640,7 +640,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 7007,
-    name: 'rýžový chlebíček ovocný',
+    name: 'Rýžový chlebíček ovocný',
     kcal: 385,
     proteins: 7.5,
     carbohydrates: 82,
@@ -648,7 +648,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 7008,
-    name: 'celozrnný toastový chléb',
+    name: 'Celozrnný toastový chléb',
     kcal: 250,
     proteins: 9,
     carbohydrates: 44,
@@ -656,7 +656,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 7009,
-    name: 'knäckebrot',
+    name: 'Knäckebrot',
     kcal: 350,
     proteins: 10,
     carbohydrates: 70,
@@ -664,7 +664,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 7010,
-    name: 'bílé pečivo (veka/rohlík)',
+    name: 'Bílé pečivo (veka/rohlík)',
     kcal: 270,
     proteins: 9,
     carbohydrates: 56,
@@ -672,7 +672,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 7011,
-    name: 'celozrnná bulka',
+    name: 'Celozrnná bulka',
     kcal: 260,
     proteins: 9,
     carbohydrates: 49,
@@ -684,7 +684,7 @@ export const ingredientsDb: Ingredient[] = [
   // ==================================================
   {
     id: 8001,
-    name: 'olivový olej',
+    name: 'Olivový olej',
     kcal: 900,
     proteins: 0,
     carbohydrates: 0,
@@ -692,7 +692,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 8002,
-    name: 'ořechy mix',
+    name: 'Ořechy mix',
     kcal: 650,
     proteins: 15,
     carbohydrates: 14,
@@ -700,7 +700,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 8003,
-    name: 'mandle',
+    name: 'Mandle',
     kcal: 579,
     proteins: 21,
     carbohydrates: 22,
@@ -708,7 +708,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 8004,
-    name: 'med',
+    name: 'Med',
     kcal: 304,
     proteins: 0.3,
     carbohydrates: 82,
@@ -716,7 +716,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 8005,
-    name: 'marmeláda',
+    name: 'Marmeláda',
     kcal: 250,
     proteins: 0.5,
     carbohydrates: 62,
@@ -724,7 +724,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 8006,
-    name: 'dresink (jogurtový)',
+    name: 'Dresink (jogurtový)',
     kcal: 90,
     proteins: 4,
     carbohydrates: 6,
@@ -732,7 +732,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 8007,
-    name: 'sezam',
+    name: 'Sezam',
     kcal: 573,
     proteins: 18,
     carbohydrates: 23,
@@ -740,7 +740,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 8008,
-    name: 'karamelová omáčka',
+    name: 'Karamelová omáčka',
     kcal: 260,
     proteins: 1,
     carbohydrates: 65,
@@ -748,7 +748,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 8009,
-    name: 'švestková omáčka',
+    name: 'Švestková omáčka',
     kcal: 170,
     proteins: 0.5,
     carbohydrates: 42,
@@ -756,7 +756,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 8010,
-    name: 'pudink hotový (vanilkový)',
+    name: 'Pudink hotový (vanilkový)',
     kcal: 95,
     proteins: 3.0,
     carbohydrates: 16.0,
@@ -764,7 +764,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 8011,
-    name: 'ořechy (drcené)',
+    name: 'Ořechy (drcené)',
     kcal: 650,
     proteins: 15,
     carbohydrates: 14,
@@ -772,7 +772,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 8012,
-    name: 'kukuřičné lupínky',
+    name: 'Kukuřičné lupínky',
     kcal: 370,
     proteins: 7,
     carbohydrates: 84,
@@ -784,7 +784,7 @@ export const ingredientsDb: Ingredient[] = [
   // ==================================================
   {
     id: 9001,
-    name: 'kari koření',
+    name: 'Kari koření',
     kcal: 325,
     proteins: 14,
     carbohydrates: 58,
@@ -792,7 +792,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 9002,
-    name: 'skořice mletá',
+    name: 'Skořice mletá',
     kcal: 247,
     proteins: 4.0,
     carbohydrates: 81.0,
@@ -800,7 +800,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 9003,
-    name: 'gulášové koření',
+    name: 'Gulášové koření',
     kcal: 300,
     proteins: 12,
     carbohydrates: 50,
@@ -808,7 +808,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 9004,
-    name: 'kmín',
+    name: 'Kmín',
     kcal: 333,
     proteins: 20,
     carbohydrates: 50,
@@ -816,7 +816,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 9005,
-    name: 'koriandr (čerstvý)',
+    name: 'Koriandr (čerstvý)',
     kcal: 23,
     proteins: 2.1,
     carbohydrates: 3.7,
@@ -824,7 +824,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 9006,
-    name: 'bazalka (čerstvá)',
+    name: 'Bazalka (čerstvá)',
     kcal: 23,
     proteins: 3.2,
     carbohydrates: 2.7,
@@ -832,7 +832,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 9007,
-    name: 'mexické koření',
+    name: 'Mexické koření',
     kcal: 300,
     proteins: 12,
     carbohydrates: 50,
@@ -840,7 +840,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 9008,
-    name: 'pažitka',
+    name: 'Pažitka',
     kcal: 30,
     proteins: 3.3,
     carbohydrates: 4.4,
@@ -848,7 +848,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 9010,
-    name: 'mletá paprika',
+    name: 'Mletá paprika',
     kcal: 282,
     proteins: 14.1,
     carbohydrates: 54.9,
@@ -856,7 +856,7 @@ export const ingredientsDb: Ingredient[] = [
   },
   {
     id: 9011,
-    name: 'asijská směs koření',
+    name: 'Asijská směs koření',
     kcal: 280,
     proteins: 10,
     carbohydrates: 55,

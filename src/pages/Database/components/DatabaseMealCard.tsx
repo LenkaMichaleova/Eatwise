@@ -20,7 +20,7 @@ interface DatabaseMealCardProps {
 }
 
 export const DatabaseMealCard = ({ data }: DatabaseMealCardProps) => {
-  const { id, title, type, calories, proteins, carbohydrates, fats } = data;
+  const { id, title, type, calories, kj, proteins, carbohydrates, fats } = data;
 
   return (
     <DatabaseMealCardStyled variant="outlined">
@@ -52,7 +52,7 @@ export const DatabaseMealCard = ({ data }: DatabaseMealCardProps) => {
             <Typography
               variant="caption"
               color="grey.400"
-            >{`${calories} kJ / ${Math.round(calories / 4.184)} KCal`}</Typography>
+            >{`${kj} kJ / ${calories} kcal`}</Typography>
           }
         />
 
