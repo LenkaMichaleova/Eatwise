@@ -7,7 +7,7 @@ import {
   DatabaseContentStyled,
   DatabaseHeaderStylled,
   DatabaseStyled,
-} from './styles/databaseStyles';
+} from './databaseStyles';
 import { SearchBarBoxStyled } from './styles/SearchBarStyles';
 import { useFiltersStore } from '../../store/store';
 import { useMemo } from 'react';
