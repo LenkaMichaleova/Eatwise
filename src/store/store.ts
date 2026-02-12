@@ -8,9 +8,9 @@ interface FiltersState {
   readonly addMeal: (filter: Filter) => void;
   readonly addType: (filter: Filter) => void;
   readonly addIngredient: (filter: Filter) => void;
-  readonly removeMeal: (id: Filter['id']) => void;
-  readonly removeType: (id: Filter['id']) => void;
-  readonly removeIngredient: (id: Filter['id']) => void;
+  readonly removeMeal: (value: Filter['value']) => void;
+  readonly removeType: (value: Filter['value']) => void;
+  readonly removeIngredient: (value: Filter['value']) => void;
   readonly clear: () => void;
 }
 
@@ -21,34 +21,34 @@ export const useFiltersStore = create<FiltersState>((set) => ({
 
   addMeal: (meal) =>
     set((state) => ({
-      meal: state.meal.some((m) => m.id === meal.id)
+      meal: state.meal.some((m) => m.value === meal.value)
         ? state.meal
         : [...state.meal, meal],
     })),
   addType: (type) =>
     set((state) => ({
-      type: state.type.some((t) => t.id === type.id)
+      type: state.type.some((t) => t.value === type.value)
         ? state.type
         : [...state.type, type],
     })),
   addIngredient: (ingredient) =>
     set((state) => ({
-      ingredient: state.ingredient.some((i) => i.id === ingredient.id)
+      ingredient: state.ingredient.some((i) => i.value === ingredient.value)
         ? state.ingredient
         : [...state.ingredient, ingredient],
     })),
 
-  removeMeal: (id) =>
+  removeMeal: (value) =>
     set((state) => ({
-      meal: state.meal.filter((m) => m.id !== id),
+      meal: state.meal.filter((m) => m.value !== value),
     })),
-  removeType: (id) =>
+  removeType: (value) =>
     set((state) => ({
-      type: state.type.filter((t) => t.id !== id),
+      type: state.type.filter((t) => t.value !== value),
     })),
-  removeIngredient: (id) =>
+  removeIngredient: (value) =>
     set((state) => ({
-      ingredient: state.ingredient.filter((i) => i.id !== id),
+      ingredient: state.ingredient.filter((i) => i.value !== value),
     })),
 
   clear: () => set({ meal: [], type: [], ingredient: [] }),

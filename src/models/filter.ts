@@ -1,4 +1,4 @@
 export type Filter = {
-  id: number;
+  value: number | string;
   label: string;
 };

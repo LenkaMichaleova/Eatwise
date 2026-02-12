@@ -15,9 +15,9 @@ export const MealFilterBar = () => {
     <FilterBarStyled>
       {type.map((typeItem) => (
         <Chip
-          key={`type-${typeItem.id}`}
+          key={`type-${typeItem.value}`}
           label={`Typ: ${typeItem.label}`}
-          onDelete={() => removeType(typeItem.id)}
+          onDelete={() => removeType(typeItem.value)}
           color="primary"
           variant="outlined"
           sx={FilterBarChipStyles}
@@ -25,9 +25,9 @@ export const MealFilterBar = () => {
       ))}
       {ingredient.map((ingredientItem) => (
         <Chip
-          key={`ingredient-${ingredientItem.id}`}
+          key={`ingredient-${ingredientItem.value}`}
           label={`Ingredience: ${ingredientItem.label}`}
-          onDelete={() => removeIngredient(ingredientItem.id)}
+          onDelete={() => removeIngredient(ingredientItem.value)}
           color="primary"
           variant="outlined"
           sx={FilterBarChipStyles}
