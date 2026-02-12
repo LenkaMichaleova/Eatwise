@@ -53,3 +53,24 @@ export const useFiltersStore = create<FiltersState>((set) => ({
 
   clear: () => set({ meal: [], type: [], ingredient: [] }),
 }));
+
+// The "First Principles" Challenge from Jonáš
+// Before we commit to this, could you try implementing this filter state using only useContext and useReducer? Once it’s working, try to observe how many components re-render when you add a single meal.
+
+// You’ll notice that in Context, any update forces a re-render on every consumer.
+
+// Understanding this "broadcast" behavior is key to seeing why Zustand’s architecture is so different.
+
+// Performance & Selectors
+// Right now, you’re calling the hook like this:
+// const { meal, addMeal } = useFiltersStore();
+
+// By calling it without selectors, you’ve essentially turned Zustand back into a standard Context. Even if a component only needs meal, it will re-render whenever an ingredient or type is added.
+
+// To take advantage of Zustand’s performance, grab only the specific slices you need:
+
+// // Re-renders ONLY when the 'meal' array actually changes
+// const meal = useFiltersStore((state) => state.meal);
+// const addMeal = useFiltersStore((state) => state.addMeal);
+// Pro-tip: LocalStorage Middleware
+// Since we don't have the backend persistence ready yet, check out the persist middleware in Zustand. It’s a 1-liner that will automatically save these filters to localStorage, so they won't disappear when the user refreshes the page.
