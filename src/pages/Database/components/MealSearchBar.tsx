@@ -39,10 +39,10 @@ export const MealSearchBar = () => {
         navigate(`${value.id}`);
         break;
       case MealSearchOptionType.TYPE:
-        addType({ id: Number(value.id), label: value.label });
+        addType({ id: value.id, label: value.label });
         break;
       case MealSearchOptionType.INGREDIENT:
-        addIngredient({ id: Number(value.id), label: value.label });
+        addIngredient({ id: value.id, label: value.label });
         break;
     }
 
