@@ -1,6 +1,9 @@
 import { Button, Chip } from '@mui/material';
 import { useFiltersStore } from '../../../store/store';
-import { FilterBarStyled } from '../styles/filterBarStyles';
+import {
+  FilterBarChipStyles,
+  FilterBarStyled,
+} from '../styles/filterBarStyles';
 
 const FilterBar = () => {
   const { type, ingredient, removeType, removeIngredient, clear } =
@@ -17,11 +20,7 @@ const FilterBar = () => {
           onDelete={() => removeType(typeItem.id)}
           color="primary"
           variant="outlined"
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-          }}
+          sx={FilterBarChipStyles}
         />
       ))}
       {ingredient.map((ingredientItem) => (
@@ -31,11 +30,7 @@ const FilterBar = () => {
           onDelete={() => removeIngredient(ingredientItem.id)}
           color="primary"
           variant="outlined"
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-          }}
+          sx={FilterBarChipStyles}
         />
       ))}
 

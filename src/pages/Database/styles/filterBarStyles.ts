@@ -15,3 +15,9 @@ export const FilterBarStyled = styled(Box)(({ theme }) => ({
     padding: theme.spacing(0, 5, 0, 0),
   },
 }));
+
+export const FilterBarChipStyles = {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+};
