@@ -13,6 +13,7 @@ import { buildLimitedOptions } from '../utils/buildLimitedOptions.ts';
 
 export const MealSearchBar = () => {
   const [inputValue, setInputValue] = useState('');
+  const inputRef = useRef<HTMLInputElement | null>(null);
   const highlightedOptionRef = useRef<MealSearchOption | null>(null);
   const keywordCommittedRef = useRef(false);
   const data = getMealsSearchData();
@@ -54,6 +55,9 @@ export const MealSearchBar = () => {
     keywordCommittedRef.current = true;
     addKeywordFilter(inputValue);
     setInputValue('');
+    requestAnimationFrame(() => {
+      inputRef.current?.blur();
+    });
   };
 
   const handleChange = (
@@ -92,6 +96,9 @@ export const MealSearchBar = () => {
       addKeywordFilter(keyword);
       setInputValue('');
       keywordCommittedRef.current = false;
+      requestAnimationFrame(() => {
+        inputRef.current?.blur();
+      });
     }
   };
 
@@ -128,6 +135,7 @@ export const MealSearchBar = () => {
         renderInput={(params) => (
           <TextField
             {...params}
+            inputRef={inputRef}
             label={
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                 <GridSearchIcon fontSize="small" />
