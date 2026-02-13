@@ -17,7 +17,8 @@ export const MealSearchBar = () => {
   const highlightedOptionRef = useRef<MealSearchOption | null>(null);
   const keywordCommittedRef = useRef(false);
   const data = getMealsSearchData();
-  const { addType, addIngredient, addKeyword } = useFiltersStore();
+  const { addType, addIngredient, addKeyword, type, ingredient } =
+    useFiltersStore();
   const navigate = useNavigate();
 
   const options: MealSearchOption[] = useMemo(() => {
@@ -25,16 +26,27 @@ export const MealSearchBar = () => {
 
     const searchText = inputValue.trim().toLowerCase();
 
+    const availableTypes = data.types.filter(
+      (item) => !type.some((selected) => selected.value === item.id)
+    );
+    const availableIngredients = data.ingredients.filter(
+      (item) => !ingredient.some((selected) => selected.value === item.id)
+    );
+
     return [
       ...buildLimitedOptions(data.meals, MealSearchOptionType.MEAL, searchText),
-      ...buildLimitedOptions(data.types, MealSearchOptionType.TYPE, searchText),
       ...buildLimitedOptions(
-        data.ingredients,
+        availableTypes,
+        MealSearchOptionType.TYPE,
+        searchText
+      ),
+      ...buildLimitedOptions(
+        availableIngredients,
         MealSearchOptionType.INGREDIENT,
         searchText
       ),
     ];
-  }, [data, inputValue]);
+  }, [data, inputValue, type, ingredient]);
 
   const addKeywordFilter = (keywordRaw: string) => {
     const keyword = keywordRaw.trim();
