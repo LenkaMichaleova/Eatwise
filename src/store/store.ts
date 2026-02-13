@@ -2,28 +2,28 @@ import { create } from 'zustand';
 import type { Filter } from '../models/filter';
 
 interface FiltersState {
-  readonly meal: Filter[];
+  readonly keyword: Filter[];
   readonly type: Filter[];
   readonly ingredient: Filter[];
-  readonly addMeal: (filter: Filter) => void;
+  readonly addKeyword: (filter: Filter) => void;
   readonly addType: (filter: Filter) => void;
   readonly addIngredient: (filter: Filter) => void;
-  readonly removeMeal: (value: Filter['value']) => void;
+  readonly removeKeyword: (value: Filter['value']) => void;
   readonly removeType: (value: Filter['value']) => void;
   readonly removeIngredient: (value: Filter['value']) => void;
   readonly clear: () => void;
 }
 
 export const useFiltersStore = create<FiltersState>((set) => ({
-  meal: [],
+  keyword: [],
   type: [],
   ingredient: [],
 
-  addMeal: (meal) =>
+  addKeyword: (keyword) =>
     set((state) => ({
-      meal: state.meal.some((m) => m.value === meal.value)
-        ? state.meal
-        : [...state.meal, meal],
+      keyword: state.keyword.some((k) => k.value === keyword.value)
+        ? state.keyword
+        : [...state.keyword, keyword],
     })),
   addType: (type) =>
     set((state) => ({
@@ -38,9 +38,9 @@ export const useFiltersStore = create<FiltersState>((set) => ({
         : [...state.ingredient, ingredient],
     })),
 
-  removeMeal: (value) =>
+  removeKeyword: (value) =>
     set((state) => ({
-      meal: state.meal.filter((m) => m.value !== value),
+      keyword: state.keyword.filter((k) => k.value !== value),
     })),
   removeType: (value) =>
     set((state) => ({
@@ -51,7 +51,7 @@ export const useFiltersStore = create<FiltersState>((set) => ({
       ingredient: state.ingredient.filter((i) => i.value !== value),
     })),
 
-  clear: () => set({ meal: [], type: [], ingredient: [] }),
+  clear: () => set({ keyword: [], type: [], ingredient: [] }),
 }));
 
 // The "First Principles" Challenge from Jonáš
@@ -63,14 +63,14 @@ export const useFiltersStore = create<FiltersState>((set) => ({
 
 // Performance & Selectors
 // Right now, you’re calling the hook like this:
-// const { meal, addMeal } = useFiltersStore();
+// const { keyword, addKeyword } = useFiltersStore();
 
 // By calling it without selectors, you’ve essentially turned Zustand back into a standard Context. Even if a component only needs meal, it will re-render whenever an ingredient or type is added.
 
 // To take advantage of Zustand’s performance, grab only the specific slices you need:
 
 // // Re-renders ONLY when the 'meal' array actually changes
-// const meal = useFiltersStore((state) => state.meal);
-// const addMeal = useFiltersStore((state) => state.addMeal);
+// const keyword = useFiltersStore((state) => state.keyword);
+// const addKeyword = useFiltersStore((state) => state.addKeyword);
 // Pro-tip: LocalStorage Middleware
 // Since we don't have the backend persistence ready yet, check out the persist middleware in Zustand. It’s a 1-liner that will automatically save these filters to localStorage, so they won't disappear when the user refreshes the page.

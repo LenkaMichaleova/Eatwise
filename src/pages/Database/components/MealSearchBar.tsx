@@ -1,6 +1,8 @@
 import { Autocomplete, Box, TextField, Typography } from '@mui/material';
+import type { AutocompleteChangeReason } from '@mui/material/useAutocomplete';
 import { GridSearchIcon } from '@mui/x-data-grid';
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
+import type { KeyboardEvent } from 'react';
 import type { MealSearchOption } from '../../../models/mealSearchOption.ts';
 import { MealSearchOptionType } from '../../../models/mealSearchOptionType.ts';
 import { useNavigate } from 'react-router';
@@ -11,8 +13,10 @@ import { buildLimitedOptions } from '../utils/buildLimitedOptions.ts';
 
 export const MealSearchBar = () => {
   const [inputValue, setInputValue] = useState('');
+  const highlightedOptionRef = useRef<MealSearchOption | null>(null);
+  const keywordCommittedRef = useRef(false);
   const data = getMealsSearchData();
-  const { addType, addIngredient } = useFiltersStore();
+  const { addType, addIngredient, addKeyword } = useFiltersStore();
   const navigate = useNavigate();
 
   const options: MealSearchOption[] = useMemo(() => {
@@ -31,30 +35,76 @@ export const MealSearchBar = () => {
     ];
   }, [data, inputValue]);
 
-  const handleChange = (_: unknown, value: MealSearchOption | null) => {
+  const addKeywordFilter = (keywordRaw: string) => {
+    const keyword = keywordRaw.trim();
+    if (keyword.length === 0) return;
+    addKeyword({ value: keyword.toLowerCase(), label: keyword });
+  };
+
+  const handleInputKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key !== 'Enter') return;
+
+    if (highlightedOptionRef.current) return;
+
+    if (inputValue.trim().length === 0) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    keywordCommittedRef.current = true;
+    addKeywordFilter(inputValue);
+    setInputValue('');
+  };
+
+  const handleChange = (
+    _: unknown,
+    value: MealSearchOption | string | null,
+    reason: AutocompleteChangeReason
+  ) => {
     if (!value) return;
 
-    switch (value.type) {
-      case MealSearchOptionType.MEAL:
-        navigate(`${value.id}`);
-        break;
-      case MealSearchOptionType.TYPE:
-        addType({ value: value.id, label: value.label });
-        break;
-      case MealSearchOptionType.INGREDIENT:
-        addIngredient({ value: value.id, label: value.label });
-        break;
+    if (reason === 'selectOption' && typeof value !== 'string') {
+      switch (value.type) {
+        case MealSearchOptionType.MEAL:
+          navigate(`${value.id}`);
+          break;
+        case MealSearchOptionType.TYPE:
+          addType({ value: value.id, label: value.label });
+          break;
+        case MealSearchOptionType.INGREDIENT:
+          addIngredient({ value: value.id, label: value.label });
+          break;
+      }
+
+      setInputValue('');
+      keywordCommittedRef.current = false;
+      return;
     }
 
-    setInputValue('');
+    if (reason === 'createOption') {
+      if (keywordCommittedRef.current) {
+        keywordCommittedRef.current = false;
+        return;
+      }
+
+      const keyword =
+        typeof value === 'string' ? value : (value as MealSearchOption).label;
+      addKeywordFilter(keyword);
+      setInputValue('');
+      keywordCommittedRef.current = false;
+    }
   };
 
   return (
     <SearchBarStyled>
       <Autocomplete
+        freeSolo
         noOptionsText={`Žádné výsledky`}
         popupIcon={null}
         options={options}
+        onHighlightChange={(_, option) => {
+          highlightedOptionRef.current = option as MealSearchOption | null;
+        }}
         groupBy={(option) => {
           switch (option.type) {
             case MealSearchOptionType.MEAL:
@@ -65,7 +115,9 @@ export const MealSearchBar = () => {
               return 'Ingredience';
           }
         }}
-        getOptionLabel={(option) => option.label}
+        getOptionLabel={(option) =>
+          typeof option === 'string' ? option : option.label
+        }
         onChange={handleChange}
         inputValue={inputValue}
         onInputChange={(_, value, reason) => {
@@ -82,12 +134,13 @@ export const MealSearchBar = () => {
                 <Typography variant="body2">{`Vyhledat`}</Typography>
               </Box>
             }
+            onKeyDown={(event: KeyboardEvent<HTMLInputElement>) => {
+              params.inputProps.onKeyDown?.(event);
+              handleInputKeyDown(event);
+            }}
           />
         )}
       />
     </SearchBarStyled>
   );
 };
-
-// TODO: UX comment -> I want to add all flours, so i type "mouka",
-// I click celozrnna, i need to type "mouka" again. leaving the decision up to you. nothing major

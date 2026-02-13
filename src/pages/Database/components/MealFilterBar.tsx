@@ -6,10 +6,18 @@ import {
 } from '../styles/filterBarStyles';
 
 export const MealFilterBar = () => {
-  const { type, ingredient, removeType, removeIngredient, clear } =
-    useFiltersStore();
+  const {
+    keyword,
+    type,
+    ingredient,
+    removeKeyword,
+    removeType,
+    removeIngredient,
+    clear,
+  } = useFiltersStore();
 
-  if (type.length === 0 && ingredient.length === 0) return null;
+  if (keyword.length === 0 && type.length === 0 && ingredient.length === 0)
+    return null;
 
   return (
     <FilterBarStyled>
@@ -33,7 +41,16 @@ export const MealFilterBar = () => {
           sx={FilterBarChipStyles}
         />
       ))}
-
+      {keyword.map((keywordItem) => (
+        <Chip
+          key={`keyword-${keywordItem.value}`}
+          label={`${keywordItem.label}`}
+          onDelete={() => removeKeyword(keywordItem.value)}
+          color="primary"
+          variant="outlined"
+          sx={FilterBarChipStyles}
+        />
+      ))}
       <Button onClick={clear}>{`Vymazat všechny filtry`}</Button>
     </FilterBarStyled>
   );

@@ -13,8 +13,9 @@ import { useFiltersStore } from '../../store/store';
 import { useMemo } from 'react';
 
 export const Database = () => {
-  const { type, ingredient } = useFiltersStore();
+  const { type, ingredient, keyword } = useFiltersStore();
   const filteredMeals = filterMeals({
+    keywordFilters: keyword,
     typeFilters: type,
     ingredientFilters: ingredient,
   });
