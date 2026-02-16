@@ -1,4 +1,4 @@
-import type { Ingredient } from '../../../models/ingredient';
+import type { Ingredient } from '../../../models/Ingredient';
 import { CalTablesBoxSmallStyled } from '../styles/calTablesStyles';
 import { FoodCardSmall } from './FoodCardSmall';
 
