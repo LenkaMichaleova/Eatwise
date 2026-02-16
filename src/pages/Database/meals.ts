@@ -1,10 +1,10 @@
 import { foodData } from '../../foodData';
-import type { foodTypes } from '../../models/meal';
+import type { FoodType } from '../../models/foodType';
 
 function createData(
   id: number,
   name: string,
-  type: foodTypes,
+  type: FoodType,
   calories: number,
   fat: number,
   carbs: number,

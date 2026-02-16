@@ -1,3 +1,5 @@
+import type { Ingredient } from '../../models/Ingredient';
+
 // 1xxx – cereals / porridge / dough / breakfast mixes
 // 2xxx – fruits
 // 3xxx – vegetables
@@ -7,15 +9,6 @@
 // 7xxx – bread / crispbread / tortilla
 // 8xxx – fats / nuts / sweeteners
 // 9xxx – spices / seasonings / herbs
-
-export type Ingredient = {
-  id: number;
-  name: string;
-  kcal: number; // per 100 g
-  proteins: number; // per 100 g
-  carbohydrates: number; // per 100 g
-  fats: number; // per 100 g
-};
 
 // Ingredients database (values per 100 g)
 export const ingredientsDb: Ingredient[] = [

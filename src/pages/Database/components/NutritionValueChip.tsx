@@ -1,13 +1,13 @@
 import { Chip, Typography } from '@mui/material';
-import type { Ingredient } from '../../../models/ingredient';
+import type { IngredientType } from '../../../models/ingredientType';
 
 interface NutritionChipProps {
-  type: Ingredient;
+  type: IngredientType;
   value: number;
 }
 
 const NutritionConfig: Record<
-  Ingredient,
+  IngredientType,
   { name: string; color: string; bgColor: string }
 > = {
   protein: { name: 'Bílkoviny', color: '#6B5E62', bgColor: '#F5E8EC' },

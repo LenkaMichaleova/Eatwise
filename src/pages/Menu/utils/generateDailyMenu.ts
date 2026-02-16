@@ -1,5 +1,5 @@
 import { groupBy } from 'lodash';
-import type { Food } from '../../../foodData';
+import type { Food } from '../../../models/food';
 
 const dailyKJ = 6000;
 

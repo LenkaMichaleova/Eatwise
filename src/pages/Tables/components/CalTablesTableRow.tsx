@@ -1,5 +1,5 @@
 import { TableCell, TableRow } from '@mui/material';
-import type { Ingredient } from '../models/Ingredient';
+import type { Ingredient } from '../../../models/Ingredient';
 import { tableRowStyles } from '../styles/TableStyles';
 
 interface RowDataProps {

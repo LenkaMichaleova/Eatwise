@@ -12,11 +12,11 @@ import {
   databaseMealCardActionAreaStyles,
   DatabaseMealCardStyled,
 } from '../styles/mealCardStyles';
-import type { Meal } from '../../../models/meal';
+import type { Food } from '../../../models/food';
 import { NutritionValueChip } from './NutritionValueChip';
 
 interface DatabaseMealCardProps {
-  data: Meal;
+  data: Food;
 }
 
 export const DatabaseMealCard = ({ data }: DatabaseMealCardProps) => {

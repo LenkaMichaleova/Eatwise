@@ -1,5 +1,5 @@
 import { CardActionArea, Typography } from '@mui/material';
-import type { Ingredient } from '../models/Ingredient';
+import type { Ingredient } from '../../../models/Ingredient';
 import {
   FoodCardActionStyles,
   FoodCardCalolriesStyles,

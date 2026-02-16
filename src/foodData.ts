@@ -1,21 +1,4 @@
-export type FoodType = 'breakfast' | 'snack1' | 'lunch' | 'snack2' | 'dinner';
-
-export type FoodIngredient = {
-  ingredientId: number;
-  amount: number; // gramy
-};
-
-export type Food = {
-  id: number;
-  title: string;
-  type: FoodType;
-  calories: number;
-  kj: number;
-  proteins: number;
-  carbohydrates: number;
-  fats: number;
-  ingredients: FoodIngredient[];
-};
+import type { Food } from './models/food';
 
 export const foodData: Food[] = [
   {

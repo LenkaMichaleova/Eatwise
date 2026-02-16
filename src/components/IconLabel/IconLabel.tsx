@@ -3,7 +3,7 @@ import labelLunch from '../../assets/label-lunch.png';
 import labelSnack1 from '../../assets/label-snack1.png';
 import labelSnack2 from '../../assets/label-snack2.png';
 import labelBreakfast from '../../assets/label-breakfast.png';
-import type { FoodType } from '../../foodData';
+import type { FoodType } from '../../models/foodType';
 import { Box } from '@mui/material';
 
 const IconLabelConfig: Record<FoodType, { icon: string; label: string }> = {
