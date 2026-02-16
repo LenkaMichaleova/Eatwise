@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, Typography } from '@mui/material';
-import type { Food } from '../foodData';
+import type { Food } from '../models/food';
 
 export interface DetailCardProps {
   data: Food | undefined;

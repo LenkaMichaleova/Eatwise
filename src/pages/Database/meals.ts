@@ -1,10 +1,10 @@
 import { foodData } from '../../foodData';
-import type { foodTypes } from './models/row';
+import type { FoodType } from '../../models/foodType';
 
 function createData(
   id: number,
   name: string,
-  type: foodTypes,
+  type: FoodType,
   calories: number,
   fat: number,
   carbs: number,
@@ -13,7 +13,7 @@ function createData(
   return { id, name, type, calories, fat, carbs, protein };
 }
 
-export const rows = foodData.map((food) =>
+export const meals = foodData.map((food) =>
   createData(
     food.id,
     food.title,
