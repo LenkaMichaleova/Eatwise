@@ -1,9 +1,7 @@
 import type { MealSearchOption } from '../../../models/mealSearchOption';
 import type { MealSearchOptionType } from '../../../models/mealSearchOptionType';
 
-export const buildLimitedOptions = <
-  T extends { id: number | string; name: string },
->(
+export const buildLimitedOptions = <T extends { id: unknown; name: string }>(
   items: T[],
   type: MealSearchOptionType,
   searchText: string,
@@ -19,7 +17,7 @@ export const buildLimitedOptions = <
 
   return filtered.slice(0, limit).map((item) => ({
     type,
-    id: item.id,
+    id: item.id as MealSearchOption['id'],
     label: item.name,
   }));
 };

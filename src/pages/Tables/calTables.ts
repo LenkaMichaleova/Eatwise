@@ -1,4 +1,4 @@
-import type { Ingredient } from "../../models/ingredient";
+import type { Ingredient } from '../../models/ingredient';
 
 // 1xxx – cereals / porridge / dough / breakfast mixes
 // 2xxx – fruits
