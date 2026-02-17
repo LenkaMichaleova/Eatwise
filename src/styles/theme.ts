@@ -24,6 +24,11 @@ export const mainTheme = createTheme({
         fontSize: '2rem',
       },
     },
+    h3: {
+      fontSize: '1.2rem',
+      '@media (min-width: 600px)': { fontSize: '1.3rem' },
+      '@media (min-width: 960px)': { fontSize: '1.4rem' },
+    },
     h6: {
       fontSize: '0.7rem',
       '@media (min-width: 600px)': { fontSize: '0.8rem' },

@@ -5,17 +5,12 @@ export const DetailCardStyled = styled(Card)(({ theme }) => ({
   maxWidth: '1200px',
   borderRadius: '5px',
   marginBottom: theme.spacing(4),
-  '&:hover .deleteButton': {
-    opacity: 1,
-  },
-  '&.touch-active .deleteButton': {
-    opacity: 1,
-  },
 }));
 
 export const DetailCardHeaderStyled = styled(Box)(({ theme }) => ({
+  position: 'relative',
   display: 'flex',
-  alignItems: 'baseline',
+  alignItems: 'center',
   justifyContent: 'space-between',
   gap: theme.spacing(1),
 }));

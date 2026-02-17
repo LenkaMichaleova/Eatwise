@@ -5,6 +5,7 @@ import labelSnack2 from '../../assets/label-snack2.png';
 import labelBreakfast from '../../assets/label-breakfast.png';
 import type { FoodType } from '../../models/foodType';
 import { Box } from '@mui/material';
+import type { ResponsiveStyleValue } from '@mui/system';
 
 const IconLabelConfig: Record<FoodType, { icon: string; label: string }> = {
   breakfast: { icon: labelBreakfast, label: 'Breakfast' },
@@ -14,9 +15,19 @@ const IconLabelConfig: Record<FoodType, { icon: string; label: string }> = {
   snack2: { icon: labelSnack2, label: 'Snack 2' },
 };
 
-export const IconLabel = ({ type }: { type: FoodType }) => {
+interface IconLabelProps {
+  type: FoodType;
+  width?: ResponsiveStyleValue<string | number>;
+}
+
+export const IconLabel = ({ type, width }: IconLabelProps) => {
   const config = IconLabelConfig[type];
   return (
-    <Box component="img" src={config.icon} alt={config.label} width="50px" />
+    <Box
+      component="img"
+      src={config.icon}
+      alt={config.label}
+      width={width || '50px'}
+    />
   );
 };

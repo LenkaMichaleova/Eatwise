@@ -9,10 +9,14 @@ import {
   DatabaseDetailErrorBoxStyled,
   DatabaseDetailHeaderStyled,
 } from './styles/databaseDetailStyles';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { useState } from 'react';
+import { DeleteConfirmDialog } from '../../components/DeleteButton/DeleteConfirmDialog';
 
 export const DatabaseDetail = () => {
   const { databaseId } = useParams<{ databaseId: string }>();
   const foodItem = foodData.find((food) => food.id === Number(databaseId));
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
@@ -27,9 +31,26 @@ export const DatabaseDetail = () => {
             <ArrowBackIcon fontSize="large" />
           </IconButton>
         </Tooltip>
-        <Typography variant="h2" color="primary">
-          {`Detail jídla`}
-        </Typography>
+        <Box
+          sx={{
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
+        >
+          <Typography variant="h2" color="primary">
+            {`Detail jídla`}
+          </Typography>
+          <Tooltip title="Smazat jídlo" placement="left">
+            <IconButton
+              color="primary"
+              onClick={() => setIsDeleteDialogOpen(true)}
+            >
+              <DeleteIcon />
+            </IconButton>
+          </Tooltip>
+        </Box>
       </DatabaseDetailHeaderStyled>
 
       {!foodItem && (
@@ -51,6 +72,13 @@ export const DatabaseDetail = () => {
           </Box>
         )}
       </Box>
+
+      {isDeleteDialogOpen && foodItem && (
+        <DeleteConfirmDialog
+          mealTitle={foodItem.title}
+          onClose={() => setIsDeleteDialogOpen(false)}
+        />
+      )}
     </Box>
   );
 };

@@ -1,44 +1,56 @@
-import { CardHeader, Typography } from '@mui/material';
+import { CardHeader, IconButton, Tooltip, Typography } from '@mui/material';
 import { EditableBoxStyled } from '../../styles/databaseDetailStyles';
 import { EditMealTitleDialog } from './EditMealTitleDialog';
 import { DetailCardHeaderStyled } from '../../styles/detailCardStyles';
 import { EditButton } from '../../../../components/EditButton/EditButton';
-import { DeleteButton } from '../../../../components/DeleteButton/DeleteButton';
 import { useState } from 'react';
-import { DeleteConfirmDialog } from '../../../../components/DeleteButton/DeleteConfirmDialog';
+import type { FoodType } from '../../../../models/foodType';
+import { IconLabel } from '../../../../components/IconLabel/IconLabel';
+import { EditMealTypeDialog } from './EditMealTypeDialog';
 
 interface DetailCardHeaderProps {
   title: string;
   calories: number;
   kj: number;
+  type: FoodType;
 }
 
 export const DetailCardHeader = ({
   title,
   calories,
   kj,
+  type,
 }: DetailCardHeaderProps) => {
-  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
-  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+  const [isEditTitleDialogOpen, setIsEditTitleDialogOpen] = useState(false);
+  const [isEditTypeDialogOpen, setIsEditTypeDialogOpen] = useState(false);
 
   return (
     <>
       <CardHeader
         title={
           <DetailCardHeaderStyled>
-            <EditableBoxStyled>
-              <Typography variant="h5" color="primary">
+            <EditableBoxStyled width="80%">
+              <Typography variant="h3" color="primary">
                 {title}
                 <EditButton
                   title="Upravit název jídla"
                   placement="bottom"
                   color="primary"
-                  onDialogOpen={() => setIsEditDialogOpen(true)}
+                  onDialogOpen={() => setIsEditTitleDialogOpen(true)}
                 />
               </Typography>
             </EditableBoxStyled>
-
-            <DeleteButton onClick={() => setIsDeleteDialogOpen(true)} />
+            <Tooltip title="Upravit typ jídla" placement="left">
+              <IconButton
+                onClick={() => setIsEditTypeDialogOpen(true)}
+                sx={{ position: 'absolute', top: -10, right: 0 }}
+              >
+                <IconLabel
+                  type={type}
+                  width={{ xs: '45px', sm: '70px', md: '90px' }}
+                />
+              </IconButton>
+            </Tooltip>
           </DetailCardHeaderStyled>
         }
         subheader={
@@ -48,17 +60,17 @@ export const DetailCardHeader = ({
         }
       />
 
-      {isEditDialogOpen && (
+      {isEditTitleDialogOpen && (
         <EditMealTitleDialog
-          onClose={() => setIsEditDialogOpen(false)}
+          onClose={() => setIsEditTitleDialogOpen(false)}
           currentValue={title}
         />
       )}
 
-      {isDeleteDialogOpen && (
-        <DeleteConfirmDialog
-          mealTitle={title}
-          onClose={() => setIsDeleteDialogOpen(false)}
+      {isEditTypeDialogOpen && (
+        <EditMealTypeDialog
+          currentValue={type}
+          onClose={() => setIsEditTypeDialogOpen(false)}
         />
       )}
     </>
