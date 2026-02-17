@@ -1,7 +1,10 @@
-import { Box, Paper, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { getIngredientNameById } from '../../../../services/ingredientsService';
 import type { FoodIngredient } from '../../../../models/foodIngredient';
 import { AddButton } from '../../../../components/AddButton/AddButton';
+import { IngredientChipStyled } from '../../styles/detailIngredientsStyles';
+import { useState } from 'react';
+import { AddDetailIngredientDialog } from './AddDetailIngredientDialog';
 
 interface DetailCardIngredientsProps {
   ingredients: FoodIngredient[];
@@ -10,6 +13,8 @@ interface DetailCardIngredientsProps {
 export const DetailCardIngredients = ({
   ingredients,
 }: DetailCardIngredientsProps) => {
+  const [isAddIngDialogOpen, setIsAddIngDialogOpen] = useState(false);
+
   return (
     <Box
       sx={{
@@ -34,32 +39,58 @@ export const DetailCardIngredients = ({
         <Typography variant="body1" color="primary">
           {`Ingredience: `}
         </Typography>
-        <AddButton onClick={() => {}} />
+        <AddButton onClick={() => setIsAddIngDialogOpen(true)} />
       </Box>
 
       {ingredients.map((ingredient) => {
         const ingredientName = getIngredientNameById(ingredient.ingredientId);
         return (
-          <Paper
+          <IngredientChipStyled
             variant="outlined"
             key={`${ingredient.ingredientId}-${ingredient.amount}`}
-            sx={{
-              display: 'flex',
-              padding: 1,
-              alignItems: 'center',
-            }}
-          >
-            <Typography
-              variant="body2"
-              color="grey.600"
-              width="4rem"
-            >{`${ingredient.amount} g`}</Typography>
-            <Typography variant="body2" color="grey.600">
-              {`${ingredientName}`}
-            </Typography>
-          </Paper>
+            onClick={() => {}}
+            onDelete={() => {}}
+            label={
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  alignItems: 'flex-start',
+                  justifyContent: 'flex-start',
+                  gap: 1,
+                  padding: 1,
+                  width: '100%',
+                }}
+              >
+                <Typography
+                  variant="body2"
+                  color="grey.600"
+                  width="3rem"
+                >{`${ingredient.amount} g`}</Typography>
+                <Typography
+                  variant="body2"
+                  color="grey.600"
+                  sx={{
+                    whiteSpace: 'normal',
+                    overflowWrap: 'anywhere',
+                    wordBreak: 'break-word',
+                    flex: 1,
+                    minWidth: 0,
+                  }}
+                >
+                  {`${ingredientName}`}
+                </Typography>
+              </Box>
+            }
+          />
         );
       })}
+
+      {isAddIngDialogOpen && (
+        <AddDetailIngredientDialog
+          onClose={() => setIsAddIngDialogOpen(false)}
+        />
+      )}
     </Box>
   );
 };
