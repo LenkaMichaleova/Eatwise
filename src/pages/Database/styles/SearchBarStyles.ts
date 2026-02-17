@@ -13,7 +13,7 @@ export const SearchBarBoxStyled = styled(Box)(({ theme }) => ({
 }));
 
 export const SearchBarStyled = styled(Box)(({ theme }) => ({
-  [theme.breakpoints.down('sm')]: {
+  [theme.breakpoints.down('xs')]: {
     maxWidth: '270px',
     width: '100%',
     alignSelf: 'center',

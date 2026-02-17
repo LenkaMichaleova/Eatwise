@@ -57,7 +57,7 @@ export const DatabaseMealCard = ({ data }: DatabaseMealCardProps) => {
         />
 
         <CardContent sx={{ mt: -2, width: '100%' }}>
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mb: 0.5 }}>
             <NutritionValueChip type="protein" value={proteins} />
             <NutritionValueChip type="carbs" value={carbohydrates} />
             <NutritionValueChip type="fat" value={fats} />
