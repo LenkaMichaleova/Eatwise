@@ -3,8 +3,8 @@ import { EditButtonStyled } from './styles/editButtonStyles';
 import EditIcon from '@mui/icons-material/Edit';
 
 interface EditButtonProps {
-  readonly title: string;
-  readonly placement:
+  readonly title?: string;
+  readonly placement?:
     | 'right'
     | 'left'
     | 'top'
@@ -17,7 +17,7 @@ interface EditButtonProps {
     | 'right-end'
     | 'left-start'
     | 'left-end';
-  readonly color: string;
+  readonly color?: string;
   readonly onDialogOpen: () => void;
 }
 

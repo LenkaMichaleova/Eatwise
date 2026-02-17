@@ -14,8 +14,16 @@ export interface DetailCardProps {
 }
 
 export const DetailCard = ({ data }: DetailCardProps) => {
-  const { title, calories, kj, carbohydrates, fats, proteins, ingredients } =
-    data;
+  const {
+    title,
+    calories,
+    kj,
+    carbohydrates,
+    fats,
+    proteins,
+    ingredients,
+    recipe,
+  } = data;
 
   return (
     <DetailCardStyled variant="outlined">
@@ -33,9 +41,7 @@ export const DetailCard = ({ data }: DetailCardProps) => {
         <DetailCardContentBoxStyled>
           <DetailCardIngredients ingredients={ingredients} />
 
-          <DetailCardRecipe
-            recipe={`Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores suscipit repellendus, atque quaerat doloribus omnis corrupti unde assumenda explicabo adipisci quas animi in nesciunt libero a illum, quos minus? Molestiae quas, ipsa quidem inventore earum porro consequatur ipsam sit nam nemo laboriosam a sed quia suscipit. Saepe unde harum incidunt, debitis natus eligendi animi illo, temporibus distinctio consequuntur earum vero perspiciatis aliquid, obcaecati qui quas. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quae dolore unde excepturi pariatur ducimus obcaecati aliquam cupiditate fuga modi maxime.`}
-          />
+          <DetailCardRecipe recipe={recipe} />
         </DetailCardContentBoxStyled>
       </CardContent>
     </DetailCardStyled>

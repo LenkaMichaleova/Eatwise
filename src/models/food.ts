@@ -4,6 +4,7 @@ import type { FoodType } from './foodType';
 export type Food = {
   id: number;
   title: string;
+  recipe: string;
   type: FoodType;
   calories: number;
   kj: number;
