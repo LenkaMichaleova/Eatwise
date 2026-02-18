@@ -19,5 +19,4 @@ export const DetailCardContentBoxStyled = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexWrap: 'wrap',
   gap: theme.spacing(4),
-  marginTop: theme.spacing(1),
 }));

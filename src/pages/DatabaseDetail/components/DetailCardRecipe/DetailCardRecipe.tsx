@@ -14,7 +14,7 @@ export const DetailCardRecipe = ({ recipe }: { recipe: string }) => {
 
   return (
     <DetailCardRecipeBoxStyled>
-      <EditableBoxStyled gap={1}>
+      <EditableBoxStyled gap={2}>
         <RecipeBoxHeaderStyled>
           <Typography variant="body1" color="primary">
             {`Recept: `}
