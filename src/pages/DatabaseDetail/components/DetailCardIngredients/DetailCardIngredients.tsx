@@ -1,10 +1,16 @@
-import { Box, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import { getIngredientNameById } from '../../../../services/ingredientsService';
 import type { FoodIngredient } from '../../../../models/foodIngredient';
 import { AddButton } from '../../../../components/AddButton/AddButton';
-import { IngredientChipStyled } from '../../styles/detailIngredientsStyles';
+import {
+  IngredientsBoxStyled,
+  IngredientChipStyled,
+  IngredientBoxHeaderStyled,
+  IngredientChipLabelStyled,
+} from '../../styles/detailIngredientsStyles';
 import { useState } from 'react';
 import { AddDetailIngredientDialog } from './AddDetailIngredientDialog';
+import { EditDetailIngredientDialog } from './EditDetailIngredientDialog';
 
 interface DetailCardIngredientsProps {
   ingredients: FoodIngredient[];
@@ -14,33 +20,16 @@ export const DetailCardIngredients = ({
   ingredients,
 }: DetailCardIngredientsProps) => {
   const [isAddIngDialogOpen, setIsAddIngDialogOpen] = useState(false);
+  const [isEditIngDialogOpen, setIsEditIngDialogOpen] = useState(false);
 
   return (
-    <Box
-      sx={{
-        width: { xs: '100%', sm: '75%', md: '48%' },
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 1,
-        position: 'relative',
-        '&:hover .add-button': {
-          opacity: 1,
-          pointerEvents: 'auto',
-        },
-      }}
-    >
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-        }}
-      >
+    <IngredientsBoxStyled>
+      <IngredientBoxHeaderStyled>
         <Typography variant="body1" color="primary">
           {`Ingredience: `}
         </Typography>
         <AddButton onClick={() => setIsAddIngDialogOpen(true)} />
-      </Box>
+      </IngredientBoxHeaderStyled>
 
       {ingredients.map((ingredient) => {
         const ingredientName = getIngredientNameById(ingredient.ingredientId);
@@ -48,24 +37,15 @@ export const DetailCardIngredients = ({
           <IngredientChipStyled
             variant="outlined"
             key={`${ingredient.ingredientId}-${ingredient.amount}`}
-            onClick={() => {}}
+            onClick={() => setIsEditIngDialogOpen(true)}
             onDelete={() => {}}
             label={
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  alignItems: 'flex-start',
-                  justifyContent: 'flex-start',
-                  gap: 1,
-                  padding: 1,
-                  width: '100%',
-                }}
-              >
+              <IngredientChipLabelStyled>
                 <Typography
                   variant="body2"
                   color="grey.600"
                   width="3rem"
+                  textAlign="right"
                 >{`${ingredient.amount} g`}</Typography>
                 <Typography
                   variant="body2"
@@ -80,7 +60,7 @@ export const DetailCardIngredients = ({
                 >
                   {`${ingredientName}`}
                 </Typography>
-              </Box>
+              </IngredientChipLabelStyled>
             }
           />
         );
@@ -91,6 +71,12 @@ export const DetailCardIngredients = ({
           onClose={() => setIsAddIngDialogOpen(false)}
         />
       )}
-    </Box>
+      {isEditIngDialogOpen && (
+        <EditDetailIngredientDialog
+          currentIngredient={ingredients[0]}
+          onClose={() => setIsEditIngDialogOpen(false)}
+        />
+      )}
+    </IngredientsBoxStyled>
   );
 };

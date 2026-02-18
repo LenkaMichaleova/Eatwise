@@ -10,27 +10,32 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 import { getAllIngredients } from '../../../../services/ingredientsService';
+import type { FoodIngredient } from '../../../../models/foodIngredient';
 
-export const AddDetailIngredientDialog = ({
-  onClose,
-}: {
+interface EditDetailIngredientDialogProps {
   onClose: () => void;
-}) => {
+  currentIngredient?: FoodIngredient;
+}
+
+export const EditDetailIngredientDialog = ({
+  currentIngredient,
+  onClose,
+}: EditDetailIngredientDialogProps) => {
   const ingredients = getAllIngredients();
-  const [amount, setAmount] = useState(1);
+  const [amount, setAmount] = useState(currentIngredient?.amount || 0);
 
   return (
     <Dialog open={true} onClose={onClose} fullWidth>
       <DialogTitle
         variant="h5"
         color="primary"
-      >{`Přidat ingredienci`}</DialogTitle>
+      >{`Změnit ingredienci`}</DialogTitle>
 
       <DialogContent sx={{ gap: 2, display: 'flex', flexDirection: 'column' }}>
         <Select
           fullWidth
           label="Název Ingredience"
-          value=""
+          value={currentIngredient?.ingredientId || ''}
           onChange={() => {}}
         >
           <MenuItem value="">{`Vyberte ingredienci...`}</MenuItem>
