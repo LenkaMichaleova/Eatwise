@@ -5,8 +5,6 @@ import {
   DialogContent,
   Typography,
 } from '@mui/material';
-import { useNavigate } from 'react-router';
-import { ROUTES } from '../../../constants/routes';
 
 interface DeleteConfirmDialogProps {
   mealTitle?: string;
@@ -17,11 +15,8 @@ export const DeleteConfirmDialog = ({
   mealTitle,
   onClose,
 }: DeleteConfirmDialogProps) => {
-  const navigate = useNavigate();
-
   const handleConfirm = () => {
     onClose();
-    navigate(ROUTES.database);
   };
 
   return (

@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { foodData } from '../../foodData';
 import { DetailCard } from './components/DetailCard';
 import { Box, IconButton, Tooltip, Typography } from '@mui/material';
@@ -17,6 +17,7 @@ export const DatabaseDetail = () => {
   const { databaseId } = useParams<{ databaseId: string }>();
   const foodItem = foodData.find((food) => food.id === Number(databaseId));
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
@@ -76,7 +77,10 @@ export const DatabaseDetail = () => {
       {isDeleteDialogOpen && foodItem && (
         <DeleteConfirmDialog
           mealTitle={foodItem.title}
-          onClose={() => setIsDeleteDialogOpen(false)}
+          onClose={() => {
+            setIsDeleteDialogOpen(false);
+            navigate(ROUTES.database);
+          }}
         />
       )}
     </Box>
