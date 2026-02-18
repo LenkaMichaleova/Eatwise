@@ -1,7 +1,7 @@
 import { IconButton, Tooltip } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
-export const AddButton = ({ onClick }: { onClick: () => void }) => {
+export const AddButton = ({ onClick }: { onClick: VoidFunction }) => {
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.currentTarget.blur();
     onClick();

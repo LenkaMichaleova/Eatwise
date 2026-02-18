@@ -18,7 +18,7 @@ interface EditButtonProps {
     | 'left-start'
     | 'left-end';
   readonly color?: string;
-  readonly onDialogOpen: () => void;
+  readonly onDialogOpen: VoidFunction;
 }
 
 export const EditButton = ({

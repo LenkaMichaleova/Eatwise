@@ -10,7 +10,7 @@ import { ROUTES } from '../../constants/routes';
 
 interface DeleteConfirmDialogProps {
   mealTitle?: string;
-  readonly onClose: () => void;
+  readonly onClose: VoidFunction;
 }
 
 export const DeleteConfirmDialog = ({
