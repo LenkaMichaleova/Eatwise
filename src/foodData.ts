@@ -4,6 +4,8 @@ export const foodData: Food[] = [
   {
     id: 1,
     title: 'Vločková kaše s tvarohem a ovocem',
+    recipe:
+      'Připrav suroviny (ovesné vločky, polotučný tvaroh, lesní ovoce, mléko 1.5 %), očisti je a nakrájej na menší části. Hlavní ingredience nejdříve tepelně uprav na pánvi, v troubě nebo v hrnci, poté přidej zbytek a krátce dokonči. Na závěr dochuť a servíruj jako hotový pokrm.',
     type: 'breakfast',
     calories: 360,
     kj: 1506,
@@ -20,6 +22,8 @@ export const foodData: Food[] = [
   {
     id: 2,
     title: 'Obložené knuspi se šunkou a sýrem',
+    recipe:
+      'Připrav suroviny (knuspi chléb, šunka, eidam 30 %, okurka), očisti je a nakrájej na menší části. Hlavní ingredience nejdříve tepelně uprav na pánvi, v troubě nebo v hrnci, poté přidej zbytek a krátce dokonči. Na závěr dochuť a servíruj jako hotový pokrm.',
     type: 'snack1',
     calories: 145,
     kj: 607,
@@ -36,6 +40,8 @@ export const foodData: Food[] = [
   {
     id: 3,
     title: 'Smažená rýže s hovězím masem',
+    recipe:
+      'Připrav suroviny (rýže vařená, hovězí libové, zeleninový mix, olivový olej), očisti je a nakrájej na menší části. Hlavní ingredience nejdříve tepelně uprav na pánvi, v troubě nebo v hrnci, poté přidej zbytek a krátce dokonči. Na závěr dochuť a servíruj jako hotový pokrm.',
     type: 'lunch',
     calories: 432,
     kj: 1807,
@@ -52,6 +58,8 @@ export const foodData: Food[] = [
   {
     id: 4,
     title: 'Česneková pomazánka',
+    recipe:
+      'Suroviny (polotučný tvaroh, kváskový chléb, česnek) připrav podle typu pokrmu, zeleninu nakrájej a bílkovinnou složku uprav nebo rozmíchej. Vše spoj do kompaktní směsi nebo lehkého salátu, dochuť kořením a tukovou složkou z receptu. Nech krátce odležet a podávej čerstvé.',
     type: 'snack2',
     calories: 144,
     kj: 602,
@@ -67,6 +75,8 @@ export const foodData: Food[] = [
   {
     id: 5,
     title: 'Zapečený květák s bramborem a rajčatovým salátem',
+    recipe:
+      'Suroviny (květák, brambory vařené, rajče, eidam 30 %, olivový olej) připrav podle typu pokrmu, zeleninu nakrájej a bílkovinnou složku uprav nebo rozmíchej. Vše spoj do kompaktní směsi nebo lehkého salátu, dochuť kořením a tukovou složkou z receptu. Nech krátce odležet a podávej čerstvé.',
     type: 'dinner',
     calories: 357,
     kj: 1493,
@@ -84,6 +94,8 @@ export const foodData: Food[] = [
   {
     id: 6,
     title: 'Obložený kváskový chléb',
+    recipe:
+      'Připrav suroviny (kváskový chléb, šunka, eidam 30 %, rajče, listový salát), očisti je a nakrájej na menší části. Hlavní ingredience nejdříve tepelně uprav na pánvi, v troubě nebo v hrnci, poté přidej zbytek a krátce dokonči. Na závěr dochuť a servíruj jako hotový pokrm.',
     type: 'breakfast',
     calories: 358,
     kj: 1498,
@@ -101,6 +113,8 @@ export const foodData: Food[] = [
   {
     id: 7,
     title: 'Ovocný rýžový chlebíček',
+    recipe:
+      'Připrav suroviny (rýžové chlebíčky, jablko), očisti je a nakrájej na menší části. Hlavní ingredience nejdříve tepelně uprav na pánvi, v troubě nebo v hrnci, poté přidej zbytek a krátce dokonči. Na závěr dochuť a servíruj jako hotový pokrm.',
     type: 'snack1',
     calories: 144,
     kj: 602,
@@ -115,6 +129,8 @@ export const foodData: Food[] = [
   {
     id: 8,
     title: 'Kuřecí plátek, cizrnový salát',
+    recipe:
+      'Suroviny (kuřecí prsa, cizrna vařená, zeleninový mix, olivový olej) připrav podle typu pokrmu, zeleninu nakrájej a bílkovinnou složku uprav nebo rozmíchej. Vše spoj do kompaktní směsi nebo lehkého salátu, dochuť kořením a tukovou složkou z receptu. Nech krátce odležet a podávej čerstvé.',
     type: 'lunch',
     calories: 431,
     kj: 1803,
@@ -131,6 +147,8 @@ export const foodData: Food[] = [
   {
     id: 9,
     title: 'Sýrové placičky, tzatziki',
+    recipe:
+      'Připrav suroviny (eidam 30 %, jogurt bílý, česnek, okurka), očisti je a nakrájej na menší části. Hlavní ingredience nejdříve tepelně uprav na pánvi, v troubě nebo v hrnci, poté přidej zbytek a krátce dokonči. Na závěr dochuť a servíruj jako hotový pokrm.',
     type: 'snack2',
     calories: 145,
     kj: 607,
@@ -147,6 +165,8 @@ export const foodData: Food[] = [
   {
     id: 10,
     title: 'Zeleninový salát s trhaným vepřovým masem, dresing',
+    recipe:
+      'Suroviny (vepřové libové, zeleninový mix, dresink (jogurtový), olivový olej) připrav podle typu pokrmu, zeleninu nakrájej a bílkovinnou složku uprav nebo rozmíchej. Vše spoj do kompaktní směsi nebo lehkého salátu, dochuť kořením a tukovou složkou z receptu. Nech krátce odležet a podávej čerstvé.',
     type: 'dinner',
     calories: 356,
     kj: 1489,
@@ -163,6 +183,8 @@ export const foodData: Food[] = [
   {
     id: 11,
     title: 'Ovocný koláč s tvarohem',
+    recipe:
+      'Připrav suroviny (celozrnná mouka, tvaroh, jablko, vejce, med), očisti je a nakrájej na menší části. Hlavní ingredience nejdříve tepelně uprav na pánvi, v troubě nebo v hrnci, poté přidej zbytek a krátce dokonči. Na závěr dochuť a servíruj jako hotový pokrm.',
     type: 'breakfast',
     calories: 360,
     kj: 1506,
@@ -180,6 +202,8 @@ export const foodData: Food[] = [
   {
     id: 12,
     title: 'Čočková polévka',
+    recipe:
+      'Do hrnce připrav suroviny (čočka vařená, cibule, zeleninový mix, olivový olej), základ zalij tekutinou z použitých ingrediencí a přiveď k varu. Vař na mírném plameni do změknutí hlavních složek, průběžně promíchej a dochuť. Podávej horké, ideálně ihned po dovaření.',
     type: 'snack1',
     calories: 145,
     kj: 607,
@@ -196,6 +220,8 @@ export const foodData: Food[] = [
   {
     id: 13,
     title: 'Boloňské špagety se sýrem',
+    recipe:
+      'Připrav suroviny (celozrnné těstoviny vařené, hovězí libové, rajče, cibule, eidam 30 %, olivový olej), očisti je a nakrájej na menší části. Hlavní ingredience nejdříve tepelně uprav na pánvi, v troubě nebo v hrnci, poté přidej zbytek a krátce dokonči. Na závěr dochuť a servíruj jako hotový pokrm.',
     type: 'lunch',
     calories: 435,
     kj: 1821,
@@ -214,6 +240,8 @@ export const foodData: Food[] = [
   {
     id: 14,
     title: 'Vajíčkový salát s celozrnným toustem',
+    recipe:
+      'Suroviny (vejce, kváskový chléb (toast), okurka, jogurt bílý) připrav podle typu pokrmu, zeleninu nakrájej a bílkovinnou složku uprav nebo rozmíchej. Vše spoj do kompaktní směsi nebo lehkého salátu, dochuť kořením a tukovou složkou z receptu. Nech krátce odležet a podávej čerstvé.',
     type: 'snack2',
     calories: 143,
     kj: 598,
@@ -230,6 +258,8 @@ export const foodData: Food[] = [
   {
     id: 15,
     title: 'Caesar salát',
+    recipe:
+      'Suroviny (kuřecí prsa, listový salát, eidam 30 %, krekry, dresink) připrav podle typu pokrmu, zeleninu nakrájej a bílkovinnou složku uprav nebo rozmíchej. Vše spoj do kompaktní směsi nebo lehkého salátu, dochuť kořením a tukovou složkou z receptu. Nech krátce odležet a podávej čerstvé.',
     type: 'dinner',
     calories: 358,
     kj: 1498,
@@ -247,6 +277,8 @@ export const foodData: Food[] = [
   {
     id: 16,
     title: 'Celozrnná bagetka se šunkou',
+    recipe:
+      'Z připravených surovin (celozrnná bagetka, šunka, eidam 30 %, rajče, listový salát) vytvoř těsto nebo směs, kterou rovnoměrně rozetři na pánev, plech nebo do formy. Tepelně uprav dozlatova a dopevna, podle potřeby otoč nebo promíchej. Podávej teplé, případně doplněné čerstvou oblohou z uvedených ingrediencí.',
     type: 'breakfast',
     calories: 359,
     kj: 1502,
@@ -264,6 +296,8 @@ export const foodData: Food[] = [
   {
     id: 17,
     title: 'Sladko slaný dezert s hruškou a ořechy',
+    recipe:
+      'Suroviny (hruška, ořechy mix, polotučný tvaroh) připrav podle typu pokrmu, zeleninu nakrájej a bílkovinnou složku uprav nebo rozmíchej. Vše spoj do kompaktní směsi nebo lehkého salátu, dochuť kořením a tukovou složkou z receptu. Nech krátce odležet a podávej čerstvé.',
     type: 'snack1',
     calories: 144,
     kj: 602,
@@ -279,6 +313,8 @@ export const foodData: Food[] = [
   {
     id: 18,
     title: 'Kuřecí směs na kari, divoká rýže',
+    recipe:
+      'Připrav suroviny (kuřecí prsa, divoká rýže, zeleninový mix, olivový olej, kari koření), očisti je a nakrájej na menší části. Hlavní ingredience nejdříve tepelně uprav na pánvi, v troubě nebo v hrnci, poté přidej zbytek a krátce dokonči. Na závěr dochuť a servíruj jako hotový pokrm.',
     type: 'lunch',
     calories: 430,
     kj: 1799,
@@ -296,6 +332,8 @@ export const foodData: Food[] = [
   {
     id: 19,
     title: 'Tuňáková pomazánka',
+    recipe:
+      'Suroviny (tuňák ve vlastní šťávě, polotučný tvaroh, kváskový chléb, česnek) připrav podle typu pokrmu, zeleninu nakrájej a bílkovinnou složku uprav nebo rozmíchej. Vše spoj do kompaktní směsi nebo lehkého salátu, dochuť kořením a tukovou složkou z receptu. Nech krátce odležet a podávej čerstvé.',
     type: 'snack2',
     calories: 142,
     kj: 594,
@@ -312,6 +350,8 @@ export const foodData: Food[] = [
   {
     id: 20,
     title: 'Vepřové medailonky, salát coleslaw',
+    recipe:
+      'Suroviny (vepřové libové, zeleninový mix, dresink (jogurtový), olivový olej) připrav podle typu pokrmu, zeleninu nakrájej a bílkovinnou složku uprav nebo rozmíchej. Vše spoj do kompaktní směsi nebo lehkého salátu, dochuť kořením a tukovou složkou z receptu. Nech krátce odležet a podávej čerstvé.',
     type: 'dinner',
     calories: 358,
     kj: 1498,
@@ -328,6 +368,8 @@ export const foodData: Food[] = [
   {
     id: 21,
     title: 'Borůvkový tvaroháček, lupínky',
+    recipe:
+      'Připrav suroviny (polotučný tvaroh, borůvky, rýžové chlebíčky (lupínky), med), očisti je a nakrájej na menší části. Hlavní ingredience nejdříve tepelně uprav na pánvi, v troubě nebo v hrnci, poté přidej zbytek a krátce dokonči. Na závěr dochuť a servíruj jako hotový pokrm.',
     type: 'breakfast',
     calories: 360,
     kj: 1506,
@@ -344,6 +386,8 @@ export const foodData: Food[] = [
   {
     id: 22,
     title: 'Mini mozzarella s cherry rajčaty a bazalkou, křehčený plátek',
+    recipe:
+      'Připrav suroviny (mozzarella, cherry rajčata, listová bazalka (listový salát), křehčený kuřecí plátek), očisti je a nakrájej na menší části. Hlavní ingredience nejdříve tepelně uprav na pánvi, v troubě nebo v hrnci, poté přidej zbytek a krátce dokonči. Na závěr dochuť a servíruj jako hotový pokrm.',
     type: 'snack1',
     calories: 145,
     kj: 607,
@@ -360,6 +404,8 @@ export const foodData: Food[] = [
   {
     id: 23,
     title: 'Celozrnné penne se sýrovou omáčkou, brokolicí a kuřecím masem',
+    recipe:
+      'Připrav suroviny (celozrnné těstoviny, kuřecí prsa, brokolice, eidam 30 %, mléko 1.5 %, olivový olej), očisti je a nakrájej na menší části. Hlavní ingredience nejdříve tepelně uprav na pánvi, v troubě nebo v hrnci, poté přidej zbytek a krátce dokonči. Na závěr dochuť a servíruj jako hotový pokrm.',
     type: 'lunch',
     calories: 435,
     kj: 1821,
@@ -378,6 +424,8 @@ export const foodData: Food[] = [
   {
     id: 24,
     title: 'Salát s bulgurem',
+    recipe:
+      'Suroviny (bulgur vařený, zeleninový mix, olivový olej) připrav podle typu pokrmu, zeleninu nakrájej a bílkovinnou složku uprav nebo rozmíchej. Vše spoj do kompaktní směsi nebo lehkého salátu, dochuť kořením a tukovou složkou z receptu. Nech krátce odležet a podávej čerstvé.',
     type: 'snack2',
     calories: 144,
     kj: 602,
@@ -393,6 +441,8 @@ export const foodData: Food[] = [
   {
     id: 25,
     title: 'Wrap s hovězím masem a zeleninou',
+    recipe:
+      'Z připravených surovin (tortilla, hovězí libové, zeleninový mix, dresink) vytvoř těsto nebo směs, kterou rovnoměrně rozetři na pánev, plech nebo do formy. Tepelně uprav dozlatova a dopevna, podle potřeby otoč nebo promíchej. Podávej teplé, případně doplněné čerstvou oblohou z uvedených ingrediencí.',
     type: 'dinner',
     calories: 358,
     kj: 1498,
@@ -409,6 +459,8 @@ export const foodData: Food[] = [
   {
     id: 26,
     title: 'Hermelínová pomazánka, kváskový chléb',
+    recipe:
+      'Suroviny (hermelín, polotučný tvaroh, kváskový chléb) připrav podle typu pokrmu, zeleninu nakrájej a bílkovinnou složku uprav nebo rozmíchej. Vše spoj do kompaktní směsi nebo lehkého salátu, dochuť kořením a tukovou složkou z receptu. Nech krátce odležet a podávej čerstvé.',
     type: 'breakfast',
     calories: 357,
     kj: 1494,
@@ -424,6 +476,8 @@ export const foodData: Food[] = [
   {
     id: 27,
     title: 'Jablíčka ve skořici s polotvrdým tvarohem',
+    recipe:
+      'Připrav suroviny (jablko, polotučný tvaroh (polotvrdý tvaroh), skořice mletá), očisti je a nakrájej na menší části. Hlavní ingredience nejdříve tepelně uprav na pánvi, v troubě nebo v hrnci, poté přidej zbytek a krátce dokonči. Na závěr dochuť a servíruj jako hotový pokrm.',
     type: 'snack1',
     calories: 144,
     kj: 602,
@@ -439,6 +493,8 @@ export const foodData: Food[] = [
   {
     id: 28,
     title: 'Francouzské brambory se šunkou a vajíčkem',
+    recipe:
+      'Připrav suroviny (brambory vařené, šunka, vejce, cibule), očisti je a nakrájej na menší části. Hlavní ingredience nejdříve tepelně uprav na pánvi, v troubě nebo v hrnci, poté přidej zbytek a krátce dokonči. Na závěr dochuť a servíruj jako hotový pokrm.',
     type: 'lunch',
     calories: 430,
     kj: 1799,
@@ -455,6 +511,8 @@ export const foodData: Food[] = [
   {
     id: 29,
     title: 'Smoothie',
+    recipe:
+      'Suroviny (banán, mléko 1.5 %, lesní ovoce) připrav podle typu pokrmu, zeleninu nakrájej a bílkovinnou složku uprav nebo rozmíchej. Vše spoj do kompaktní směsi nebo lehkého salátu, dochuť kořením a tukovou složkou z receptu. Nech krátce odležet a podávej čerstvé.',
     type: 'snack2',
     calories: 141,
     kj: 590,
@@ -470,6 +528,8 @@ export const foodData: Food[] = [
   {
     id: 30,
     title: 'Kuřecí kousky se sezamem a pečenou zeleninou',
+    recipe:
+      'Připrav suroviny (kuřecí prsa, zeleninový mix (pečená zelenina), sezam, olivový olej), očisti je a nakrájej na menší části. Hlavní ingredience nejdříve tepelně uprav na pánvi, v troubě nebo v hrnci, poté přidej zbytek a krátce dokonči. Na závěr dochuť a servíruj jako hotový pokrm.',
     type: 'dinner',
     calories: 358,
     kj: 1498,
@@ -486,6 +546,8 @@ export const foodData: Food[] = [
   {
     id: 31,
     title: 'Nepečené tousty se šunkou a sýrem, obloha',
+    recipe:
+      'Z připravených surovin (celozrnný toastový chléb, šunka, eidam 30 %, zeleninový mix (obloha)) vytvoř těsto nebo směs, kterou rovnoměrně rozetři na pánev, plech nebo do formy. Tepelně uprav dozlatova a dopevna, podle potřeby otoč nebo promíchej. Podávej teplé, případně doplněné čerstvou oblohou z uvedených ingrediencí.',
     type: 'breakfast',
     calories: 359,
     kj: 1502,
@@ -502,6 +564,8 @@ export const foodData: Food[] = [
   {
     id: 32,
     title: 'Mandarinkový dezert s tvarohem a ořechy',
+    recipe:
+      'Suroviny (polotučný tvaroh, mandarinka, ořechy mix) připrav podle typu pokrmu, zeleninu nakrájej a bílkovinnou složku uprav nebo rozmíchej. Vše spoj do kompaktní směsi nebo lehkého salátu, dochuť kořením a tukovou složkou z receptu. Nech krátce odležet a podávej čerstvé.',
     type: 'snack1',
     calories: 147,
     kj: 615,
@@ -517,6 +581,8 @@ export const foodData: Food[] = [
   {
     id: 33,
     title: 'Pikantní vepřový guláš, rýže',
+    recipe:
+      'Připrav suroviny (vepřové libové, rýže vařená, cibule, olivový olej, gulášové koření), očisti je a nakrájej na menší části. Hlavní ingredience nejdříve tepelně uprav na pánvi, v troubě nebo v hrnci, poté přidej zbytek a krátce dokonči. Na závěr dochuť a servíruj jako hotový pokrm.',
     type: 'lunch',
     calories: 430,
     kj: 1799,
@@ -534,6 +600,8 @@ export const foodData: Food[] = [
   {
     id: 34,
     title: 'Salát s kuřecím masem a balkánem',
+    recipe:
+      'Suroviny (kuřecí prsa, balkánský sýr, zeleninový mix, olivový olej) připrav podle typu pokrmu, zeleninu nakrájej a bílkovinnou složku uprav nebo rozmíchej. Vše spoj do kompaktní směsi nebo lehkého salátu, dochuť kořením a tukovou složkou z receptu. Nech krátce odležet a podávej čerstvé.',
     type: 'snack2',
     calories: 144,
     kj: 602,
@@ -550,6 +618,8 @@ export const foodData: Food[] = [
   {
     id: 35,
     title: 'Naše domácí sekaná, podzimní batátový salát',
+    recipe:
+      'Suroviny (vepřové libové, vejce, cibule, strouhanka, batáty, zeleninový mix, dresink (jogurtový)) připrav podle typu pokrmu, zeleninu nakrájej a bílkovinnou složku uprav nebo rozmíchej. Vše spoj do kompaktní směsi nebo lehkého salátu, dochuť kořením a tukovou složkou z receptu. Nech krátce odležet a podávej čerstvé.',
     type: 'dinner',
     calories: 359,
     kj: 1502,
@@ -571,6 +641,8 @@ export const foodData: Food[] = [
   {
     id: 36,
     title: 'Makovec s tvarohem',
+    recipe:
+      'Z připravených surovin (polotučný tvaroh, mák, ovesné vločky (korpus), med) vytvoř těsto nebo směs, kterou rovnoměrně rozetři na pánev, plech nebo do formy. Tepelně uprav dozlatova a dopevna, podle potřeby otoč nebo promíchej. Podávej teplé, případně doplněné čerstvou oblohou z uvedených ingrediencí.',
     type: 'breakfast',
     calories: 362,
     kj: 1515,
@@ -587,6 +659,8 @@ export const foodData: Food[] = [
   {
     id: 37,
     title: 'Sýrová pěna, krekry',
+    recipe:
+      'Suroviny (eidam 30 %, řecký jogurt 2 %, krekry) připrav podle typu pokrmu, zeleninu nakrájej a bílkovinnou složku uprav nebo rozmíchej. Vše spoj do kompaktní směsi nebo lehkého salátu, dochuť kořením a tukovou složkou z receptu. Nech krátce odležet a podávej čerstvé.',
     type: 'snack1',
     calories: 146,
     kj: 611,
@@ -602,6 +676,8 @@ export const foodData: Food[] = [
   {
     id: 38,
     title: 'Hovězí nudličky s bramborem, zelný salát',
+    recipe:
+      'Suroviny (hovězí libové, brambory vařené, bílé zelí, olivový olej) připrav podle typu pokrmu, zeleninu nakrájej a bílkovinnou složku uprav nebo rozmíchej. Vše spoj do kompaktní směsi nebo lehkého salátu, dochuť kořením a tukovou složkou z receptu. Nech krátce odležet a podávej čerstvé.',
     type: 'lunch',
     calories: 435,
     kj: 1820,
@@ -618,6 +694,8 @@ export const foodData: Food[] = [
   {
     id: 39,
     title: 'Obložený knäckebrot se šunkou, okurka',
+    recipe:
+      'Připrav suroviny (knäckebrot, šunka, okurka), očisti je a nakrájej na menší části. Hlavní ingredience nejdříve tepelně uprav na pánvi, v troubě nebo v hrnci, poté přidej zbytek a krátce dokonči. Na závěr dochuť a servíruj jako hotový pokrm.',
     type: 'snack2',
     calories: 143,
     kj: 598,
@@ -633,6 +711,8 @@ export const foodData: Food[] = [
   {
     id: 40,
     title: 'Marinovaný kuřecí plátek, salát z červené řepy',
+    recipe:
+      'Suroviny (kuřecí prsa, červená řepa, olivový olej, hořčice / marináda) připrav podle typu pokrmu, zeleninu nakrájej a bílkovinnou složku uprav nebo rozmíchej. Vše spoj do kompaktní směsi nebo lehkého salátu, dochuť kořením a tukovou složkou z receptu. Nech krátce odležet a podávej čerstvé.',
     type: 'dinner',
     calories: 356,
     kj: 1489,
@@ -649,6 +729,8 @@ export const foodData: Food[] = [
   {
     id: 41,
     title: 'Tortilla se 3 druhy sýra a zeleninou',
+    recipe:
+      'Připrav suroviny (tortilla, eidam 30 %, mozzarella, balkánský sýr, zeleninový mix), očisti je a nakrájej na menší části. Hlavní ingredience nejdříve tepelně uprav na pánvi, v troubě nebo v hrnci, poté přidej zbytek a krátce dokonči. Na závěr dochuť a servíruj jako hotový pokrm.',
     type: 'breakfast',
     calories: 359,
     kj: 1502,
@@ -666,6 +748,8 @@ export const foodData: Food[] = [
   {
     id: 42,
     title: 'Frankfurtská polévka',
+    recipe:
+      'Do hrnce připrav suroviny (frankfurtský párek, brambory vařené, zeleninový mix, cibule, olivový olej), základ zalij tekutinou z použitých ingrediencí a přiveď k varu. Vař na mírném plameni do změknutí hlavních složek, průběžně promíchej a dochuť. Podávej horké, ideálně ihned po dovaření.',
     type: 'snack1',
     calories: 143,
     kj: 598,
@@ -683,6 +767,8 @@ export const foodData: Food[] = [
   {
     id: 43,
     title: 'Chili con carne s koriandrovou rýží',
+    recipe:
+      'Připrav suroviny (hovězí libové, fazole vařené (kidney), rýže vařená, rajčatové pyré / passata, cibule, olivový olej, koriandr (čerstvý)), očisti je a nakrájej na menší části. Hlavní ingredience nejdříve tepelně uprav na pánvi, v troubě nebo v hrnci, poté přidej zbytek a krátce dokonči. Na závěr dochuť a servíruj jako hotový pokrm.',
     type: 'lunch',
     calories: 430,
     kj: 1799,
@@ -702,6 +788,8 @@ export const foodData: Food[] = [
   {
     id: 44,
     title: 'Karamelový dezert s mandličkami',
+    recipe:
+      'Suroviny (polotučný tvaroh, mandle, karamelová omáčka) připrav podle typu pokrmu, zeleninu nakrájej a bílkovinnou složku uprav nebo rozmíchej. Vše spoj do kompaktní směsi nebo lehkého salátu, dochuť kořením a tukovou složkou z receptu. Nech krátce odležet a podávej čerstvé.',
     type: 'snack2',
     calories: 145,
     kj: 607,
@@ -717,6 +805,8 @@ export const foodData: Food[] = [
   {
     id: 45,
     title: 'Ryba na kmíně, zeleninový salát s fazolkami',
+    recipe:
+      'Suroviny (bílá ryba (treska), fazole vařené (kidney), zeleninový mix, olivový olej, kmín) připrav podle typu pokrmu, zeleninu nakrájej a bílkovinnou složku uprav nebo rozmíchej. Vše spoj do kompaktní směsi nebo lehkého salátu, dochuť kořením a tukovou složkou z receptu. Nech krátce odležet a podávej čerstvé.',
     type: 'dinner',
     calories: 358,
     kj: 1498,
@@ -734,6 +824,8 @@ export const foodData: Food[] = [
   {
     id: 46,
     title: 'Zemlbába s tvarohem a jablky',
+    recipe:
+      'Z připravených surovin (bílé pečivo (veka/rohlík), mléko 1.5 %, vejce, polotučný tvaroh, jablko, med) vytvoř těsto nebo směs, kterou rovnoměrně rozetři na pánev, plech nebo do formy. Tepelně uprav dozlatova a dopevna, podle potřeby otoč nebo promíchej. Podávej teplé, případně doplněné čerstvou oblohou z uvedených ingrediencí.',
     type: 'breakfast',
     calories: 358,
     kj: 1498,
@@ -752,6 +844,8 @@ export const foodData: Food[] = [
   {
     id: 47,
     title: 'Salát s parmskou šunkou a mozzarellou, bazalka',
+    recipe:
+      'Suroviny (parmská šunka, mozzarella, zeleninový mix, bazalka (čerstvá), olivový olej) připrav podle typu pokrmu, zeleninu nakrájej a bílkovinnou složku uprav nebo rozmíchej. Vše spoj do kompaktní směsi nebo lehkého salátu, dochuť kořením a tukovou složkou z receptu. Nech krátce odležet a podávej čerstvé.',
     type: 'snack1',
     calories: 144,
     kj: 602,
@@ -769,6 +863,8 @@ export const foodData: Food[] = [
   {
     id: 48,
     title: 'Kuřecí kapsa plněná sýrem a bramborovou kaší, kyselá okurka',
+    recipe:
+      'Připrav suroviny (kuřecí prsa, eidam 30 % (náplň), brambory vařené (kaše), mléko 1.5 % (kaše), olivový olej, kyselá okurka), očisti je a nakrájej na menší části. Hlavní ingredience nejdříve tepelně uprav na pánvi, v troubě nebo v hrnci, poté přidej zbytek a krátce dokonči. Na závěr dochuť a servíruj jako hotový pokrm.',
     type: 'lunch',
     calories: 430,
     kj: 1799,
@@ -787,6 +883,8 @@ export const foodData: Food[] = [
   {
     id: 49,
     title: 'Rajčatová pomazánka, krekry',
+    recipe:
+      'Suroviny (polotučný tvaroh, rajčatové pyré / passata, česnek, krekry) připrav podle typu pokrmu, zeleninu nakrájej a bílkovinnou složku uprav nebo rozmíchej. Vše spoj do kompaktní směsi nebo lehkého salátu, dochuť kořením a tukovou složkou z receptu. Nech krátce odležet a podávej čerstvé.',
     type: 'snack2',
     calories: 144,
     kj: 602,
@@ -803,6 +901,8 @@ export const foodData: Food[] = [
   {
     id: 50,
     title: 'Grilovaný hermelín se švestkovou omáčkou',
+    recipe:
+      'Připrav suroviny (hermelín, švestková omáčka, listový salát, olivový olej), očisti je a nakrájej na menší části. Hlavní ingredience nejdříve tepelně uprav na pánvi, v troubě nebo v hrnci, poté přidej zbytek a krátce dokonči. Na závěr dochuť a servíruj jako hotový pokrm.',
     type: 'dinner',
     calories: 358,
     kj: 1498,
@@ -819,6 +919,8 @@ export const foodData: Food[] = [
   {
     id: 51,
     title: 'Vaječná omeleta, kváskový chléb',
+    recipe:
+      'Z připravených surovin (vejce, kváskový chléb, olivový olej, zeleninový mix) vytvoř těsto nebo směs, kterou rovnoměrně rozetři na pánev, plech nebo do formy. Tepelně uprav dozlatova a dopevna, podle potřeby otoč nebo promíchej. Podávej teplé, případně doplněné čerstvou oblohou z uvedených ingrediencí.',
     type: 'breakfast',
     calories: 375,
     kj: 1569,
@@ -835,6 +937,8 @@ export const foodData: Food[] = [
   {
     id: 52,
     title: 'Pudink s tvarohem',
+    recipe:
+      'Připrav suroviny (pudink hotový (vanilkový), polotučný tvaroh), očisti je a nakrájej na menší části. Hlavní ingredience nejdříve tepelně uprav na pánvi, v troubě nebo v hrnci, poté přidej zbytek a krátce dokonči. Na závěr dochuť a servíruj jako hotový pokrm.',
     type: 'snack1',
     calories: 139,
     kj: 582,
@@ -849,6 +953,8 @@ export const foodData: Food[] = [
   {
     id: 53,
     title: 'Špagety vepřovým masem a houbami, sypané parmazánem',
+    recipe:
+      'Připrav suroviny (celozrnné těstoviny vařené, vepřové libové, žampiony (houby), rajčatové pyré / passata, olivový olej, parmazán), očisti je a nakrájej na menší části. Hlavní ingredience nejdříve tepelně uprav na pánvi, v troubě nebo v hrnci, poté přidej zbytek a krátce dokonči. Na závěr dochuť a servíruj jako hotový pokrm.',
     type: 'lunch',
     calories: 433,
     kj: 1812,
@@ -867,6 +973,8 @@ export const foodData: Food[] = [
   {
     id: 54,
     title: 'Šunková pěna, rýžové chlebíčky',
+    recipe:
+      'Suroviny (šunka, jogurt bílý, rýžové chlebíčky) připrav podle typu pokrmu, zeleninu nakrájej a bílkovinnou složku uprav nebo rozmíchej. Vše spoj do kompaktní směsi nebo lehkého salátu, dochuť kořením a tukovou složkou z receptu. Nech krátce odležet a podávej čerstvé.',
     type: 'snack2',
     calories: 150,
     kj: 628,
@@ -882,6 +990,8 @@ export const foodData: Food[] = [
   {
     id: 55,
     title: 'Salát s kuřecím masem a bulgurem, dresink',
+    recipe:
+      'Suroviny (kuřecí prsa, bulgur vařený, zeleninový mix, dresink (jogurtový), olivový olej) připrav podle typu pokrmu, zeleninu nakrájej a bílkovinnou složku uprav nebo rozmíchej. Vše spoj do kompaktní směsi nebo lehkého salátu, dochuť kořením a tukovou složkou z receptu. Nech krátce odležet a podávej čerstvé.',
     type: 'dinner',
     calories: 357,
     kj: 1494,
@@ -899,6 +1009,8 @@ export const foodData: Food[] = [
   {
     id: 56,
     title: 'Palačinka s tvarohem a marmeládou',
+    recipe:
+      'Z připravených surovin (pšeničná mouka, mléko 1.5 %, vejce, polotučný tvaroh, marmeláda, olivový olej) vytvoř těsto nebo směs, kterou rovnoměrně rozetři na pánev, plech nebo do formy. Tepelně uprav dozlatova a dopevna, podle potřeby otoč nebo promíchej. Podávej teplé, případně doplněné čerstvou oblohou z uvedených ingrediencí.',
     type: 'breakfast',
     calories: 358,
     kj: 1498,
@@ -917,6 +1029,8 @@ export const foodData: Food[] = [
   {
     id: 57,
     title: 'Česnečka',
+    recipe:
+      'Do hrnce připrav suroviny (brambory vařené, česnek, cibule, kváskový chléb, olivový olej), základ zalij tekutinou z použitých ingrediencí a přiveď k varu. Vař na mírném plameni do změknutí hlavních složek, průběžně promíchej a dochuť. Podávej horké, ideálně ihned po dovaření.',
     type: 'snack1',
     calories: 143,
     kj: 598,
@@ -934,6 +1048,8 @@ export const foodData: Food[] = [
   {
     id: 58,
     title: 'Celozrnná bulka s trhaným hovězím',
+    recipe:
+      'Připrav suroviny (celozrnná bulka, hovězí libové (trhané), zeleninový mix), očisti je a nakrájej na menší části. Hlavní ingredience nejdříve tepelně uprav na pánvi, v troubě nebo v hrnci, poté přidej zbytek a krátce dokonči. Na závěr dochuť a servíruj jako hotový pokrm.',
     type: 'lunch',
     calories: 430,
     kj: 1799,
@@ -949,6 +1065,8 @@ export const foodData: Food[] = [
   {
     id: 59,
     title: 'Zdravá miska s avokádem a vajíčkem',
+    recipe:
+      'Suroviny (avokádo, vejce, zeleninový mix, olivový olej) připrav podle typu pokrmu, zeleninu nakrájej a bílkovinnou složku uprav nebo rozmíchej. Vše spoj do kompaktní směsi nebo lehkého salátu, dochuť kořením a tukovou složkou z receptu. Nech krátce odležet a podávej čerstvé.',
     type: 'snack2',
     calories: 144,
     kj: 602,
@@ -965,6 +1083,8 @@ export const foodData: Food[] = [
   {
     id: 60,
     title: 'Zeleninový salát s grilovaným lososem',
+    recipe:
+      'Suroviny (losos, zeleninový mix, olivový olej) připrav podle typu pokrmu, zeleninu nakrájej a bílkovinnou složku uprav nebo rozmíchej. Vše spoj do kompaktní směsi nebo lehkého salátu, dochuť kořením a tukovou složkou z receptu. Nech krátce odležet a podávej čerstvé.',
     type: 'dinner',
     calories: 358,
     kj: 1498,
@@ -980,6 +1100,8 @@ export const foodData: Food[] = [
   {
     id: 61,
     title: 'Granola s jogurtem',
+    recipe:
+      'Připrav suroviny (granola / müsli, jogurt bílý, lesní ovoce), očisti je a nakrájej na menší části. Hlavní ingredience nejdříve tepelně uprav na pánvi, v troubě nebo v hrnci, poté přidej zbytek a krátce dokonči. Na závěr dochuť a servíruj jako hotový pokrm.',
     type: 'breakfast',
     calories: 358,
     kj: 1498,
@@ -995,6 +1117,8 @@ export const foodData: Food[] = [
   {
     id: 62,
     title: 'Brokolicová pomazánka, opečený toust',
+    recipe:
+      'Suroviny (brokolice, polotučný tvaroh, česnek, celozrnný toastový chléb, olivový olej) připrav podle typu pokrmu, zeleninu nakrájej a bílkovinnou složku uprav nebo rozmíchej. Vše spoj do kompaktní směsi nebo lehkého salátu, dochuť kořením a tukovou složkou z receptu. Nech krátce odležet a podávej čerstvé.',
     type: 'snack1',
     calories: 144,
     kj: 602,
@@ -1012,6 +1136,8 @@ export const foodData: Food[] = [
   {
     id: 63,
     title: 'Vepřový mexický guláš, rýže',
+    recipe:
+      'Připrav suroviny (vepřové libové, rýže vařená, fazole vařené (kidney), rajčatové pyré / passata, cibule, olivový olej, mexické koření), očisti je a nakrájej na menší části. Hlavní ingredience nejdříve tepelně uprav na pánvi, v troubě nebo v hrnci, poté přidej zbytek a krátce dokonči. Na závěr dochuť a servíruj jako hotový pokrm.',
     type: 'lunch',
     calories: 430,
     kj: 1799,
@@ -1031,6 +1157,8 @@ export const foodData: Food[] = [
   {
     id: 64,
     title: 'Obložené knuspi',
+    recipe:
+      'Připrav suroviny (knuspi chléb, šunka, eidam 30 %, okurka), očisti je a nakrájej na menší části. Hlavní ingredience nejdříve tepelně uprav na pánvi, v troubě nebo v hrnci, poté přidej zbytek a krátce dokonči. Na závěr dochuť a servíruj jako hotový pokrm.',
     type: 'snack2',
     calories: 145,
     kj: 607,
@@ -1047,6 +1175,8 @@ export const foodData: Food[] = [
   {
     id: 65,
     title: 'Salát s kuřecími kousky, dresink',
+    recipe:
+      'Suroviny (kuřecí prsa, zeleninový mix, dresink (jogurtový), olivový olej) připrav podle typu pokrmu, zeleninu nakrájej a bílkovinnou složku uprav nebo rozmíchej. Vše spoj do kompaktní směsi nebo lehkého salátu, dochuť kořením a tukovou složkou z receptu. Nech krátce odležet a podávej čerstvé.',
     type: 'dinner',
     calories: 358,
     kj: 1498,
@@ -1063,6 +1193,8 @@ export const foodData: Food[] = [
   {
     id: 66,
     title: 'Wrap se šunkou a sýrem, zeleninová obloha',
+    recipe:
+      'Z připravených surovin (tortilla, šunka, eidam 30 %, zeleninový mix, olivový olej) vytvoř těsto nebo směs, kterou rovnoměrně rozetři na pánev, plech nebo do formy. Tepelně uprav dozlatova a dopevna, podle potřeby otoč nebo promíchej. Podávej teplé, případně doplněné čerstvou oblohou z uvedených ingrediencí.',
     type: 'breakfast',
     calories: 358,
     kj: 1498,
@@ -1081,6 +1213,8 @@ export const foodData: Food[] = [
   {
     id: 67,
     title: 'Meruňkový dezert s tvarohem',
+    recipe:
+      'Suroviny (polotučný tvaroh, meruňky, med) připrav podle typu pokrmu, zeleninu nakrájej a bílkovinnou složku uprav nebo rozmíchej. Vše spoj do kompaktní směsi nebo lehkého salátu, dochuť kořením a tukovou složkou z receptu. Nech krátce odležet a podávej čerstvé.',
     type: 'snack1',
     calories: 145,
     kj: 607,
@@ -1097,6 +1231,8 @@ export const foodData: Food[] = [
   {
     id: 68,
     title: 'Hovězí rajská omáčka, celozrnné těstoviny',
+    recipe:
+      'Připrav suroviny (hovězí libové, celozrnné těstoviny vařené, rajská omáčka, olivový olej), očisti je a nakrájej na menší části. Hlavní ingredience nejdříve tepelně uprav na pánvi, v troubě nebo v hrnci, poté přidej zbytek a krátce dokonči. Na závěr dochuť a servíruj jako hotový pokrm.',
     type: 'lunch',
     calories: 432,
     kj: 1807,
@@ -1114,6 +1250,8 @@ export const foodData: Food[] = [
   {
     id: 69,
     title: 'Zeleninový salát s vajíčkem a ořechy',
+    recipe:
+      'Suroviny (vejce, zeleninový mix, ořechy (drcené), olivový olej) připrav podle typu pokrmu, zeleninu nakrájej a bílkovinnou složku uprav nebo rozmíchej. Vše spoj do kompaktní směsi nebo lehkého salátu, dochuť kořením a tukovou složkou z receptu. Nech krátce odležet a podávej čerstvé.',
     type: 'snack2',
     calories: 146,
     kj: 611,
@@ -1131,6 +1269,8 @@ export const foodData: Food[] = [
   {
     id: 70,
     title: 'Tuňákové karbanátky, okurkový salát',
+    recipe:
+      'Suroviny (tuňák ve vlastní šťávě, vejce, strouhanka, okurka, olivový olej) připrav podle typu pokrmu, zeleninu nakrájej a bílkovinnou složku uprav nebo rozmíchej. Vše spoj do kompaktní směsi nebo lehkého salátu, dochuť kořením a tukovou složkou z receptu. Nech krátce odležet a podávej čerstvé.',
     type: 'dinner',
     calories: 357,
     kj: 1494,
@@ -1148,6 +1288,8 @@ export const foodData: Food[] = [
   {
     id: 71,
     title: 'Sladký štrúdl s jablky a skořicí',
+    recipe:
+      'Z připravených surovin (pšeničná mouka (těsto), jablko, med, skořice, olej / tuk do těsta) vytvoř těsto nebo směs, kterou rovnoměrně rozetři na pánev, plech nebo do formy. Tepelně uprav dozlatova a dopevna, podle potřeby otoč nebo promíchej. Podávej teplé, případně doplněné čerstvou oblohou z uvedených ingrediencí.',
     type: 'breakfast',
     calories: 360,
     kj: 1506,
@@ -1165,6 +1307,8 @@ export const foodData: Food[] = [
   {
     id: 72,
     title: 'Hovězí vývar, rýžové nudle',
+    recipe:
+      'Do hrnce připrav suroviny (hovězí maso, rýžové nudle, zelenina do vývaru, tuk z vývaru), základ zalij tekutinou z použitých ingrediencí a přiveď k varu. Vař na mírném plameni do změknutí hlavních složek, průběžně promíchej a dochuť. Podávej horké, ideálně ihned po dovaření.',
     type: 'snack1',
     calories: 142,
     kj: 594,
@@ -1181,6 +1325,8 @@ export const foodData: Food[] = [
   {
     id: 73,
     title: 'Rizoto s hříbky a parmazánem',
+    recipe:
+      'Připrav suroviny (rýže vařená, hříbky, mléko / vývar, parmazán, olivový olej), očisti je a nakrájej na menší části. Hlavní ingredience nejdříve tepelně uprav na pánvi, v troubě nebo v hrnci, poté přidej zbytek a krátce dokonči. Na závěr dochuť a servíruj jako hotový pokrm.',
     type: 'lunch',
     calories: 432,
     kj: 1807,
@@ -1198,6 +1344,8 @@ export const foodData: Food[] = [
   {
     id: 74,
     title: 'Těstovinový salát s cottage sýrem',
+    recipe:
+      'Suroviny (celozrnné těstoviny, cottage, zelenina, olej) připrav podle typu pokrmu, zeleninu nakrájej a bílkovinnou složku uprav nebo rozmíchej. Vše spoj do kompaktní směsi nebo lehkého salátu, dochuť kořením a tukovou složkou z receptu. Nech krátce odležet a podávej čerstvé.',
     type: 'snack2',
     calories: 146,
     kj: 611,
@@ -1214,6 +1362,8 @@ export const foodData: Food[] = [
   {
     id: 75,
     title: 'Zapečené vepřové medailonky s mozzarellou a rajčaty',
+    recipe:
+      'Připrav suroviny (vepřové libové, mozzarella, rajče, olivový olej), očisti je a nakrájej na menší části. Hlavní ingredience nejdříve tepelně uprav na pánvi, v troubě nebo v hrnci, poté přidej zbytek a krátce dokonči. Na závěr dochuť a servíruj jako hotový pokrm.',
     type: 'dinner',
     calories: 358,
     kj: 1498,
@@ -1230,6 +1380,8 @@ export const foodData: Food[] = [
   {
     id: 76,
     title: 'Míchaná vajíčka s pažitkou, kváskovým chlebem',
+    recipe:
+      'Z připravených surovin (vejce, kváskový chléb, pažitka, olivový olej) vytvoř těsto nebo směs, kterou rovnoměrně rozetři na pánev, plech nebo do formy. Tepelně uprav dozlatova a dopevna, podle potřeby otoč nebo promíchej. Podávej teplé, případně doplněné čerstvou oblohou z uvedených ingrediencí.',
     type: 'breakfast',
     calories: 372,
     kj: 1556,
@@ -1246,6 +1398,8 @@ export const foodData: Food[] = [
   {
     id: 77,
     title: 'Šunkové rolky s česnekovým dipem',
+    recipe:
+      'Suroviny (šunka, řecký jogurt, česnek) připrav podle typu pokrmu, zeleninu nakrájej a bílkovinnou složku uprav nebo rozmíchej. Vše spoj do kompaktní směsi nebo lehkého salátu, dochuť kořením a tukovou složkou z receptu. Nech krátce odležet a podávej čerstvé.',
     type: 'snack1',
     calories: 145,
     kj: 607,
@@ -1261,6 +1415,8 @@ export const foodData: Food[] = [
   {
     id: 78,
     title: 'Domácí sekaná se šťouchaným bramborem',
+    recipe:
+      'Připrav suroviny (vepřové libové, vejce, strouhanka, brambory, olej / máslo), očisti je a nakrájej na menší části. Hlavní ingredience nejdříve tepelně uprav na pánvi, v troubě nebo v hrnci, poté přidej zbytek a krátce dokonči. Na závěr dochuť a servíruj jako hotový pokrm.',
     type: 'lunch',
     calories: 434,
     kj: 1816,
@@ -1278,6 +1434,8 @@ export const foodData: Food[] = [
   {
     id: 79,
     title: 'Sladký tvaroh s pomerančem',
+    recipe:
+      'Připrav suroviny (tvaroh, pomeranč, med), očisti je a nakrájej na menší části. Hlavní ingredience nejdříve tepelně uprav na pánvi, v troubě nebo v hrnci, poté přidej zbytek a krátce dokonči. Na závěr dochuť a servíruj jako hotový pokrm.',
     type: 'snack2',
     calories: 146,
     kj: 611,
@@ -1293,6 +1451,8 @@ export const foodData: Food[] = [
   {
     id: 80,
     title: 'Sýrový trojhránek, rajčatový salát s cibulí',
+    recipe:
+      'Suroviny (tavený sýr, rajče, cibule, olivový olej) připrav podle typu pokrmu, zeleninu nakrájej a bílkovinnou složku uprav nebo rozmíchej. Vše spoj do kompaktní směsi nebo lehkého salátu, dochuť kořením a tukovou složkou z receptu. Nech krátce odležet a podávej čerstvé.',
     type: 'dinner',
     calories: 357,
     kj: 1494,
@@ -1309,6 +1469,8 @@ export const foodData: Food[] = [
   {
     id: 81,
     title: 'Zapečený toust se šunkou, okurkou',
+    recipe:
+      'Z připravených surovin (celozrnný toastový chléb, šunka, eidam 30 %, okurka, olej) vytvoř těsto nebo směs, kterou rovnoměrně rozetři na pánev, plech nebo do formy. Tepelně uprav dozlatova a dopevna, podle potřeby otoč nebo promíchej. Podávej teplé, případně doplněné čerstvou oblohou z uvedených ingrediencí.',
     type: 'breakfast',
     calories: 360,
     kj: 1506,
@@ -1326,6 +1488,8 @@ export const foodData: Food[] = [
   {
     id: 82,
     title: 'Vanilkový termix s lupínky',
+    recipe:
+      'Připrav suroviny (tvaroh / termix základ, cukr / med, kukuřičné lupínky), očisti je a nakrájej na menší části. Hlavní ingredience nejdříve tepelně uprav na pánvi, v troubě nebo v hrnci, poté přidej zbytek a krátce dokonči. Na závěr dochuť a servíruj jako hotový pokrm.',
     type: 'snack1',
     calories: 144,
     kj: 602,
@@ -1341,6 +1505,8 @@ export const foodData: Food[] = [
   {
     id: 83,
     title: 'Šunkofleky, kyselá okurka',
+    recipe:
+      'Připrav suroviny (těstoviny, šunka, vejce, tuk, kyselá okurka), očisti je a nakrájej na menší části. Hlavní ingredience nejdříve tepelně uprav na pánvi, v troubě nebo v hrnci, poté přidej zbytek a krátce dokonči. Na závěr dochuť a servíruj jako hotový pokrm.',
     type: 'lunch',
     calories: 435,
     kj: 1820,
@@ -1358,6 +1524,8 @@ export const foodData: Food[] = [
   {
     id: 84,
     title: 'Hermelínová pomazánka',
+    recipe:
+      'Suroviny (hermelín, tvaroh, cibule / okurka mix) připrav podle typu pokrmu, zeleninu nakrájej a bílkovinnou složku uprav nebo rozmíchej. Vše spoj do kompaktní směsi nebo lehkého salátu, dochuť kořením a tukovou složkou z receptu. Nech krátce odležet a podávej čerstvé.',
     type: 'snack2',
     calories: 146,
     kj: 611,
@@ -1373,6 +1541,8 @@ export const foodData: Food[] = [
   {
     id: 85,
     title: 'Marinovaná krůtí prsa, řecký salát',
+    recipe:
+      'Suroviny (krůtí prsa, balkánský sýr, rajče, okurka, olivový olej) připrav podle typu pokrmu, zeleninu nakrájej a bílkovinnou složku uprav nebo rozmíchej. Vše spoj do kompaktní směsi nebo lehkého salátu, dochuť kořením a tukovou složkou z receptu. Nech krátce odležet a podávej čerstvé.',
     type: 'dinner',
     calories: 357,
     kj: 1494,
@@ -1390,6 +1560,8 @@ export const foodData: Food[] = [
   {
     id: 86,
     title: 'Vafle s tvarohem a ovocem',
+    recipe:
+      'Z připravených surovin (ovesné vločky, vejce, mléko 1.5 %, polotučný tvaroh, lesní ovoce, med, olivový olej (na opečení)) vytvoř těsto nebo směs, kterou rovnoměrně rozetři na pánev, plech nebo do formy. Tepelně uprav dozlatova a dopevna, podle potřeby otoč nebo promíchej. Podávej teplé, případně doplněné čerstvou oblohou z uvedených ingrediencí.',
     type: 'breakfast',
     calories: 358,
     kj: 1498,
@@ -1409,6 +1581,8 @@ export const foodData: Food[] = [
   {
     id: 87,
     title: 'Špenátové muffiny',
+    recipe:
+      'Z připravených surovin (špenát, vejce, pšeničná mouka, cottage, olivový olej) vytvoř těsto nebo směs, kterou rovnoměrně rozetři na pánev, plech nebo do formy. Tepelně uprav dozlatova a dopevna, podle potřeby otoč nebo promíchej. Podávej teplé, případně doplněné čerstvou oblohou z uvedených ingrediencí.',
     type: 'snack1',
     calories: 144,
     kj: 602,
@@ -1426,6 +1600,8 @@ export const foodData: Food[] = [
   {
     id: 88,
     title: 'Hovězí směs na asijský způsob, rýžové nudle',
+    recipe:
+      'Připrav suroviny (hovězí libové, rýžové nudle, zeleninový mix, olivový olej, asijská směs koření), očisti je a nakrájej na menší části. Hlavní ingredience nejdříve tepelně uprav na pánvi, v troubě nebo v hrnci, poté přidej zbytek a krátce dokonči. Na závěr dochuť a servíruj jako hotový pokrm.',
     type: 'lunch',
     calories: 430,
     kj: 1799,
@@ -1443,6 +1619,8 @@ export const foodData: Food[] = [
   {
     id: 89,
     title: 'Budapešťská pomazánka',
+    recipe:
+      'Suroviny (polotučný tvaroh, cibule, mletá paprika, knäckebrot) připrav podle typu pokrmu, zeleninu nakrájej a bílkovinnou složku uprav nebo rozmíchej. Vše spoj do kompaktní směsi nebo lehkého salátu, dochuť kořením a tukovou složkou z receptu. Nech krátce odležet a podávej čerstvé.',
     type: 'snack2',
     calories: 145,
     kj: 607,
@@ -1459,6 +1637,8 @@ export const foodData: Food[] = [
   {
     id: 90,
     title: 'Pečený paprikový lusk s bramborem',
+    recipe:
+      'Připrav suroviny (paprika (lusk), brambory vařené, olivový olej, jogurt bílý (dip)), očisti je a nakrájej na menší části. Hlavní ingredience nejdříve tepelně uprav na pánvi, v troubě nebo v hrnci, poté přidej zbytek a krátce dokonči. Na závěr dochuť a servíruj jako hotový pokrm.',
     type: 'dinner',
     calories: 358,
     kj: 1498,

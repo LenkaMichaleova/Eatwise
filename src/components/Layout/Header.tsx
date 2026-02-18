@@ -16,7 +16,7 @@ export function Header() {
             textDecoration: 'none',
           }}
         >
-          <Box component="img" src={logo} alt="Logo" width={200} />
+          <Box component="img" src={logo} alt="Logo" width={170} />
         </Link>
       </Container>
     </HeaderStyled>

@@ -2,7 +2,6 @@ import { Box, styled } from '@mui/material';
 
 export const SearchBarBoxStyled = styled(Box)(({ theme }) => ({
   width: '50%',
-  marginTop: theme.spacing(2),
   gap: theme.spacing(2),
   display: 'flex',
   flexDirection: 'column',
@@ -13,7 +12,7 @@ export const SearchBarBoxStyled = styled(Box)(({ theme }) => ({
 }));
 
 export const SearchBarStyled = styled(Box)(({ theme }) => ({
-  [theme.breakpoints.down('sm')]: {
+  [theme.breakpoints.down('xs')]: {
     maxWidth: '270px',
     width: '100%',
     alignSelf: 'center',

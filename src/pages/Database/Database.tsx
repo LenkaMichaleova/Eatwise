@@ -11,6 +11,7 @@ import {
 import { SearchBarBoxStyled } from './styles/SearchBarStyles';
 import { useFiltersStore } from '../../store/store';
 import { useMemo } from 'react';
+import { Box, Button, Typography } from '@mui/material';
 
 export const Database = () => {
   const { type, ingredient, keyword } = useFiltersStore();
@@ -30,10 +31,32 @@ export const Database = () => {
       <DatabaseHeaderStylled>
         <SectionTitle title="Databáze jídel" />
       </DatabaseHeaderStylled>
-      <SearchBarBoxStyled>
-        <MealSearchBar />
-        <MealFilterBar />
-      </SearchBarBoxStyled>
+      <Box
+        sx={{
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'flex-start',
+          gap: 2,
+          marginTop: 2,
+          marginBottom: 1,
+        }}
+      >
+        <SearchBarBoxStyled>
+          <MealSearchBar />
+          <MealFilterBar />
+        </SearchBarBoxStyled>
+        <Button
+          variant="contained"
+          color="primary"
+          sx={{ p: { xs: 1, sm: 2 } }}
+        >
+          <Typography
+            variant="subtitle2"
+            color="secondary"
+          >{`Přidat jídlo`}</Typography>
+        </Button>
+      </Box>
       <DatabaseContentStyled>
         {mealsDataSorted.map((meal) => (
           <DatabaseMealCard key={meal.id} data={meal} />

@@ -5,7 +5,7 @@ export const DatabaseMealCardStyled = styled(Card)(({ theme }) => ({
   height: '100%',
   maxWidth: '270px',
   alignSelf: 'center',
-  [theme.breakpoints.up('sm')]: {
+  [theme.breakpoints.up('xs')]: {
     maxWidth: 'none',
   },
 }));

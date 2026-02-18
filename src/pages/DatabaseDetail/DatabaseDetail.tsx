@@ -1,28 +1,88 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { foodData } from '../../foodData';
-import { DetailCard } from '../../components/DetailCard';
-import { Box, Button } from '@mui/material';
+import { DetailCard } from './components/DetailCard';
+import { Box, IconButton, Tooltip, Typography } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { ROUTES } from '../../constants/routes';
+import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
+import {
+  DatabaseDetailErrorBoxStyled,
+  DatabaseDetailHeaderStyled,
+} from './styles/databaseDetailStyles';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { useState } from 'react';
+import { DeleteConfirmDialog } from '../../components/Buttons/DeleteButton/DeleteConfirmDialog';
 
 export const DatabaseDetail = () => {
   const { databaseId } = useParams<{ databaseId: string }>();
   const foodItem = foodData.find((food) => food.id === Number(databaseId));
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+  const navigate = useNavigate();
 
   return (
-    <>
-      <Button
-        component={Link}
-        to={ROUTES.database}
-        sx={{ margin: '2rem 0 0 0' }}
-      >
-        <ArrowBackIcon fontSize="large" />
-      </Button>
-      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-        <DetailCard data={foodItem} />
+    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+      <DatabaseDetailHeaderStyled>
+        <Tooltip title="Zpět na databázi jídel" placement="right">
+          <IconButton
+            color="primary"
+            component={Link}
+            to={ROUTES.database}
+            sx={{ margin: '2rem 0 0 0' }}
+          >
+            <ArrowBackIcon fontSize="large" />
+          </IconButton>
+        </Tooltip>
+        <Box
+          sx={{
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
+        >
+          <Typography variant="h2" color="primary">
+            {`Detail jídla`}
+          </Typography>
+          <Tooltip title="Smazat jídlo" placement="left">
+            <IconButton
+              color="primary"
+              onClick={() => setIsDeleteDialogOpen(true)}
+            >
+              <DeleteIcon />
+            </IconButton>
+          </Tooltip>
+        </Box>
+      </DatabaseDetailHeaderStyled>
+
+      {!foodItem && (
+        <DatabaseDetailErrorBoxStyled>
+          <Typography variant="h5" color="primary">
+            {`Omlouváme se, položka nebyla nalezena.`}
+          </Typography>
+          <SentimentVeryDissatisfiedIcon
+            color="primary"
+            sx={{ fontSize: '4rem', marginLeft: 2 }}
+          />
+        </DatabaseDetailErrorBoxStyled>
+      )}
+
+      <Box sx={{ width: '100%', display: 'flex' }}>
+        {foodItem && (
+          <Box sx={{ width: '100%', display: 'flex' }}>
+            <DetailCard data={foodItem} />
+          </Box>
+        )}
       </Box>
-    </>
+
+      {isDeleteDialogOpen && foodItem && (
+        <DeleteConfirmDialog
+          mealTitle={foodItem.title}
+          onClose={() => {
+            setIsDeleteDialogOpen(false);
+            navigate(ROUTES.database);
+          }}
+        />
+      )}
+    </Box>
   );
 };
-
-// TODO handle foodItem not found
