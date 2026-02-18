@@ -11,7 +11,7 @@ import {
 } from './styles/databaseDetailStyles';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useState } from 'react';
-import { DeleteConfirmDialog } from '../../components/DeleteButton/DeleteConfirmDialog';
+import { DeleteConfirmDialog } from '../../components/Buttons/DeleteButton/DeleteConfirmDialog';
 
 export const DatabaseDetail = () => {
   const { databaseId } = useParams<{ databaseId: string }>();

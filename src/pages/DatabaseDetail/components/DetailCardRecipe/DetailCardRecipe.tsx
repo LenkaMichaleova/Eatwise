@@ -1,6 +1,6 @@
 import { Box, IconButton, Typography } from '@mui/material';
 import { EditableBoxStyled } from '../../styles/databaseDetailStyles';
-import { EditButton } from '../../../../components/EditButton/EditButton';
+import { EditButton } from '../../../../components/Buttons/EditButton/EditButton';
 import { useState } from 'react';
 import { EditRecipeDialog } from './EditRecipeDialog';
 import EditIcon from '@mui/icons-material/Edit';

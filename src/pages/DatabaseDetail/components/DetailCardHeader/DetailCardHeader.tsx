@@ -2,7 +2,7 @@ import { CardHeader, IconButton, Tooltip, Typography } from '@mui/material';
 import { EditableBoxStyled } from '../../styles/databaseDetailStyles';
 import { EditMealTitleDialog } from './EditMealTitleDialog';
 import { DetailCardHeaderStyled } from '../../styles/detailCardStyles';
-import { EditButton } from '../../../../components/EditButton/EditButton';
+import { EditButton } from '../../../../components/Buttons/EditButton/EditButton';
 import { useState } from 'react';
 import type { FoodType } from '../../../../models/foodType';
 import { IconLabel } from '../../../../components/IconLabel/IconLabel';

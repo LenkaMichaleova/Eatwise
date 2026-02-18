@@ -1,7 +1,7 @@
 import { Typography } from '@mui/material';
 import { getIngredientNameById } from '../../../../services/ingredientsService';
 import type { FoodIngredient } from '../../../../models/foodIngredient';
-import { AddButton } from '../../../../components/AddButton/AddButton';
+import { AddButton } from '../../../../components/Buttons/AddButton/AddButton';
 import {
   IngredientsBoxStyled,
   IngredientChipStyled,

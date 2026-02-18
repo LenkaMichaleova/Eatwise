@@ -6,7 +6,7 @@ import {
   Typography,
 } from '@mui/material';
 import { useNavigate } from 'react-router';
-import { ROUTES } from '../../constants/routes';
+import { ROUTES } from '../../../constants/routes';
 
 interface DeleteConfirmDialogProps {
   mealTitle?: string;

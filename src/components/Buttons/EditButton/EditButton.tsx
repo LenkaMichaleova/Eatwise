@@ -1,6 +1,6 @@
 import { Tooltip } from '@mui/material';
-import { EditButtonStyled } from './styles/editButtonStyles';
 import EditIcon from '@mui/icons-material/Edit';
+import { ButtonStyled } from '../styles/buttonStyles';
 
 interface EditButtonProps {
   readonly title?: string;
@@ -29,7 +29,7 @@ export const EditButton = ({
 }: EditButtonProps) => {
   return (
     <Tooltip title={title} placement={placement} color={color}>
-      <EditButtonStyled
+      <ButtonStyled
         className="editButton"
         onClick={(e) => {
           e.stopPropagation();
@@ -37,7 +37,7 @@ export const EditButton = ({
         }}
       >
         <EditIcon fontSize="small" />
-      </EditButtonStyled>
+      </ButtonStyled>
     </Tooltip>
   );
 };
