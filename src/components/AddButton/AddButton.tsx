@@ -3,7 +3,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 export const AddButton = ({ onClick }: { onClick: () => void }) => {
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    (e.currentTarget as HTMLElement).blur();
+    e.currentTarget.blur();
     onClick();
   };
 
