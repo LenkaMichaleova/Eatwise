@@ -4,14 +4,16 @@ import { DatabaseMealCard } from './components/DatabaseMealCard';
 import { MealSearchBar } from './components/MealSearchBar';
 import { MealFilterBar } from './components/MealFilterBar';
 import {
+  DatabaseBoxHeaderStyled,
   DatabaseContentStyled,
   DatabaseHeaderStylled,
   DatabaseStyled,
 } from './styles/databaseStyles';
 import { SearchBarBoxStyled } from './styles/SearchBarStyles';
 import { useFiltersStore } from '../../store/store';
-import { useMemo } from 'react';
-import { Box, Button, Typography } from '@mui/material';
+import { useMemo, useState } from 'react';
+import { Button, Typography } from '@mui/material';
+import { AddNewMealDialog } from './components/AddNewMealDialog';
 
 export const Database = () => {
   const { type, ingredient, keyword } = useFiltersStore();
@@ -25,23 +27,15 @@ export const Database = () => {
       [...filteredMeals].sort((a, b) => a.title.localeCompare(b.title, 'cs')),
     [filteredMeals]
   );
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   return (
     <DatabaseStyled>
       <DatabaseHeaderStylled>
         <SectionTitle title="Databáze jídel" />
       </DatabaseHeaderStylled>
-      <Box
-        sx={{
-          width: '100%',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'flex-start',
-          gap: 2,
-          marginTop: 2,
-          marginBottom: 1,
-        }}
-      >
+
+      <DatabaseBoxHeaderStyled>
         <SearchBarBoxStyled>
           <MealSearchBar />
           <MealFilterBar />
@@ -50,18 +44,24 @@ export const Database = () => {
           variant="contained"
           color="primary"
           sx={{ p: { xs: 1, sm: 2 } }}
+          onClick={() => setIsDialogOpen(true)}
         >
           <Typography
             variant="subtitle2"
             color="secondary"
           >{`Přidat jídlo`}</Typography>
         </Button>
-      </Box>
+      </DatabaseBoxHeaderStyled>
+
       <DatabaseContentStyled>
         {mealsDataSorted.map((meal) => (
           <DatabaseMealCard key={meal.id} data={meal} />
         ))}
       </DatabaseContentStyled>
+
+      {isDialogOpen && (
+        <AddNewMealDialog onClose={() => setIsDialogOpen(false)} />
+      )}
     </DatabaseStyled>
   );
 };
