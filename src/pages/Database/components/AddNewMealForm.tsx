@@ -20,6 +20,7 @@ import { AddButton } from '../../../components/Buttons/AddButton/AddButton';
 import { IngredientChipStyled } from '../../DatabaseDetail/styles/detailIngredientsStyles';
 import { AddDetailIngredientDialog } from '../../DatabaseDetail/components/DetailCardIngredients/AddDetailIngredientDialog';
 import { addMeal } from '../../../services/mealsService';
+import { getAllIngredients } from '../../../services/ingredientsService';
 
 interface AddNewMealFormProps {
   onClose: VoidFunction;
@@ -33,6 +34,7 @@ export const AddNewMealForm = ({ onClose }: AddNewMealFormProps) => {
     recipe: '',
   });
   const [isIngredientDialogOpen, setIsIngredientDialogOpen] = useState(false);
+  const ingredients = getAllIngredients();
 
   const handleChange = (
     name: string,
@@ -127,26 +129,35 @@ export const AddNewMealForm = ({ onClose }: AddNewMealFormProps) => {
         </NewMealIngredientsHeaderStyled>
 
         <NewMealIngredientsContentStyled>
-          {formData.ingredients?.map((ingredient) => (
-            <IngredientChipStyled
-              key={ingredient.ingredientId}
-              label={
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                  <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                    <Typography variant="body2" mb={-1}>
-                      {ingredient.ingredientId}
-                    </Typography>
-                    <Typography variant="subtitle2" color="grey.500">
-                      {`množství:  ${ingredient.amount} g`}
-                    </Typography>
+          {formData.ingredients?.map((ingredient) => {
+            const ingredientName = ingredients.find(
+              (ing) => ing.id === ingredient.ingredientId
+            )?.name;
+
+            if (!ingredientName) {
+              return null;
+            }
+            return (
+              <IngredientChipStyled
+                key={ingredient.ingredientId}
+                label={
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                      <Typography variant="body2" mb={-1}>
+                        {ingredientName}
+                      </Typography>
+                      <Typography variant="subtitle2" color="grey.500">
+                        {`množství:  ${ingredient.amount} g`}
+                      </Typography>
+                    </Box>
                   </Box>
-                </Box>
-              }
-              onDelete={() => handleIngredientDelete(ingredient.ingredientId)}
-              color="primary"
-              variant="outlined"
-            />
-          ))}
+                }
+                onDelete={() => handleIngredientDelete(ingredient.ingredientId)}
+                color="primary"
+                variant="outlined"
+              />
+            );
+          })}
         </NewMealIngredientsContentStyled>
       </NewMealIngredientsBoxStyled>
 
