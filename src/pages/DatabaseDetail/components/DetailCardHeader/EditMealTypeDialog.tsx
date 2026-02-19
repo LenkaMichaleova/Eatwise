@@ -7,16 +7,28 @@ import {
   MenuItem,
   Select,
 } from '@mui/material';
+import { useState } from 'react';
+import { updateMeal } from '../../../../services/mealsService';
+import type { FoodType } from '../../../../models/foodType';
 
 interface EditMealTypeDialogProps {
-  currentValue: string;
+  mealId: number;
+  currentValue: FoodType;
   onClose: () => void;
 }
 
 export const EditMealTypeDialog = ({
+  mealId,
   currentValue,
   onClose,
 }: EditMealTypeDialogProps) => {
+  const [type, setType] = useState<FoodType>(currentValue);
+
+  const handleSave = () => {
+    updateMeal(mealId, { type });
+    onClose();
+  };
+
   return (
     <Dialog open={true} onClose={onClose} fullWidth>
       <DialogTitle
@@ -25,7 +37,11 @@ export const EditMealTypeDialog = ({
       >{`Změna typu jídla`}</DialogTitle>
 
       <DialogContent>
-        <Select fullWidth value={currentValue} onChange={() => {}}>
+        <Select
+          fullWidth
+          value={type}
+          onChange={(event) => setType(event.target.value as FoodType)}
+        >
           <MenuItem value="breakfast">{`Snídaně`}</MenuItem>
           <MenuItem value="snack1">{`Svačina 1`}</MenuItem>
           <MenuItem value="lunch">{`Oběd`}</MenuItem>
@@ -36,7 +52,11 @@ export const EditMealTypeDialog = ({
 
       <DialogActions>
         <Button onClick={onClose}>{`Zavřít`}</Button>
-        <Button variant="contained" onClick={onClose} sx={{ color: 'white' }}>
+        <Button
+          variant="contained"
+          onClick={handleSave}
+          sx={{ color: 'white' }}
+        >
           {`Uložit`}
         </Button>
       </DialogActions>

@@ -7,7 +7,7 @@ import {
 } from '../styles/addNewMealStyles';
 import type { MealFormData } from '../../../models/mealFormData';
 import type { FoodIngredient } from '../../../models/foodIngredient';
-import type { FoodType } from '../../../foodData-old';
+import type { FoodType } from '../../../models/foodType';
 import {
   Box,
   MenuItem,
@@ -19,6 +19,7 @@ import {
 import { AddButton } from '../../../components/Buttons/AddButton/AddButton';
 import { IngredientChipStyled } from '../../DatabaseDetail/styles/detailIngredientsStyles';
 import { AddDetailIngredientDialog } from '../../DatabaseDetail/components/DetailCardIngredients/AddDetailIngredientDialog';
+import { addMeal } from '../../../services/mealsService';
 
 interface AddNewMealFormProps {
   onClose: VoidFunction;
@@ -45,7 +46,53 @@ export const AddNewMealForm = ({ onClose }: AddNewMealFormProps) => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+
+    if (!formData.name.trim()) {
+      return;
+    }
+
+    addMeal({
+      ...formData,
+      name: formData.name.trim(),
+      recipe: formData.recipe.trim(),
+      ingredients: formData.ingredients.filter(
+        (ingredient) => ingredient.amount > 0
+      ),
+    });
+
     onClose();
+  };
+
+  const handleIngredientAdd = (ingredient: FoodIngredient) => {
+    setFormData((prevData) => {
+      const existingIngredientIndex = prevData.ingredients.findIndex(
+        (item) => item.ingredientId === ingredient.ingredientId
+      );
+
+      if (existingIngredientIndex === -1) {
+        return {
+          ...prevData,
+          ingredients: [...prevData.ingredients, ingredient],
+        };
+      }
+
+      const nextIngredients = [...prevData.ingredients];
+      nextIngredients[existingIngredientIndex] = ingredient;
+
+      return {
+        ...prevData,
+        ingredients: nextIngredients,
+      };
+    });
+  };
+
+  const handleIngredientDelete = (ingredientId: number) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      ingredients: prevData.ingredients.filter(
+        (ingredient) => ingredient.ingredientId !== ingredientId
+      ),
+    }));
   };
 
   return (
@@ -60,7 +107,6 @@ export const AddNewMealForm = ({ onClose }: AddNewMealFormProps) => {
         fullWidth
         value={formData.type}
         onChange={(e) => handleChange('type', e.target.value)}
-        sx={{ color: 'grey.500' }}
       >
         <MenuItem value="breakfast">{`Snídaně`}</MenuItem>
         <MenuItem value="snack1">{`Svačina 1`}</MenuItem>
@@ -87,7 +133,7 @@ export const AddNewMealForm = ({ onClose }: AddNewMealFormProps) => {
               label={
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                   <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                    <Typography variant="h5" mb={-1}>
+                    <Typography variant="body2" mb={-1}>
                       {ingredient.ingredientId}
                     </Typography>
                     <Typography variant="subtitle2" color="grey.500">
@@ -96,7 +142,7 @@ export const AddNewMealForm = ({ onClose }: AddNewMealFormProps) => {
                   </Box>
                 </Box>
               }
-              onDelete={() => {}}
+              onDelete={() => handleIngredientDelete(ingredient.ingredientId)}
               color="primary"
               variant="outlined"
             />
@@ -115,6 +161,7 @@ export const AddNewMealForm = ({ onClose }: AddNewMealFormProps) => {
 
       {isIngredientDialogOpen && (
         <AddDetailIngredientDialog
+          onSave={handleIngredientAdd}
           onClose={() => setIsIngredientDialogOpen(false)}
         />
       )}

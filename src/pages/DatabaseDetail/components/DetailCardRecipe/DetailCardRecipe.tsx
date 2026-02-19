@@ -9,7 +9,13 @@ import {
   RecipeBoxHeaderStyled,
 } from '../../styles/detailCardRecipeStyles';
 
-export const DetailCardRecipe = ({ recipe }: { recipe: string }) => {
+export const DetailCardRecipe = ({
+  mealId,
+  recipe,
+}: {
+  mealId: number;
+  recipe: string;
+}) => {
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
 
   return (
@@ -48,6 +54,7 @@ export const DetailCardRecipe = ({ recipe }: { recipe: string }) => {
 
       {isEditDialogOpen && (
         <EditRecipeDialog
+          mealId={mealId}
           onClose={() => setIsEditDialogOpen(false)}
           currentValue={recipe}
         />
