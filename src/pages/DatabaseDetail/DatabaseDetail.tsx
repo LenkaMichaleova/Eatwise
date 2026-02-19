@@ -1,5 +1,4 @@
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { foodData } from '../../foodData';
 import { DetailCard } from './components/DetailCard';
 import { Box, IconButton, Tooltip, Typography } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -12,12 +11,23 @@ import {
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useState } from 'react';
 import { DeleteConfirmDialog } from '../../components/Buttons/DeleteButton/DeleteConfirmDialog';
+import { removeMeal, useMeals } from '../../services/mealsService';
 
 export const DatabaseDetail = () => {
   const { databaseId } = useParams<{ databaseId: string }>();
-  const foodItem = foodData.find((food) => food.id === Number(databaseId));
+  const meals = useMeals();
+  const foodItem = meals.find((food) => food.id === Number(databaseId));
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const navigate = useNavigate();
+
+  const handleDelete = () => {
+    if (!foodItem) {
+      return;
+    }
+
+    removeMeal(foodItem.id);
+    navigate(ROUTES.database);
+  };
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
@@ -77,10 +87,8 @@ export const DatabaseDetail = () => {
       {isDeleteDialogOpen && foodItem && (
         <DeleteConfirmDialog
           mealTitle={foodItem.title}
-          onClose={() => {
-            setIsDeleteDialogOpen(false);
-            navigate(ROUTES.database);
-          }}
+          onConfirm={handleDelete}
+          onClose={() => setIsDeleteDialogOpen(false)}
         />
       )}
     </Box>

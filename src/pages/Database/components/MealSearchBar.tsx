@@ -10,13 +10,15 @@ import { getMealsSearchData } from '../../../services/mealsSearchService.ts';
 import { useFiltersStore } from '../../../store/store.ts';
 import { SearchBarStyled } from '../styles/SearchBarStyles.ts';
 import { buildLimitedOptions } from '../utils/buildLimitedOptions.ts';
+import { useMeals } from '../../../services/mealsService.ts';
 
 export const MealSearchBar = () => {
   const [inputValue, setInputValue] = useState('');
   const inputRef = useRef<HTMLInputElement | null>(null);
   const highlightedOptionRef = useRef<MealSearchOption | null>(null);
   const keywordCommittedRef = useRef(false);
-  const data = getMealsSearchData();
+  const meals = useMeals();
+  const data = getMealsSearchData(meals);
   const { addType, addIngredient, addKeyword, type, ingredient } =
     useFiltersStore();
   const navigate = useNavigate();

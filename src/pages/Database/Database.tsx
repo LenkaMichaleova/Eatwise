@@ -14,10 +14,13 @@ import { useFiltersStore } from '../../store/store';
 import { useMemo, useState } from 'react';
 import { Button, Typography } from '@mui/material';
 import { AddNewMealDialog } from './components/AddNewMealDialog';
+import { useMeals } from '../../services/mealsService';
 
 export const Database = () => {
   const { type, ingredient, keyword } = useFiltersStore();
+  const meals = useMeals();
   const filteredMeals = filterMeals({
+    meals,
     keywordFilters: keyword,
     typeFilters: type,
     ingredientFilters: ingredient,
