@@ -1,9 +1,10 @@
-import { foodData } from '../foodData';
+import type { Food } from '../models/food';
 import { ingredientsDb } from '../pages/Tables/calTables';
+import { getAllMeals } from './mealsService';
 
-export const getMealsSearchData = () => {
+export const getMealsSearchData = (meals: Food[] = getAllMeals()) => {
   return {
-    meals: foodData.map((food) => ({
+    meals: meals.map((food) => ({
       id: food.id,
       name: food.title,
       type: food.type,
