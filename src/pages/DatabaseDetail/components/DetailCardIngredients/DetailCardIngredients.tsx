@@ -11,16 +11,67 @@ import {
 import { useState } from 'react';
 import { AddDetailIngredientDialog } from './AddDetailIngredientDialog';
 import { EditDetailIngredientDialog } from './EditDetailIngredientDialog';
+import { updateMeal } from '../../../../services/mealsService';
 
 interface DetailCardIngredientsProps {
+  mealId: number;
   ingredients: FoodIngredient[];
 }
 
 export const DetailCardIngredients = ({
+  mealId,
   ingredients,
 }: DetailCardIngredientsProps) => {
   const [isAddIngDialogOpen, setIsAddIngDialogOpen] = useState(false);
-  const [isEditIngDialogOpen, setIsEditIngDialogOpen] = useState(false);
+  const [ingredientToEdit, setIngredientToEdit] =
+    useState<FoodIngredient | null>(null);
+
+  const handleIngredientAdd = (ingredient: FoodIngredient) => {
+    const existingIngredientIndex = ingredients.findIndex(
+      (item) => item.ingredientId === ingredient.ingredientId
+    );
+
+    if (existingIngredientIndex === -1) {
+      updateMeal(mealId, { ingredients: [...ingredients, ingredient] });
+      return;
+    }
+
+    const nextIngredients = [...ingredients];
+    nextIngredients[existingIngredientIndex] = ingredient;
+    updateMeal(mealId, { ingredients: nextIngredients });
+  };
+
+  const handleIngredientDelete = (ingredientId: number) => {
+    const nextIngredients = ingredients.filter(
+      (ingredient) => ingredient.ingredientId !== ingredientId
+    );
+
+    updateMeal(mealId, { ingredients: nextIngredients });
+  };
+
+  const handleIngredientEdit = (
+    currentIngredient: FoodIngredient,
+    nextIngredient: FoodIngredient
+  ) => {
+    const ingredientsWithoutCurrent = ingredients.filter(
+      (ingredient) => ingredient.ingredientId !== currentIngredient.ingredientId
+    );
+
+    const existingIngredientIndex = ingredientsWithoutCurrent.findIndex(
+      (ingredient) => ingredient.ingredientId === nextIngredient.ingredientId
+    );
+
+    if (existingIngredientIndex === -1) {
+      updateMeal(mealId, {
+        ingredients: [...ingredientsWithoutCurrent, nextIngredient],
+      });
+      return;
+    }
+
+    const mergedIngredients = [...ingredientsWithoutCurrent];
+    mergedIngredients[existingIngredientIndex] = nextIngredient;
+    updateMeal(mealId, { ingredients: mergedIngredients });
+  };
 
   return (
     <IngredientsBoxStyled>
@@ -37,8 +88,8 @@ export const DetailCardIngredients = ({
           <IngredientChipStyled
             variant="outlined"
             key={`${ingredient.ingredientId}-${ingredient.amount}`}
-            onClick={() => setIsEditIngDialogOpen(true)}
-            onDelete={() => {}}
+            onClick={() => setIngredientToEdit(ingredient)}
+            onDelete={() => handleIngredientDelete(ingredient.ingredientId)}
             label={
               <IngredientChipLabelStyled>
                 <Typography
@@ -68,13 +119,17 @@ export const DetailCardIngredients = ({
 
       {isAddIngDialogOpen && (
         <AddDetailIngredientDialog
+          onSave={handleIngredientAdd}
           onClose={() => setIsAddIngDialogOpen(false)}
         />
       )}
-      {isEditIngDialogOpen && (
+      {ingredientToEdit && (
         <EditDetailIngredientDialog
-          currentIngredient={ingredients[0]}
-          onClose={() => setIsEditIngDialogOpen(false)}
+          currentIngredient={ingredientToEdit}
+          onSave={(nextIngredient) =>
+            handleIngredientEdit(ingredientToEdit, nextIngredient)
+          }
+          onClose={() => setIngredientToEdit(null)}
         />
       )}
     </IngredientsBoxStyled>

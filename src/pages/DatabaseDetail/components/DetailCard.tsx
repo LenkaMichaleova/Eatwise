@@ -47,7 +47,7 @@ export const DetailCard = ({ data }: DetailCardProps) => {
         <Divider sx={{ marginTop: 2, marginBottom: 2 }} />
 
         <DetailCardContentBoxStyled>
-          <DetailCardIngredients ingredients={ingredients} />
+          <DetailCardIngredients mealId={id} ingredients={ingredients} />
 
           <DetailCardRecipe mealId={id} recipe={recipe} />
         </DetailCardContentBoxStyled>

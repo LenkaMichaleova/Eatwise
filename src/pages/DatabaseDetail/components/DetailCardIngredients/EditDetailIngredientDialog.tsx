@@ -14,15 +14,30 @@ import type { FoodIngredient } from '../../../../models/foodIngredient';
 
 interface EditDetailIngredientDialogProps {
   onClose: () => void;
-  currentIngredient?: FoodIngredient;
+  currentIngredient: FoodIngredient;
+  onSave: (ingredient: FoodIngredient) => void;
 }
 
 export const EditDetailIngredientDialog = ({
   currentIngredient,
+  onSave,
   onClose,
 }: EditDetailIngredientDialogProps) => {
   const ingredients = getAllIngredients();
+  const [ingredientId, setIngredientId] = useState<number | ''>(
+    currentIngredient.ingredientId
+  );
   const [amount, setAmount] = useState(currentIngredient?.amount || 0);
+
+  const handleSave = () => {
+    if (!ingredientId || amount <= 0) {
+      onClose();
+      return;
+    }
+
+    onSave({ ingredientId, amount });
+    onClose();
+  };
 
   return (
     <Dialog open={true} onClose={onClose} fullWidth>
@@ -35,8 +50,8 @@ export const EditDetailIngredientDialog = ({
         <Select
           fullWidth
           label="Název Ingredience"
-          value={currentIngredient?.ingredientId || ''}
-          onChange={() => {}}
+          value={ingredientId}
+          onChange={(event) => setIngredientId(Number(event.target.value))}
         >
           <MenuItem value="">{`Vyberte ingredienci...`}</MenuItem>
           {ingredients.map((ingredient) => (
@@ -57,7 +72,11 @@ export const EditDetailIngredientDialog = ({
 
       <DialogActions>
         <Button onClick={onClose}>{`Zavřít`}</Button>
-        <Button variant="contained" onClick={onClose} sx={{ color: 'white' }}>
+        <Button
+          variant="contained"
+          onClick={handleSave}
+          sx={{ color: 'white' }}
+        >
           {`Uložit`}
         </Button>
       </DialogActions>

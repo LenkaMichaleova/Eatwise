@@ -16,7 +16,7 @@ const getNextMealId = (meals: Food[]) => {
 };
 
 export const useMealsStore = create<MealsState>((set) => {
-  const persistAndSetMeals = (nextMeals: Food[]) => {
+  const saveAndSyncMeals = (nextMeals: Food[]) => {
     saveMeals(nextMeals);
     set({ meals: nextMeals });
   };
@@ -38,7 +38,7 @@ export const useMealsStore = create<MealsState>((set) => {
       };
 
       const nextMeals = [...currentMeals, newMeal];
-      persistAndSetMeals(nextMeals);
+      saveAndSyncMeals(nextMeals);
       return newMeal;
     },
     updateMeal: (mealId, updates) => {
@@ -49,15 +49,25 @@ export const useMealsStore = create<MealsState>((set) => {
         return null;
       }
 
-      const updatedMeal = {
+      let updatedMeal = {
         ...mealToUpdate,
         ...updates,
       };
 
+      if (updates.ingredients) {
+        const recalculatedNutrition = calculateMealNutrition(
+          updates.ingredients
+        );
+        updatedMeal = {
+          ...updatedMeal,
+          ...recalculatedNutrition,
+        };
+      }
+
       const nextMeals = currentMeals.map((meal) =>
         meal.id === mealId ? updatedMeal : meal
       );
-      persistAndSetMeals(nextMeals);
+      saveAndSyncMeals(nextMeals);
 
       return updatedMeal;
     },
@@ -69,7 +79,7 @@ export const useMealsStore = create<MealsState>((set) => {
         return false;
       }
 
-      persistAndSetMeals(nextMeals);
+      saveAndSyncMeals(nextMeals);
       return true;
     },
   };
