@@ -21,12 +21,15 @@ import { IngredientChipStyled } from '../../DatabaseDetail/styles/detailIngredie
 import { AddDetailIngredientDialog } from '../../DatabaseDetail/components/DetailCardIngredients/AddDetailIngredientDialog';
 import { addMeal } from '../../../services/mealsService';
 import { getAllIngredients } from '../../../services/ingredientsService';
+import { useNavigate } from 'react-router-dom';
+import { ROUTES } from '../../../constants/routes';
 
 interface AddNewMealFormProps {
   onClose: VoidFunction;
 }
 
 export const AddNewMealForm = ({ onClose }: AddNewMealFormProps) => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState<MealFormData>({
     name: '',
     type: 'breakfast',
@@ -53,7 +56,7 @@ export const AddNewMealForm = ({ onClose }: AddNewMealFormProps) => {
       return;
     }
 
-    addMeal({
+    const newMeal = addMeal({
       ...formData,
       name: formData.name.trim(),
       recipe: formData.recipe.trim(),
@@ -63,6 +66,7 @@ export const AddNewMealForm = ({ onClose }: AddNewMealFormProps) => {
     });
 
     onClose();
+    navigate(`${ROUTES.database}/${newMeal.id}`);
   };
 
   const handleIngredientAdd = (ingredient: FoodIngredient) => {
