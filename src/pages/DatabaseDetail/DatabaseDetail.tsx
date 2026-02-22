@@ -25,8 +25,10 @@ export const DatabaseDetail = () => {
       return;
     }
 
-    removeMeal(foodItem.id);
-    navigate(ROUTES.database);
+    const isRemoved = removeMeal(foodItem.id);
+    if (isRemoved) {
+      navigate(ROUTES.database);
+    }
   };
 
   return (

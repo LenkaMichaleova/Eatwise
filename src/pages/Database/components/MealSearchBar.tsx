@@ -7,10 +7,10 @@ import type { MealSearchOption } from '../../../models/mealSearchOption.ts';
 import { MealSearchOptionType } from '../../../models/mealSearchOptionType.ts';
 import { useNavigate } from 'react-router';
 import { getMealsSearchData } from '../../../services/mealsSearchService.ts';
+import { useMeals } from '../../../services/mealsService.ts';
 import { useFiltersStore } from '../../../store/store.ts';
 import { SearchBarStyled } from '../styles/SearchBarStyles.ts';
 import { buildLimitedOptions } from '../utils/buildLimitedOptions.ts';
-import { useMeals } from '../../../services/mealsService.ts';
 
 export const MealSearchBar = () => {
   const [inputValue, setInputValue] = useState('');
