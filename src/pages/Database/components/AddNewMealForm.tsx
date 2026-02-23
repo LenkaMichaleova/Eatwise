@@ -80,7 +80,9 @@ export const AddNewMealForm = ({ onClose }: AddNewMealFormProps) => {
   const handleIngredientDelete = (ingredientId: number) => {
     setValue(
       'ingredients',
-      formIngredients.filter((ingredient) => ingredient.ingredientId !== ingredientId)
+      formIngredients.filter(
+        (ingredient) => ingredient.ingredientId !== ingredientId
+      )
     );
   };
 
@@ -89,10 +91,7 @@ export const AddNewMealForm = ({ onClose }: AddNewMealFormProps) => {
       id="add-new-meal-form"
       onSubmit={handleSubmit(handleSave)}
     >
-      <TextField
-        placeholder="Název jídla"
-        {...register('name')}
-      />
+      <TextField placeholder="Název jídla" {...register('name')} />
 
       <Controller
         control={control}

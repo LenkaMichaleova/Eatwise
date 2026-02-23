@@ -1,11 +1,10 @@
 import {
+  Autocomplete,
   Button,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
-  MenuItem,
-  Select,
   TextField,
 } from '@mui/material';
 import { getAllIngredients } from '../../../../services/ingredientsService';
@@ -62,26 +61,31 @@ export const EditDetailIngredientDialog = ({
           control={control}
           name="ingredientId"
           render={({ field }) => (
-            <Select
-              fullWidth
-              label="Název Ingredience"
-              value={field.value}
-              onChange={(event) => {
-                field.onChange(Number(event.target.value));
+            <Autocomplete
+              options={ingredients}
+              getOptionLabel={(option) => option.name}
+              isOptionEqualToValue={(option, value) => option.id === value.id}
+              noOptionsText={`Zadejte alespoň 2 znaky nebo nebyla nalezena žádná ingredience`}
+              value={
+                ingredients.find(
+                  (ingredient) => ingredient.id === field.value
+                ) ?? null
+              }
+              onChange={(_, value) => {
+                if (value) {
+                  field.onChange(value.id);
+                }
               }}
-            >
-              {ingredients.map((ingredient) => (
-                <MenuItem key={ingredient.id} value={ingredient.id}>
-                  {ingredient.name}
-                </MenuItem>
-              ))}
-            </Select>
+              renderInput={(params) => (
+                <TextField {...params} label={`Název Ingredience`} fullWidth />
+              )}
+            />
           )}
         />
 
         <TextField
           fullWidth
-          label="Množství (g)"
+          label={`Množství (g)`}
           type="number"
           {...register('amount', { valueAsNumber: true })}
         />

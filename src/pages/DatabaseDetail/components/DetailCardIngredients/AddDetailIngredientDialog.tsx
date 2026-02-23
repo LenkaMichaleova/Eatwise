@@ -1,11 +1,10 @@
 import {
+  Autocomplete,
   Button,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
-  MenuItem,
-  Select,
   TextField,
 } from '@mui/material';
 import { getAllIngredients } from '../../../../services/ingredientsService';
@@ -27,10 +26,7 @@ export const AddDetailIngredientDialog = ({
     },
   });
 
-  const handleSave = ({
-    ingredientId,
-    amount,
-  }: FoodIngredient) => {
+  const handleSave = ({ ingredientId, amount }: FoodIngredient) => {
     if (!ingredientId || amount <= 0) {
       onClose();
       return;
@@ -56,27 +52,40 @@ export const AddDetailIngredientDialog = ({
           control={control}
           name="ingredientId"
           render={({ field }) => (
-            <Select<number>
-              fullWidth
-              label="Název Ingredience"
-              value={field.value}
-              onChange={(event) => {
-                field.onChange(Number(event.target.value));
+            <Autocomplete
+              options={ingredients}
+              getOptionLabel={(option) => option.name}
+              isOptionEqualToValue={(option, value) => option.id === value.id}
+              filterOptions={(options, state) => {
+                const query = state.inputValue.trim().toLowerCase();
+
+                if (query.length < 2) {
+                  return [];
+                }
+
+                return options.filter((option) =>
+                  option.name.toLowerCase().includes(query)
+                );
               }}
-            >
-              <MenuItem value={0}>{`Vyberte ingredienci...`}</MenuItem>
-              {ingredients.map((ingredient) => (
-                <MenuItem key={ingredient.id} value={ingredient.id}>
-                  {ingredient.name}
-                </MenuItem>
-              ))}
-            </Select>
+              noOptionsText={`Zadejte alespoň 2 znaky nebo nebyla nalezena žádná ingredience`}
+              value={
+                ingredients.find(
+                  (ingredient) => ingredient.id === field.value
+                ) ?? null
+              }
+              onChange={(_, value) => {
+                field.onChange(value?.id ?? 0);
+              }}
+              renderInput={(params) => (
+                <TextField {...params} label={`Název Ingredience`} fullWidth />
+              )}
+            />
           )}
         />
 
         <TextField
           fullWidth
-          label="Množství (g)"
+          label={`Množství (g)`}
           type="number"
           {...register('amount', { valueAsNumber: true })}
         />
