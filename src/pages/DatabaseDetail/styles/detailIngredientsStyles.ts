@@ -53,6 +53,13 @@ export const IngredientChipStyled = styled(Chip)(({ theme }) => ({
   },
 }));
 
+export const IngredientChipTextStyled = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'flex-start',
+  padding: theme.spacing(0.5),
+}));
+
 export const IngredientChipLabelStyled = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexWrap: 'wrap',

@@ -4,6 +4,8 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
+  FormControl,
+  FormHelperText,
   MenuItem,
   Select,
 } from '@mui/material';
@@ -22,7 +24,11 @@ export const EditMealTypeDialog = ({
   currentValue,
   onClose,
 }: EditMealTypeDialogProps) => {
-  const { control, handleSubmit } = useForm<{ type: FoodType }>({
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<{ type: FoodType }>({
     defaultValues: {
       type: currentValue,
     },
@@ -44,20 +50,24 @@ export const EditMealTypeDialog = ({
         <Controller
           control={control}
           name="type"
+          rules={{ required: 'Typ jídla je povinný' }}
           render={({ field }) => (
-            <Select
-              fullWidth
-              value={field.value}
-              onChange={(event) =>
-                field.onChange(event.target.value as FoodType)
-              }
-            >
-              <MenuItem value="breakfast">{`Snídaně`}</MenuItem>
-              <MenuItem value="snack1">{`Svačina 1`}</MenuItem>
-              <MenuItem value="lunch">{`Oběd`}</MenuItem>
-              <MenuItem value="snack2">{`Svačina 2`}</MenuItem>
-              <MenuItem value="dinner">{`Večeře`}</MenuItem>
-            </Select>
+            <FormControl fullWidth error={Boolean(errors.type)}>
+              <Select
+                fullWidth
+                value={field.value}
+                onChange={(event) =>
+                  field.onChange(event.target.value as FoodType)
+                }
+              >
+                <MenuItem value="breakfast">{`Snídaně`}</MenuItem>
+                <MenuItem value="snack1">{`Svačina 1`}</MenuItem>
+                <MenuItem value="lunch">{`Oběd`}</MenuItem>
+                <MenuItem value="snack2">{`Svačina 2`}</MenuItem>
+                <MenuItem value="dinner">{`Večeře`}</MenuItem>
+              </Select>
+              <FormHelperText>{errors.type?.message}</FormHelperText>
+            </FormControl>
           )}
         />
       </DialogContent>

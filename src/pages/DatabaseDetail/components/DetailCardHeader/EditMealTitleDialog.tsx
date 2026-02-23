@@ -20,20 +20,18 @@ export const EditMealTitleDialog = ({
   currentValue,
   onClose,
 }: EditMealTitleDialogProps) => {
-  const { register, handleSubmit } = useForm<{ title: string }>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<{ title: string }>({
     defaultValues: {
       title: currentValue,
     },
   });
 
   const handleSave = ({ title }: { title: string }) => {
-    const nextTitle = title.trim();
-    if (!nextTitle) {
-      onClose();
-      return;
-    }
-
-    updateMeal(mealId, { title: nextTitle });
+    updateMeal(mealId, { title: title.trim() });
     onClose();
   };
 
@@ -45,7 +43,25 @@ export const EditMealTitleDialog = ({
       >{`Změna názvu jídla`}</DialogTitle>
 
       <DialogContent>
-        <TextField fullWidth {...register('title')} />
+        <TextField
+          fullWidth
+          error={Boolean(errors.title)}
+          helperText={errors.title?.message}
+          {...register('title', {
+            required: 'Název jídla je povinný',
+            maxLength: {
+              value: 30,
+              message: 'Název jídla může mít maximálně 30 znaků',
+            },
+            validate: {
+              hasNonNumericCharacter: (value) =>
+                /\D/.test(value) ||
+                'Název jídla musí obsahovat alespoň jeden nečíselný znak',
+              notBlank: (value) =>
+                value.trim().length > 0 || 'Název jídla je povinný',
+            },
+          })}
+        />
       </DialogContent>
 
       <DialogActions>

@@ -19,10 +19,15 @@ export const AddDetailIngredientDialog = ({
   onSave?: (ingredient: FoodIngredient) => void;
 }) => {
   const ingredients = getAllIngredients();
-  const { control, register, handleSubmit } = useForm<FoodIngredient>({
+  const {
+    control,
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FoodIngredient>({
     defaultValues: {
       ingredientId: 0,
-      amount: 1,
+      amount: 10,
     },
   });
 
@@ -67,7 +72,7 @@ export const AddDetailIngredientDialog = ({
                   option.name.toLowerCase().includes(query)
                 );
               }}
-              noOptionsText={`Zadejte alespoň 2 znaky pro hledání...`}
+              noOptionsText={`Žádné ingredience`}
               value={
                 ingredients.find(
                   (ingredient) => ingredient.id === field.value
@@ -88,7 +93,15 @@ export const AddDetailIngredientDialog = ({
           fullWidth
           label={`Množství (g)`}
           type="number"
-          {...register('amount', { valueAsNumber: true })}
+          error={Boolean(errors.amount)}
+          helperText={errors.amount?.message}
+          {...register('amount', {
+            valueAsNumber: true,
+            min: {
+              value: 0,
+              message: 'Množství nesmí být záporné',
+            },
+          })}
         />
       </DialogContent>
 

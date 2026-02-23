@@ -23,7 +23,12 @@ export const EditDetailIngredientDialog = ({
   onClose,
 }: EditDetailIngredientDialogProps) => {
   const ingredients = getAllIngredients();
-  const { control, register, handleSubmit } = useForm<{
+  const {
+    control,
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<{
     ingredientId: number;
     amount: number;
   }>({
@@ -65,7 +70,7 @@ export const EditDetailIngredientDialog = ({
               options={ingredients}
               getOptionLabel={(option) => option.name}
               isOptionEqualToValue={(option, value) => option.id === value.id}
-              noOptionsText={`Zadejte alespoň 2 znaky nebo nebyla nalezena žádná ingredience`}
+              noOptionsText={`Žádné ingredience`}
               value={
                 ingredients.find(
                   (ingredient) => ingredient.id === field.value
@@ -79,6 +84,7 @@ export const EditDetailIngredientDialog = ({
               renderInput={(params) => (
                 <TextField {...params} label={`Název Ingredience`} fullWidth />
               )}
+              sx={{ mt: 1 }}
             />
           )}
         />
@@ -87,7 +93,15 @@ export const EditDetailIngredientDialog = ({
           fullWidth
           label={`Množství (g)`}
           type="number"
-          {...register('amount', { valueAsNumber: true })}
+          error={Boolean(errors.amount)}
+          helperText={errors.amount?.message}
+          {...register('amount', {
+            valueAsNumber: true,
+            min: {
+              value: 0,
+              message: 'Množství nesmí být záporné',
+            },
+          })}
         />
       </DialogContent>
 

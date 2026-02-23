@@ -20,7 +20,11 @@ export const EditRecipeDialog = ({
   currentValue,
   onClose,
 }: EditRecipeDialogProps) => {
-  const { register, handleSubmit } = useForm<{ recipe: string }>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<{ recipe: string }>({
     defaultValues: {
       recipe: currentValue,
     },
@@ -41,7 +45,14 @@ export const EditRecipeDialog = ({
           rows={6}
           fullWidth
           placeholder="Zadejte recept..."
-          {...register('recipe')}
+          error={Boolean(errors.recipe)}
+          helperText={errors.recipe?.message}
+          {...register('recipe', {
+            maxLength: {
+              value: 2000,
+              message: 'Recept může mít maximálně 2000 znaků',
+            },
+          })}
         />
       </DialogContent>
 
