@@ -8,9 +8,9 @@ import {
   Select,
   TextField,
 } from '@mui/material';
-import { useState } from 'react';
 import { getAllIngredients } from '../../../../services/ingredientsService';
 import type { FoodIngredient } from '../../../../models/foodIngredient';
+import { Controller, useForm } from 'react-hook-form';
 
 export const AddDetailIngredientDialog = ({
   onClose,
@@ -20,10 +20,17 @@ export const AddDetailIngredientDialog = ({
   onSave?: (ingredient: FoodIngredient) => void;
 }) => {
   const ingredients = getAllIngredients();
-  const [ingredientId, setIngredientId] = useState<number | ''>('');
-  const [amount, setAmount] = useState(1);
+  const { control, register, handleSubmit } = useForm<FoodIngredient>({
+    defaultValues: {
+      ingredientId: 0,
+      amount: 1,
+    },
+  });
 
-  const handleSave = () => {
+  const handleSave = ({
+    ingredientId,
+    amount,
+  }: FoodIngredient) => {
     if (!ingredientId || amount <= 0) {
       onClose();
       return;
@@ -45,26 +52,33 @@ export const AddDetailIngredientDialog = ({
       >{`Přidat ingredienci`}</DialogTitle>
 
       <DialogContent sx={{ gap: 2, display: 'flex', flexDirection: 'column' }}>
-        <Select
-          fullWidth
-          label="Název Ingredience"
-          value={ingredientId}
-          onChange={(event) => setIngredientId(Number(event.target.value))}
-        >
-          <MenuItem value="">{`Vyberte ingredienci...`}</MenuItem>
-          {ingredients.map((ingredient) => (
-            <MenuItem key={ingredient.id} value={ingredient.id}>
-              {ingredient.name}
-            </MenuItem>
-          ))}
-        </Select>
+        <Controller
+          control={control}
+          name="ingredientId"
+          render={({ field }) => (
+            <Select<number>
+              fullWidth
+              label="Název Ingredience"
+              value={field.value}
+              onChange={(event) => {
+                field.onChange(Number(event.target.value));
+              }}
+            >
+              <MenuItem value={0}>{`Vyberte ingredienci...`}</MenuItem>
+              {ingredients.map((ingredient) => (
+                <MenuItem key={ingredient.id} value={ingredient.id}>
+                  {ingredient.name}
+                </MenuItem>
+              ))}
+            </Select>
+          )}
+        />
 
         <TextField
           fullWidth
           label="Množství (g)"
           type="number"
-          value={amount}
-          onChange={(e) => setAmount(Number(e.target.value))}
+          {...register('amount', { valueAsNumber: true })}
         />
       </DialogContent>
 
@@ -72,7 +86,7 @@ export const AddDetailIngredientDialog = ({
         <Button onClick={onClose}>{`Zavřít`}</Button>
         <Button
           variant="contained"
-          onClick={handleSave}
+          onClick={handleSubmit(handleSave)}
           sx={{ color: 'white' }}
         >
           {`Uložit`}

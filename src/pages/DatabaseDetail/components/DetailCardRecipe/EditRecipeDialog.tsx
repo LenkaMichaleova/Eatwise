@@ -6,7 +6,7 @@ import {
   DialogTitle,
   TextField,
 } from '@mui/material';
-import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { updateMeal } from '../../../../services/mealsService';
 
 interface EditRecipeDialogProps {
@@ -20,9 +20,13 @@ export const EditRecipeDialog = ({
   currentValue,
   onClose,
 }: EditRecipeDialogProps) => {
-  const [recipe, setRecipe] = useState(currentValue);
+  const { register, handleSubmit } = useForm<{ recipe: string }>({
+    defaultValues: {
+      recipe: currentValue,
+    },
+  });
 
-  const handleSave = () => {
+  const handleSave = ({ recipe }: { recipe: string }) => {
     updateMeal(mealId, { recipe: recipe.trim() });
     onClose();
   };
@@ -37,8 +41,7 @@ export const EditRecipeDialog = ({
           rows={6}
           fullWidth
           placeholder="Zadejte recept..."
-          value={recipe}
-          onChange={(event) => setRecipe(event.target.value)}
+          {...register('recipe')}
         />
       </DialogContent>
 
@@ -46,7 +49,7 @@ export const EditRecipeDialog = ({
         <Button onClick={onClose}>{`Zavřít`}</Button>
         <Button
           variant="contained"
-          onClick={handleSave}
+          onClick={handleSubmit(handleSave)}
           sx={{ color: 'white' }}
         >
           {`Uložit`}

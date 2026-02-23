@@ -6,7 +6,7 @@ import {
   DialogTitle,
   TextField,
 } from '@mui/material';
-import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { updateMeal } from '../../../../services/mealsService';
 
 interface EditMealTitleDialogProps {
@@ -20,9 +20,13 @@ export const EditMealTitleDialog = ({
   currentValue,
   onClose,
 }: EditMealTitleDialogProps) => {
-  const [title, setTitle] = useState(currentValue);
+  const { register, handleSubmit } = useForm<{ title: string }>({
+    defaultValues: {
+      title: currentValue,
+    },
+  });
 
-  const handleSave = () => {
+  const handleSave = ({ title }: { title: string }) => {
     const nextTitle = title.trim();
     if (!nextTitle) {
       onClose();
@@ -41,18 +45,14 @@ export const EditMealTitleDialog = ({
       >{`Změna názvu jídla`}</DialogTitle>
 
       <DialogContent>
-        <TextField
-          fullWidth
-          value={title}
-          onChange={(event) => setTitle(event.target.value)}
-        />
+        <TextField fullWidth {...register('title')} />
       </DialogContent>
 
       <DialogActions>
         <Button onClick={onClose}>{`Zavřít`}</Button>
         <Button
           variant="contained"
-          onClick={handleSave}
+          onClick={handleSubmit(handleSave)}
           sx={{ color: 'white' }}
         >
           {`Uložit`}

@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react';
+import { useState } from 'react';
 import {
   AddNewMealFormStyled,
   NewMealIngredientsBoxStyled,
@@ -23,6 +23,7 @@ import { addMeal } from '../../../services/mealsService';
 import { getAllIngredients } from '../../../services/ingredientsService';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../../constants/routes';
+import { Controller, useForm } from 'react-hook-form';
 
 interface AddNewMealFormProps {
   onClose: VoidFunction;
@@ -30,28 +31,20 @@ interface AddNewMealFormProps {
 
 export const AddNewMealForm = ({ onClose }: AddNewMealFormProps) => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState<MealFormData>({
-    name: '',
-    type: 'breakfast',
-    ingredients: [],
-    recipe: '',
-  });
   const [isIngredientDialogOpen, setIsIngredientDialogOpen] = useState(false);
   const ingredients = getAllIngredients();
+  const { control, register, handleSubmit, watch, setValue } =
+    useForm<MealFormData>({
+      defaultValues: {
+        name: '',
+        type: 'breakfast',
+        ingredients: [],
+        recipe: '',
+      },
+    });
+  const formIngredients = watch('ingredients');
 
-  const handleChange = (
-    name: string,
-    value: string | number | null | FoodType | FoodIngredient[]
-  ) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-
+  const handleSave = (formData: MealFormData) => {
     if (!formData.name.trim()) {
       return;
     }
@@ -70,56 +63,54 @@ export const AddNewMealForm = ({ onClose }: AddNewMealFormProps) => {
   };
 
   const handleIngredientAdd = (ingredient: FoodIngredient) => {
-    setFormData((prevData) => {
-      const existingIngredientIndex = prevData.ingredients.findIndex(
-        (item) => item.ingredientId === ingredient.ingredientId
-      );
+    const existingIngredientIndex = formIngredients.findIndex(
+      (item) => item.ingredientId === ingredient.ingredientId
+    );
 
-      if (existingIngredientIndex === -1) {
-        return {
-          ...prevData,
-          ingredients: [...prevData.ingredients, ingredient],
-        };
-      }
+    if (existingIngredientIndex === -1) {
+      setValue('ingredients', [...formIngredients, ingredient]);
+      return;
+    }
 
-      const nextIngredients = [...prevData.ingredients];
-      nextIngredients[existingIngredientIndex] = ingredient;
-
-      return {
-        ...prevData,
-        ingredients: nextIngredients,
-      };
-    });
+    const nextIngredients = [...formIngredients];
+    nextIngredients[existingIngredientIndex] = ingredient;
+    setValue('ingredients', nextIngredients);
   };
 
   const handleIngredientDelete = (ingredientId: number) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      ingredients: prevData.ingredients.filter(
-        (ingredient) => ingredient.ingredientId !== ingredientId
-      ),
-    }));
+    setValue(
+      'ingredients',
+      formIngredients.filter((ingredient) => ingredient.ingredientId !== ingredientId)
+    );
   };
 
   return (
-    <AddNewMealFormStyled id="add-new-meal-form" onSubmit={handleSubmit}>
+    <AddNewMealFormStyled
+      id="add-new-meal-form"
+      onSubmit={handleSubmit(handleSave)}
+    >
       <TextField
         placeholder="Název jídla"
-        value={formData.name}
-        onChange={(e) => handleChange('name', e.target.value)}
+        {...register('name')}
       />
 
-      <Select
-        fullWidth
-        value={formData.type}
-        onChange={(e) => handleChange('type', e.target.value)}
-      >
-        <MenuItem value="breakfast">{`Snídaně`}</MenuItem>
-        <MenuItem value="snack1">{`Svačina 1`}</MenuItem>
-        <MenuItem value="lunch">{`Oběd`}</MenuItem>
-        <MenuItem value="snack2">{`Svačina 2`}</MenuItem>
-        <MenuItem value="dinner">{`Večeře`}</MenuItem>
-      </Select>
+      <Controller
+        control={control}
+        name="type"
+        render={({ field }) => (
+          <Select
+            fullWidth
+            value={field.value}
+            onChange={(event) => field.onChange(event.target.value as FoodType)}
+          >
+            <MenuItem value="breakfast">{`Snídaně`}</MenuItem>
+            <MenuItem value="snack1">{`Svačina 1`}</MenuItem>
+            <MenuItem value="lunch">{`Oběd`}</MenuItem>
+            <MenuItem value="snack2">{`Svačina 2`}</MenuItem>
+            <MenuItem value="dinner">{`Večeře`}</MenuItem>
+          </Select>
+        )}
+      />
 
       <NewMealIngredientsBoxStyled>
         <NewMealIngredientsHeaderStyled>
@@ -133,7 +124,7 @@ export const AddNewMealForm = ({ onClose }: AddNewMealFormProps) => {
         </NewMealIngredientsHeaderStyled>
 
         <NewMealIngredientsContentStyled>
-          {formData.ingredients?.map((ingredient) => {
+          {formIngredients?.map((ingredient) => {
             const ingredientName = ingredients.find(
               (ing) => ing.id === ingredient.ingredientId
             )?.name;
@@ -170,8 +161,7 @@ export const AddNewMealForm = ({ onClose }: AddNewMealFormProps) => {
         rows={6}
         fullWidth
         placeholder="Zadejte recept..."
-        value={formData.recipe}
-        onChange={(e) => handleChange('recipe', e.target.value)}
+        {...register('recipe')}
       />
 
       {isIngredientDialogOpen && (
