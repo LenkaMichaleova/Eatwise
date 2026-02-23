@@ -67,7 +67,7 @@ export const AddDetailIngredientDialog = ({
                   option.name.toLowerCase().includes(query)
                 );
               }}
-              noOptionsText={`Zadejte alespoň 2 znaky nebo nebyla nalezena žádná ingredience`}
+              noOptionsText={`Zadejte alespoň 2 znaky pro hledání...`}
               value={
                 ingredients.find(
                   (ingredient) => ingredient.id === field.value
@@ -79,6 +79,7 @@ export const AddDetailIngredientDialog = ({
               renderInput={(params) => (
                 <TextField {...params} label={`Název Ingredience`} fullWidth />
               )}
+              sx={{ mt: 1 }}
             />
           )}
         />

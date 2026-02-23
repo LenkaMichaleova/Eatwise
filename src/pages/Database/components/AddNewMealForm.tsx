@@ -136,10 +136,15 @@ export const AddNewMealForm = ({ onClose }: AddNewMealFormProps) => {
                 key={ingredient.ingredientId}
                 label={
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                      <Typography variant="body2" mb={-1}>
-                        {ingredientName}
-                      </Typography>
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'flex-start',
+                        p: 0.5,
+                      }}
+                    >
+                      <Typography variant="body2">{ingredientName}</Typography>
                       <Typography variant="subtitle2" color="grey.500">
                         {`množství:  ${ingredient.amount} g`}
                       </Typography>
