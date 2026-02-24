@@ -1,5 +1,12 @@
 import { useState } from 'react';
-import { Box, Button, Popper, Paper, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  ClickAwayListener,
+  Popper,
+  Paper,
+  Typography,
+} from '@mui/material';
 import { TextField } from '@mui/material';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
@@ -75,57 +82,69 @@ export const WeekPicker = ({ value, onChange }: WeekPickerProps) => {
         sx={{ width: 220, cursor: 'pointer' }}
       />
       <Popper open={open} anchorEl={anchor} placement="bottom-end">
-        <Paper elevation={3} sx={{ p: 2, minWidth: 350 }}>
-          <WeekCalendarHeaderStyled>
-            <Button
-              size="small"
-              onClick={() => setDisplayMonth(displayMonth.subtract(1, 'month'))}
-            >
-              <ChevronLeftIcon />
-            </Button>
-            <Typography
-              variant="subtitle2"
-              sx={{ minWidth: 150, textAlign: 'center' }}
-            >
-              {formatMonthYear(displayMonth)}
-            </Typography>
-            <Button
-              size="small"
-              onClick={() => setDisplayMonth(displayMonth.add(1, 'month'))}
-            >
-              <ChevronRightIcon />
-            </Button>
-          </WeekCalendarHeaderStyled>
+        <ClickAwayListener
+          onClickAway={(event) => {
+            if (anchor?.contains(event.target as Node)) {
+              return;
+            }
 
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-            {weeks.map((week, weekIndex) => {
-              const weekStart = week[0];
-              const weekEnd = week[6];
-              const isCurrentWeek = weekStart.isSame(currentWeekStart, 'day');
+            handleClose();
+          }}
+        >
+          <Paper elevation={3} sx={{ p: 2, minWidth: 350 }}>
+            <WeekCalendarHeaderStyled>
+              <Button
+                size="small"
+                onClick={() =>
+                  setDisplayMonth(displayMonth.subtract(1, 'month'))
+                }
+              >
+                <ChevronLeftIcon />
+              </Button>
+              <Typography
+                variant="subtitle2"
+                sx={{ minWidth: 150, textAlign: 'center' }}
+              >
+                {formatMonthYear(displayMonth)}
+              </Typography>
+              <Button
+                size="small"
+                onClick={() => setDisplayMonth(displayMonth.add(1, 'month'))}
+              >
+                <ChevronRightIcon />
+              </Button>
+            </WeekCalendarHeaderStyled>
 
-              return (
-                <Button
-                  key={`${weekIndex}`}
-                  fullWidth
-                  onClick={() => selectWeek(weekStart)}
-                  variant={isCurrentWeek ? 'contained' : 'outlined'}
-                  sx={{
-                    justifyContent: 'space-between',
-                    textAlign: 'left',
-                    py: 1,
-                  }}
-                >
-                  <Typography variant="body2">
-                    {`Týden ${weekStart.isoWeek()}`}
-                  </Typography>
-                  <Typography variant="caption" sx={{ opacity: 0.7 }}>
-                    {formatShortDate(weekStart)} - {formatShortDate(weekEnd)}
-                  </Typography>
-                </Button>
-              );
-            })}
-          </Box>
-        </Paper>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+              {weeks.map((week, weekIndex) => {
+                const weekStart = week[0];
+                const weekEnd = week[6];
+                const isCurrentWeek = weekStart.isSame(currentWeekStart, 'day');
+
+                return (
+                  <Button
+                    key={`${weekIndex}`}
+                    fullWidth
+                    onClick={() => selectWeek(weekStart)}
+                    variant={isCurrentWeek ? 'contained' : 'outlined'}
+                    sx={{
+                      justifyContent: 'space-between',
+                      textAlign: 'left',
+                      py: 1,
+                    }}
+                  >
+                    <Typography variant="body2">
+                      {`Týden ${weekStart.isoWeek()}`}
+                    </Typography>
+                    <Typography variant="caption" sx={{ opacity: 0.7 }}>
+                      {formatShortDate(weekStart)} - {formatShortDate(weekEnd)}
+                    </Typography>
+                  </Button>
+                );
+              })}
+            </Box>
+          </Paper>
+        </ClickAwayListener>
       </Popper>
     </>
   );
