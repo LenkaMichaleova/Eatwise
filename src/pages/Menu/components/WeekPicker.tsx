@@ -68,6 +68,10 @@ export const WeekPicker = ({ value, onChange }: WeekPickerProps) => {
         label="Vyberte týden"
         value={`${formatDate(value.startOf('isoWeek'))} - ${formatDate(value.endOf('isoWeek'))}`}
         onClick={handleClick}
+        onFocus={(event) => event.target.blur()}
+        InputProps={{
+          readOnly: true,
+        }}
         sx={{ width: 220, cursor: 'pointer' }}
       />
       <Popper open={open} anchorEl={anchor} placement="bottom-end">

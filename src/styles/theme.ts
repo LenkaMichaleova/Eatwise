@@ -16,7 +16,7 @@ export const mainTheme = createTheme({
       },
     },
     h2: {
-      fontSize: '1.4rem',
+      fontSize: '1.5rem',
       '@media (min-width:600px)': {
         fontSize: '1.7rem',
       },
@@ -25,23 +25,23 @@ export const mainTheme = createTheme({
       },
     },
     h3: {
-      fontSize: '1.2rem',
-      '@media (min-width: 600px)': { fontSize: '1.3rem' },
+      fontSize: '1.3rem',
+      '@media (min-width: 600px)': { fontSize: '1.35rem' },
       '@media (min-width: 960px)': { fontSize: '1.4rem' },
     },
     h6: {
-      fontSize: '0.7rem',
-      '@media (min-width: 600px)': { fontSize: '0.8rem' },
+      fontSize: '0.8rem',
+      '@media (min-width: 600px)': { fontSize: '0.85rem' },
       '@media (min-width: 960px)': { fontSize: '0.9rem' },
     },
     body1: {
-      fontSize: '0.9rem',
-      '@media (min-width: 600px)': { fontSize: '1rem' },
+      fontSize: '1rem',
+      '@media (min-width: 600px)': { fontSize: '1.05rem' },
       '@media (min-width: 960px)': { fontSize: '1.1rem' },
     },
     body2: {
-      fontSize: '0.8rem',
-      '@media (min-width: 600px)': { fontSize: '0.9rem' },
+      fontSize: '0.9rem',
+      '@media (min-width: 600px)': { fontSize: '0.95rem' },
       '@media (min-width: 960px)': { fontSize: '1rem' },
     },
   },
