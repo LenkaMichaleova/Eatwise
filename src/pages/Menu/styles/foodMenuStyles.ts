@@ -20,9 +20,12 @@ export const FoodMenuCalendarStyled = styled(Box)(({ theme }) => ({
   width: '100%',
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'space-between',
+  justifyContent: 'flex-end',
   gap: theme.spacing(2),
   marginBottom: theme.spacing(2),
+  [theme.breakpoints.down('md')]: {
+    justifyContent: 'center',
+  },
 }));
 
 export const FoodMenuContentStyled = styled(Box)(({ theme }) => ({
