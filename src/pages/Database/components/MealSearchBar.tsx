@@ -7,6 +7,7 @@ import type { MealSearchOption } from '../../../models/mealSearchOption.ts';
 import { MealSearchOptionType } from '../../../models/mealSearchOptionType.ts';
 import { useNavigate } from 'react-router';
 import { getMealsSearchData } from '../../../services/mealsSearchService.ts';
+import { useMeals } from '../../../services/mealsService.ts';
 import { useFiltersStore } from '../../../store/store.ts';
 import { SearchBarStyled } from '../styles/SearchBarStyles.ts';
 import { buildLimitedOptions } from '../utils/buildLimitedOptions.ts';
@@ -16,7 +17,8 @@ export const MealSearchBar = () => {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const highlightedOptionRef = useRef<MealSearchOption | null>(null);
   const keywordCommittedRef = useRef(false);
-  const data = getMealsSearchData();
+  const meals = useMeals();
+  const data = getMealsSearchData(meals);
   const { addType, addIngredient, addKeyword, type, ingredient } =
     useFiltersStore();
   const navigate = useNavigate();

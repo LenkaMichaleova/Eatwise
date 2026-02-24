@@ -15,6 +15,7 @@ export interface DetailCardProps {
 
 export const DetailCard = ({ data }: DetailCardProps) => {
   const {
+    id,
     title,
     type,
     calories,
@@ -28,7 +29,13 @@ export const DetailCard = ({ data }: DetailCardProps) => {
 
   return (
     <DetailCardStyled variant="outlined">
-      <DetailCardHeader title={title} calories={calories} kj={kj} type={type} />
+      <DetailCardHeader
+        mealId={id}
+        title={title}
+        calories={calories}
+        kj={kj}
+        type={type}
+      />
 
       <CardContent sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
         <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
@@ -40,9 +47,9 @@ export const DetailCard = ({ data }: DetailCardProps) => {
         <Divider sx={{ marginTop: 2, marginBottom: 2 }} />
 
         <DetailCardContentBoxStyled>
-          <DetailCardIngredients ingredients={ingredients} />
+          <DetailCardIngredients mealId={id} ingredients={ingredients} />
 
-          <DetailCardRecipe recipe={recipe} />
+          <DetailCardRecipe mealId={id} recipe={recipe} />
         </DetailCardContentBoxStyled>
       </CardContent>
     </DetailCardStyled>

@@ -11,6 +11,16 @@ export const DatabaseStyled = styled(Box)(({ theme }) => ({
   gap: theme.spacing(2),
 }));
 
+export const DatabaseBoxHeaderStyled = styled(Box)(({ theme }) => ({
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'flex-start',
+  gap: theme.spacing(2),
+  marginTop: theme.spacing(2),
+  marginBottom: theme.spacing(1),
+}));
+
 export const DatabaseHeaderStylled = styled(Box)({
   width: '100%',
   display: 'flex',

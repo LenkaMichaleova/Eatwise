@@ -1,28 +1,58 @@
 import {
+  Autocomplete,
   Button,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
-  MenuItem,
-  Select,
   TextField,
 } from '@mui/material';
-import { useState } from 'react';
 import { getAllIngredients } from '../../../../services/ingredientsService';
 import type { FoodIngredient } from '../../../../models/foodIngredient';
+import { Controller, useForm } from 'react-hook-form';
 
 interface EditDetailIngredientDialogProps {
   onClose: () => void;
-  currentIngredient?: FoodIngredient;
+  currentIngredient: FoodIngredient;
+  onSave: (ingredient: FoodIngredient) => void;
 }
 
 export const EditDetailIngredientDialog = ({
   currentIngredient,
+  onSave,
   onClose,
 }: EditDetailIngredientDialogProps) => {
   const ingredients = getAllIngredients();
-  const [amount, setAmount] = useState(currentIngredient?.amount || 0);
+  const {
+    control,
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<{
+    ingredientId: number;
+    amount: number;
+  }>({
+    defaultValues: {
+      ingredientId: currentIngredient.ingredientId,
+      amount: currentIngredient.amount,
+    },
+  });
+
+  const handleSave = ({
+    ingredientId,
+    amount,
+  }: {
+    ingredientId: number;
+    amount: number;
+  }) => {
+    if (amount <= 0) {
+      onClose();
+      return;
+    }
+
+    onSave({ ingredientId, amount });
+    onClose();
+  };
 
   return (
     <Dialog open={true} onClose={onClose} fullWidth>
@@ -32,32 +62,56 @@ export const EditDetailIngredientDialog = ({
       >{`Změnit ingredienci`}</DialogTitle>
 
       <DialogContent sx={{ gap: 2, display: 'flex', flexDirection: 'column' }}>
-        <Select
-          fullWidth
-          label="Název Ingredience"
-          value={currentIngredient?.ingredientId || ''}
-          onChange={() => {}}
-        >
-          <MenuItem value="">{`Vyberte ingredienci...`}</MenuItem>
-          {ingredients.map((ingredient) => (
-            <MenuItem key={ingredient.id} value={ingredient.id}>
-              {ingredient.name}
-            </MenuItem>
-          ))}
-        </Select>
+        <Controller
+          control={control}
+          name="ingredientId"
+          render={({ field }) => (
+            <Autocomplete
+              options={ingredients}
+              getOptionLabel={(option) => option.name}
+              isOptionEqualToValue={(option, value) => option.id === value.id}
+              noOptionsText={`Žádné ingredience`}
+              value={
+                ingredients.find(
+                  (ingredient) => ingredient.id === field.value
+                ) ?? null
+              }
+              onChange={(_, value) => {
+                if (value) {
+                  field.onChange(value.id);
+                }
+              }}
+              renderInput={(params) => (
+                <TextField {...params} label={`Název Ingredience`} fullWidth />
+              )}
+              sx={{ mt: 1 }}
+            />
+          )}
+        />
 
         <TextField
           fullWidth
-          label="Množství (g)"
+          label={`Množství (g)`}
           type="number"
-          value={amount}
-          onChange={(e) => setAmount(Number(e.target.value))}
+          error={Boolean(errors.amount)}
+          helperText={errors.amount?.message}
+          {...register('amount', {
+            valueAsNumber: true,
+            min: {
+              value: 0,
+              message: 'Množství nesmí být záporné',
+            },
+          })}
         />
       </DialogContent>
 
       <DialogActions>
         <Button onClick={onClose}>{`Zavřít`}</Button>
-        <Button variant="contained" onClick={onClose} sx={{ color: 'white' }}>
+        <Button
+          variant="contained"
+          onClick={handleSubmit(handleSave)}
+          sx={{ color: 'white' }}
+        >
           {`Uložit`}
         </Button>
       </DialogActions>

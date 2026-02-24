@@ -8,14 +8,17 @@ import {
 
 interface DeleteConfirmDialogProps {
   mealTitle?: string;
+  readonly onConfirm: VoidFunction;
   readonly onClose: VoidFunction;
 }
 
 export const DeleteConfirmDialog = ({
   mealTitle,
+  onConfirm,
   onClose,
 }: DeleteConfirmDialogProps) => {
   const handleConfirm = () => {
+    onConfirm();
     onClose();
   };
 

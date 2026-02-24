@@ -1,5 +1,5 @@
 import type { Filter } from '../models/filter';
-import { foodData } from '../foodData';
+import type { Food } from '../models/food';
 import { ingredientsDb } from '../pages/Tables/calTables';
 
 const ingredientNameById = new Map(
@@ -10,15 +10,17 @@ const ingredientNameById = new Map(
 );
 
 export const filterMeals = ({
+  meals,
   keywordFilters,
   typeFilters,
   ingredientFilters,
 }: {
+  meals: Food[];
   keywordFilters: Filter[];
   typeFilters: Filter[];
   ingredientFilters: Filter[];
 }) => {
-  return foodData.filter((meal) => {
+  return meals.filter((meal) => {
     if (typeFilters.length > 0) {
       const matchesType = typeFilters.some((f) => meal.type === f.value);
       if (!matchesType) return false;

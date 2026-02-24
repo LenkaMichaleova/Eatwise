@@ -9,6 +9,7 @@ import { IconLabel } from '../../../../components/IconLabel/IconLabel';
 import { EditMealTypeDialog } from './EditMealTypeDialog';
 
 interface DetailCardHeaderProps {
+  mealId: number;
   title: string;
   calories: number;
   kj: number;
@@ -16,6 +17,7 @@ interface DetailCardHeaderProps {
 }
 
 export const DetailCardHeader = ({
+  mealId,
   title,
   calories,
   kj,
@@ -62,6 +64,7 @@ export const DetailCardHeader = ({
 
       {isEditTitleDialogOpen && (
         <EditMealTitleDialog
+          mealId={mealId}
           onClose={() => setIsEditTitleDialogOpen(false)}
           currentValue={title}
         />
@@ -69,6 +72,7 @@ export const DetailCardHeader = ({
 
       {isEditTypeDialogOpen && (
         <EditMealTypeDialog
+          mealId={mealId}
           currentValue={type}
           onClose={() => setIsEditTypeDialogOpen(false)}
         />
