@@ -22,6 +22,7 @@ import { getDailyKj, setDailyKj } from '../../services/dailyKjService';
 import { KjPerDayForm } from '../../components/KjPerDayForm/KjPerDayForm';
 import type { KjPerDayValue } from '../../models/kjPerDayOptions';
 import { scaleMealsToDailyKj } from '../../services/mealScalingService';
+import { replaceMealByIdInDailyMenu } from './utils/mealReplacement';
 
 export const Menu = () => {
   const foodData = getAllFoods();
@@ -34,6 +35,10 @@ export const Menu = () => {
   const mealsById = useMemo(
     () => new Map(foodData.map((meal) => [meal.id, meal])),
     [foodData]
+  );
+  const scaledMeals = useMemo(
+    () => scaleMealsToDailyKj(foodData, selectedDailyKj),
+    [foodData, selectedDailyKj]
   );
 
   useEffect(() => {
@@ -102,6 +107,43 @@ export const Menu = () => {
     });
   };
 
+  const handleDayMealReplace = (
+    dayDate: Dayjs,
+    currentMealId: number,
+    nextMealId: number
+  ) => {
+    const day = DAYS[dayDate.isoWeekday() - 1];
+
+    setWeeklyMenu((prev) => {
+      const currentDayMenu = prev[day];
+
+      if (!currentDayMenu) {
+        return prev;
+      }
+
+      const updatedDayMenu = replaceMealByIdInDailyMenu(
+        currentDayMenu,
+        currentMealId,
+        nextMealId,
+        mealsById,
+        selectedDailyKj
+      );
+
+      if (!updatedDayMenu) {
+        return prev;
+      }
+
+      const updatedWeek = {
+        ...prev,
+        [day]: updatedDayMenu,
+      };
+
+      saveMealPlanForDay(dayDate, updatedDayMenu);
+
+      return updatedWeek;
+    });
+  };
+
   const weekRange = getWeekRange(selectedWeek);
   const weekStart = weekRange.start;
 
@@ -130,7 +172,11 @@ export const Menu = () => {
               key={day}
               date={dayDate}
               menu={weeklyMenu[day]}
+              allMeals={scaledMeals}
               onMenuChange={() => handleDayMenuChange(dayDate)}
+              onMealReplace={(currentMealId, nextMealId) =>
+                handleDayMealReplace(dayDate, currentMealId, nextMealId)
+              }
             />
           );
         })}
