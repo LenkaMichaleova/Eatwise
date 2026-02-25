@@ -1,8 +1,10 @@
 import { groupBy } from 'lodash';
 import type { Food } from '../../../models/food';
 import type { GenerateDailyMenuOptions } from '../../../models/generateDailyMenuOptions';
+import { DEFAULT_KJ_PER_DAY } from '../../../models/kjPerDayOptions';
+import { scaleMealToDailyKj } from '../../../services/mealScalingService';
 
-const dailyKJ = 6000;
+const dailyKJ = DEFAULT_KJ_PER_DAY;
 
 const randomItem = <T>(array?: T[]): T | undefined => {
   if (!array?.length) return undefined;
@@ -17,6 +19,7 @@ export const generateDailyMenu = (
 ) => {
   const groups = groupBy(foodData, 'type');
   const blockedFoodIds = options?.blockedFoodIds ?? new Set<number>();
+  const targetDailyKj = options?.targetDailyKj ?? dailyKJ;
 
   const attempts = 5;
   let bestCombo: Food[] = [];
@@ -43,12 +46,15 @@ export const generateDailyMenu = (
 
     if (candidate.length < 5) continue;
 
-    const totalKJ = candidate.reduce((sum, meal) => sum + meal.kj, 0);
-    const diff = Math.abs(totalKJ - dailyKJ);
+    const scaledCandidate = candidate.map((meal) =>
+      scaleMealToDailyKj(meal, targetDailyKj)
+    );
+    const totalKJ = scaledCandidate.reduce((sum, meal) => sum + meal.kj, 0);
+    const diff = Math.abs(totalKJ - targetDailyKj);
 
     if (diff < bestDiff) {
       bestDiff = diff;
-      bestCombo = candidate;
+      bestCombo = scaledCandidate;
     }
   }
 

@@ -12,24 +12,18 @@ import {
 import { SearchBarBoxStyled } from './styles/SearchBarStyles';
 import { useFiltersStore } from '../../store/store';
 import { useMemo, useState } from 'react';
-import {
-  Box,
-  Button,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  Typography,
-} from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import { AddNewMealDialog } from './components/AddNewMealDialog';
 import { useMeals } from '../../services/mealsService';
-import { kjPerDayOptions } from '../../models/kjPerDayOptions';
-import type { KjPerDayValue } from '../../models/kjPerDayOptions';
-import { getDailyKj, setDailyKj } from '../../services/dailyKjService';
 import { scaleMealsToDailyKj } from '../../services/mealScalingService';
+import { KjPerDayForm } from '../../components/KjPerDayForm/KjPerDayForm';
+import { getDailyKj, setDailyKj } from '../../services/dailyKjService';
+import type { KjPerDayValue } from '../../models/kjPerDayOptions';
 
 export const Database = () => {
   const { type, ingredient, keyword } = useFiltersStore();
+  const [selectedDailyKj, setSelectedDailyKj] =
+    useState<KjPerDayValue>(getDailyKj());
   const meals = useMeals();
   const filteredMeals = filterMeals({
     meals,
@@ -37,8 +31,6 @@ export const Database = () => {
     typeFilters: type,
     ingredientFilters: ingredient,
   });
-  const [selectedDailyKj, setSelectedDailyKj] =
-    useState<KjPerDayValue>(getDailyKj());
   const mealsDataSorted = useMemo(
     () =>
       scaleMealsToDailyKj(filteredMeals, selectedDailyKj).sort((a, b) =>
@@ -60,27 +52,13 @@ export const Database = () => {
           <MealFilterBar />
         </SearchBarBoxStyled>
         <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
-          <FormControl size="small" sx={{ minWidth: 120 }}>
-            <InputLabel id="kj-per-day-label">{`kJ/den`}</InputLabel>
-            <Select
-              labelId="kj-per-day-label"
-              label="kJ/den"
-              value={selectedDailyKj}
-              onChange={(event) => {
-                const nextValue = Number(event.target.value) as KjPerDayValue;
-                setSelectedDailyKj(nextValue);
-                setDailyKj(nextValue);
-              }}
-            >
-              {kjPerDayOptions.map((option) => (
-                <MenuItem value={option.value} key={option.value}>
-                  <Typography variant="body1" color="textSecondary">
-                    {option.label}
-                  </Typography>
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+          <KjPerDayForm
+            value={selectedDailyKj}
+            onChange={(value) => {
+              setSelectedDailyKj(value);
+              setDailyKj(value);
+            }}
+          />
           <Button
             variant="contained"
             color="primary"

@@ -15,20 +15,18 @@ import {
   getMealPlanForWeek,
   saveMealPlanForDay,
 } from '../../services/mealPlanService';
-// import {
-//   FormControl,
-//   InputLabel,
-//   MenuItem,
-//   Select,
-//   Typography,
-// } from '@mui/material';
 import { WeekPicker } from './components/WeekPicker';
 import dayjs, { Dayjs } from 'dayjs';
 import { getWeekRange } from '../../utils/dateUtils';
+import { getDailyKj, setDailyKj } from '../../services/dailyKjService';
+import { KjPerDayForm } from '../../components/KjPerDayForm/KjPerDayForm';
+import type { KjPerDayValue } from '../../models/kjPerDayOptions';
 
 export const Menu = () => {
   const foodData = getAllFoods();
   const [selectedWeek, setSelectedWeek] = useState<Dayjs>(dayjs());
+  const [selectedDailyKj, setSelectedDailyKj] =
+    useState<KjPerDayValue>(getDailyKj());
   const [weeklyMenu, setWeeklyMenu] = useState<WeeklyMenu>(
     getMealPlanForWeek(dayjs())
   );
@@ -59,7 +57,10 @@ export const Menu = () => {
   const handleDayMenuChange = (dayDate: Dayjs) => {
     const day = DAYS[dayDate.isoWeekday() - 1];
     const blockedFoodIds = getBlockedFoodIds(dayDate);
-    const newDayMenu = generateDailyMenu(foodData, { blockedFoodIds });
+    const newDayMenu = generateDailyMenu(foodData, {
+      blockedFoodIds,
+      targetDailyKj: selectedDailyKj,
+    });
 
     setWeeklyMenu((prev) => {
       const updated = {
@@ -81,17 +82,13 @@ export const Menu = () => {
       </FoodMenuHeaderStyled>
 
       <FoodMenuCalendarStyled>
-        {/* <FormControl size="small" sx={{ minWidth: 120 }}>
-          <InputLabel id="kj-per-day-label">{`kJ/den`}</InputLabel>
-          <Select labelId="kj-per-day-label" label="kJ/den" value="6000">
-            <MenuItem value="6000">
-              <Typography
-                variant="body1"
-                color="textSecondary"
-              >{`6000`}</Typography>
-            </MenuItem>
-          </Select>
-        </FormControl> */}
+        <KjPerDayForm
+          value={selectedDailyKj}
+          onChange={(value) => {
+            setSelectedDailyKj(value);
+            setDailyKj(value);
+          }}
+        />
         <WeekPicker value={selectedWeek} onChange={setSelectedWeek} />
       </FoodMenuCalendarStyled>
 
