@@ -3,7 +3,7 @@ import { createTheme } from '@mui/material/styles';
 export const mainTheme = createTheme({
   typography: {
     fontFamily: ['Arial', 'sans-serif'].join(','),
-    fontSize: 14,
+    fontSize: 16,
     h1: {
       color: 'white',
       textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
