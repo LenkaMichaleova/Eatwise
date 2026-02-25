@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { SectionTitle } from '../../components/SectionTitle/SectionTitle';
 import { getAllFoods } from '../../services/foodService';
 import { generateDailyMenu } from './utils/generateDailyMenu';
@@ -21,6 +21,7 @@ import { getWeekRange } from '../../utils/dateUtils';
 import { getDailyKj, setDailyKj } from '../../services/dailyKjService';
 import { KjPerDayForm } from '../../components/KjPerDayForm/KjPerDayForm';
 import type { KjPerDayValue } from '../../models/kjPerDayOptions';
+import { scaleMealsToDailyKj } from '../../services/mealScalingService';
 
 export const Menu = () => {
   const foodData = getAllFoods();
@@ -30,11 +31,40 @@ export const Menu = () => {
   const [weeklyMenu, setWeeklyMenu] = useState<WeeklyMenu>(
     getMealPlanForWeek(dayjs())
   );
+  const mealsById = useMemo(
+    () => new Map(foodData.map((meal) => [meal.id, meal])),
+    [foodData]
+  );
 
   useEffect(() => {
     const saved = getMealPlanForWeek(selectedWeek);
     setWeeklyMenu(saved);
   }, [selectedWeek]);
+
+  useEffect(() => {
+    setWeeklyMenu((prev) => {
+      const weekStart = selectedWeek.startOf('isoWeek');
+      const nextWeeklyMenu = {} as WeeklyMenu;
+
+      DAYS.forEach((day, index) => {
+        const dayDate = weekStart.add(index, 'day');
+        const currentDayMenu = prev[day];
+        const baseMeals = currentDayMenu.meals.map(
+          (meal) => mealsById.get(meal.id) ?? meal
+        );
+        const scaledMeals = scaleMealsToDailyKj(baseMeals, selectedDailyKj);
+        const scaledDayMenu = {
+          meals: scaledMeals,
+          totalKJ: scaledMeals.reduce((sum, meal) => sum + meal.kj, 0),
+        };
+
+        nextWeeklyMenu[day] = scaledDayMenu;
+        saveMealPlanForDay(dayDate, scaledDayMenu);
+      });
+
+      return nextWeeklyMenu;
+    });
+  }, [mealsById, selectedDailyKj, selectedWeek]);
 
   const getBlockedFoodIds = (dayDate: Dayjs) => {
     const lookbackDays = 14;
