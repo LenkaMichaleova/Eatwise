@@ -119,6 +119,7 @@ export const MealSearchBar = () => {
   return (
     <SearchBarStyled>
       <Autocomplete
+        size="small"
         freeSolo
         noOptionsText={`Žádné výsledky`}
         popupIcon={null}

@@ -32,6 +32,7 @@ export const useMealsStore = create<MealsState>((set) => {
         id: nextId,
         title: formData.name.trim(),
         type: formData.type,
+        baseDailyKj: formData.baseDailyKj,
         recipe: formData.recipe.trim(),
         ingredients: formData.ingredients,
         ...nutrition,

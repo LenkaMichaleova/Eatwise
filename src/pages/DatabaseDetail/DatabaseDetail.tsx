@@ -12,11 +12,16 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useState } from 'react';
 import { DeleteConfirmDialog } from '../../components/Buttons/DeleteButton/DeleteConfirmDialog';
 import { removeMeal, useMeals } from '../../services/mealsService';
+import { getDailyKj } from '../../services/dailyKjService';
+import { scaleMealToDailyKj } from '../../services/mealScalingService';
 
 export const DatabaseDetail = () => {
   const { databaseId } = useParams<{ databaseId: string }>();
   const meals = useMeals();
   const foodItem = meals.find((food) => food.id === Number(databaseId));
+  const scaledFoodItem = foodItem
+    ? scaleMealToDailyKj(foodItem, getDailyKj())
+    : null;
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -79,9 +84,12 @@ export const DatabaseDetail = () => {
       )}
 
       <Box sx={{ width: '100%', display: 'flex' }}>
-        {foodItem && (
+        {foodItem && scaledFoodItem && (
           <Box sx={{ width: '100%', display: 'flex' }}>
-            <DetailCard data={foodItem} />
+            <DetailCard
+              data={scaledFoodItem}
+              baseIngredients={foodItem.ingredients}
+            />
           </Box>
         )}
       </Box>

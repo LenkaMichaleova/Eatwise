@@ -12,6 +12,7 @@ import {
   Box,
   FormControl,
   FormHelperText,
+  InputLabel,
   MenuItem,
   Select,
   TextField,
@@ -29,6 +30,9 @@ import { getAllIngredients } from '../../../services/ingredientsService';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../../constants/routes';
 import { Controller, useForm } from 'react-hook-form';
+import { kjPerDayOptions } from '../../../models/kjPerDayOptions';
+import type { KjPerDayValue } from '../../../models/kjPerDayOptions';
+import { getDailyKj } from '../../../services/dailyKjService';
 
 interface AddNewMealFormProps {
   onClose: VoidFunction;
@@ -49,6 +53,7 @@ export const AddNewMealForm = ({ onClose }: AddNewMealFormProps) => {
     defaultValues: {
       name: '',
       type: 'breakfast',
+      baseDailyKj: getDailyKj(),
       ingredients: [],
       recipe: '',
     },
@@ -138,6 +143,32 @@ export const AddNewMealForm = ({ onClose }: AddNewMealFormProps) => {
               <MenuItem value="dinner">{`Večeře`}</MenuItem>
             </Select>
             <FormHelperText>{errors.type?.message}</FormHelperText>
+          </FormControl>
+        )}
+      />
+
+      <Controller
+        control={control}
+        name="baseDailyKj"
+        rules={{ required: 'kJ/den je povinné' }}
+        render={({ field }) => (
+          <FormControl fullWidth error={Boolean(errors.baseDailyKj)}>
+            <InputLabel id="new-meal-kj-per-day-label">{`kJ/den`}</InputLabel>
+            <Select
+              labelId="new-meal-kj-per-day-label"
+              label="kJ/den"
+              value={field.value}
+              onChange={(event) =>
+                field.onChange(Number(event.target.value) as KjPerDayValue)
+              }
+            >
+              {kjPerDayOptions.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </Select>
+            <FormHelperText>{errors.baseDailyKj?.message}</FormHelperText>
           </FormControl>
         )}
       />

@@ -12,37 +12,64 @@ import { useState } from 'react';
 import { AddDetailIngredientDialog } from './AddDetailIngredientDialog';
 import { EditDetailIngredientDialog } from './EditDetailIngredientDialog';
 import { updateMeal } from '../../../../services/mealsService';
+import { DEFAULT_KJ_PER_DAY } from '../../../../models/kjPerDayOptions';
+import { getDailyKj } from '../../../../services/dailyKjService';
 
 interface DetailCardIngredientsProps {
   mealId: number;
   ingredients: FoodIngredient[];
+  baseIngredients?: FoodIngredient[];
+  baseDailyKj?: number;
 }
 
 export const DetailCardIngredients = ({
   mealId,
   ingredients,
+  baseIngredients,
+  baseDailyKj,
 }: DetailCardIngredientsProps) => {
   const [isAddIngDialogOpen, setIsAddIngDialogOpen] = useState(false);
   const [ingredientToEdit, setIngredientToEdit] =
     useState<FoodIngredient | null>(null);
+  const currentDailyKj = getDailyKj();
+  const sourceBaseDailyKj = baseDailyKj ?? DEFAULT_KJ_PER_DAY;
+  const isScaled = currentDailyKj !== sourceBaseDailyKj;
+  const displayIngredients = ingredients;
+  const editableIngredients = baseIngredients ?? ingredients;
+
+  const toBaseIngredient = (ingredient: FoodIngredient): FoodIngredient => {
+    if (!isScaled) {
+      return ingredient;
+    }
+
+    const factor = sourceBaseDailyKj / currentDailyKj;
+
+    return {
+      ...ingredient,
+      amount: Math.round(ingredient.amount * factor * 10) / 10,
+    };
+  };
 
   const handleIngredientAdd = (ingredient: FoodIngredient) => {
-    const existingIngredientIndex = ingredients.findIndex(
+    const nextIngredient = toBaseIngredient(ingredient);
+    const existingIngredientIndex = editableIngredients.findIndex(
       (item) => item.ingredientId === ingredient.ingredientId
     );
 
     if (existingIngredientIndex === -1) {
-      updateMeal(mealId, { ingredients: [...ingredients, ingredient] });
+      updateMeal(mealId, {
+        ingredients: [...editableIngredients, nextIngredient],
+      });
       return;
     }
 
-    const nextIngredients = [...ingredients];
-    nextIngredients[existingIngredientIndex] = ingredient;
+    const nextIngredients = [...editableIngredients];
+    nextIngredients[existingIngredientIndex] = nextIngredient;
     updateMeal(mealId, { ingredients: nextIngredients });
   };
 
   const handleIngredientDelete = (ingredientId: number) => {
-    const nextIngredients = ingredients.filter(
+    const nextIngredients = editableIngredients.filter(
       (ingredient) => ingredient.ingredientId !== ingredientId
     );
 
@@ -53,23 +80,25 @@ export const DetailCardIngredients = ({
     currentIngredient: FoodIngredient,
     nextIngredient: FoodIngredient
   ) => {
-    const ingredientsWithoutCurrent = ingredients.filter(
+    const ingredientsWithoutCurrent = editableIngredients.filter(
       (ingredient) => ingredient.ingredientId !== currentIngredient.ingredientId
     );
+    const nextBaseIngredient = toBaseIngredient(nextIngredient);
 
     const existingIngredientIndex = ingredientsWithoutCurrent.findIndex(
-      (ingredient) => ingredient.ingredientId === nextIngredient.ingredientId
+      (ingredient) =>
+        ingredient.ingredientId === nextBaseIngredient.ingredientId
     );
 
     if (existingIngredientIndex === -1) {
       updateMeal(mealId, {
-        ingredients: [...ingredientsWithoutCurrent, nextIngredient],
+        ingredients: [...ingredientsWithoutCurrent, nextBaseIngredient],
       });
       return;
     }
 
     const mergedIngredients = [...ingredientsWithoutCurrent];
-    mergedIngredients[existingIngredientIndex] = nextIngredient;
+    mergedIngredients[existingIngredientIndex] = nextBaseIngredient;
     updateMeal(mealId, { ingredients: mergedIngredients });
   };
 
@@ -82,7 +111,7 @@ export const DetailCardIngredients = ({
         <AddButton onClick={() => setIsAddIngDialogOpen(true)} />
       </IngredientBoxHeaderStyled>
 
-      {ingredients.map((ingredient) => {
+      {displayIngredients.map((ingredient) => {
         const ingredientName = getIngredientNameById(ingredient.ingredientId);
         return (
           <IngredientChipStyled
