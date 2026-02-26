@@ -1,28 +1,41 @@
 import { Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
-export const CalTablesStyled = styled(Box)({
+export const CalTablesStyled = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexWrap: 'wrap',
   justifyContent: 'flex-start',
-  margin: '2rem auto',
+  margin: theme.spacing(4, 'auto'),
   maxWidth: '1200px',
   width: '100%',
-  gap: '1rem',
+  gap: theme.spacing(2),
+}));
+
+export const CalTablesHeaderStyled = styled(Box)({
+  width: '100%',
+  display: 'flex',
+  flexDirection: 'column',
 });
 
-export const CalTablesHeaderStylled = styled(Box)({
+export const CalTablesBoxHeaderStyled = styled(Box)(({ theme }) => ({
   width: '100%',
   display: 'flex',
   justifyContent: 'space-between',
-});
+  alignItems: 'flex-start',
+  gap: theme.spacing(2),
+  marginTop: theme.spacing(2),
+  marginBottom: theme.spacing(1),
+}));
 
-export const CalTablesBoxSmallStyled = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
+export const CalTablesContentStyled = styled(Box)(({ theme }) => ({
+  display: 'grid',
+  gridTemplateColumns: 'repeat(auto-fill, minmax(270px, 1fr))',
+  gridAutoRows: '1fr',
   width: '100%',
-  [theme.breakpoints.up('md')]: {
-    display: 'none',
+  gap: theme.spacing(2),
+  [theme.breakpoints.down('sm')]: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
 }));
