@@ -8,7 +8,7 @@ import {
   Typography,
 } from '@mui/material';
 import type { mealData } from '../../../models/mealData';
-import { NutritionValueChip } from '../../Database/components/NutritionValueChip';
+import { NutritionValueChip } from '../../../components/NutritionValueChip/NutritionValueChip';
 
 export interface MealCardProps {
   data: mealData | undefined;

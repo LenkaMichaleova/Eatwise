@@ -13,7 +13,7 @@ import {
   DatabaseMealCardStyled,
 } from '../styles/mealCardStyles';
 import type { Food } from '../../../models/food';
-import { NutritionValueChip } from './NutritionValueChip';
+import { NutritionValueChip } from '../../../components/NutritionValueChip/NutritionValueChip';
 
 interface DatabaseMealCardProps {
   data: Food;
@@ -62,9 +62,9 @@ export const DatabaseMealCard = ({ data }: DatabaseMealCardProps) => {
 
         <CardContent sx={{ mt: -2, width: '100%' }}>
           <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mb: 0.5 }}>
-            <NutritionValueChip type="protein" value={proteins} />
             <NutritionValueChip type="carbs" value={carbohydrates} />
             <NutritionValueChip type="fat" value={fats} />
+            <NutritionValueChip type="protein" value={proteins} />
           </Box>
         </CardContent>
       </CardActionArea>

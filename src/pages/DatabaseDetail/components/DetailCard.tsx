@@ -1,5 +1,5 @@
 import { Box, CardContent, Divider } from '@mui/material';
-import { NutritionValueChip } from '../../Database/components/NutritionValueChip';
+import { NutritionValueChip } from '../../../components/NutritionValueChip/NutritionValueChip';
 import type { Food } from '../../../models/food';
 import type { FoodIngredient } from '../../../models/foodIngredient';
 import { DetailCardHeader } from './DetailCardHeader/DetailCardHeader';

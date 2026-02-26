@@ -21,7 +21,7 @@ export const DatabaseBoxHeaderStyled = styled(Box)(({ theme }) => ({
   marginBottom: theme.spacing(1),
 }));
 
-export const DatabaseHeaderStylled = styled(Box)({
+export const DatabaseHeaderStyled = styled(Box)({
   width: '100%',
   display: 'flex',
   flexDirection: 'column',

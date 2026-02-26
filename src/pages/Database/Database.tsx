@@ -6,7 +6,7 @@ import { MealFilterBar } from './components/MealFilterBar';
 import {
   DatabaseBoxHeaderStyled,
   DatabaseContentStyled,
-  DatabaseHeaderStylled,
+  DatabaseHeaderStyled,
   DatabaseStyled,
 } from './styles/databaseStyles';
 import { SearchBarBoxStyled } from './styles/SearchBarStyles';
@@ -42,9 +42,9 @@ export const Database = () => {
 
   return (
     <DatabaseStyled>
-      <DatabaseHeaderStylled>
+      <DatabaseHeaderStyled>
         <SectionTitle title="Databáze jídel" />
-      </DatabaseHeaderStylled>
+      </DatabaseHeaderStyled>
 
       <DatabaseBoxHeaderStyled>
         <SearchBarBoxStyled>
