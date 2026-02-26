@@ -80,7 +80,7 @@ export const DatabaseDetail = () => {
                 setDailyKj(value);
               }}
             />
-            <Tooltip title="Smazat jídlo" placement="left">
+            <Tooltip title="Smazat jídlo" placement="bottom-end">
               <IconButton
                 color="primary"
                 onClick={() => setIsDeleteDialogOpen(true)}
