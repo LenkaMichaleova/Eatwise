@@ -2,7 +2,7 @@ import { openAiApi } from '../api/openAiApi';
 
 export const fetchItemsFromOpenAI = async (img: string) => {
   const response = await openAiApi.post('', {
-    model: 'gpt-4o',
+    model: 'gpt-5.2',
     messages: [
       {
         role: 'system',
@@ -14,7 +14,7 @@ export const fetchItemsFromOpenAI = async (img: string) => {
         content: [
           {
             type: 'text',
-            text: 'Analyzuj toto jídlo a odpověz ve formátu JSON: {"name": "název jídla", "value": "kalorická hodnota v KCal (jen číslo), "description": "rozepsané nutriční hodnoty".',
+            text: 'Analyzuj toto jídlo a odpověz ve formátu JSON: {"name": "název jídla", "value": "kalorická hodnota v KCal (jen číslo)", "kjValue": "kalorická hodnota v kJ (jen číslo)", "proteins": "počet gramů bílkovin (jen číslo)", "carbohydrates": "počet gramů sacharidů (jen číslo)", "fats": "počet gramů tuků (jen číslo)", "description": "rozepsaný popis jídla, pokud není k dispozici, ponech prázdné".',
           },
           { type: 'image_url', image_url: { url: img } },
         ],
@@ -44,6 +44,10 @@ export const fetchItemsFromOpenAI = async (img: string) => {
   return {
     name: parsed.name,
     value: Number(parsed.value),
+    kjValue: Number(parsed.kjValue) || 0,
     description: parsed.description || '',
+    proteins: Number(parsed.proteins) || 0,
+    carbohydrates: Number(parsed.carbohydrates) || 0,
+    fats: Number(parsed.fats) || 0,
   };
 };
