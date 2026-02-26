@@ -1,5 +1,5 @@
 import { Chip, Typography } from '@mui/material';
-import type { IngredientType } from '../../../models/ingredientType';
+import type { IngredientType } from '../../models/ingredientType';
 
 interface NutritionChipProps {
   type: IngredientType;

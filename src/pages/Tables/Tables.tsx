@@ -1,31 +1,60 @@
-import FilterListAltIcon from '@mui/icons-material/FilterListAlt';
-import { Box, Button } from '@mui/material';
 import {
-  CalTablesHeaderStylled,
+  CalTablesBoxHeaderStyled,
+  CalTablesContentStyled,
+  CalTablesHeaderStyled,
   CalTablesStyled,
 } from './styles/calTablesStyles';
+import { SearchBarBoxStyled } from '../Database/styles/SearchBarStyles';
 import { SectionTitle } from '../../components/SectionTitle/SectionTitle';
-import { CalTablesBoxSmall } from './components/CalTablesBoxSmall';
-import { CalTablesTable } from './components/CalTablesTable';
 import { getAllIngredients } from '../../services/ingredientsService';
+import { IngredientCard } from './components/IngredientCard';
+import { IngredientSearchBar } from './components/IngredientSearchBar';
+import { IngredientFilterBar } from './components/IngredientFilterBar';
+import { filterIngredients } from '../../services/filterService';
+import { useIngredientsFiltersStore } from '../../store/ingredientsFiltersStore';
 
-export function Tables() {
-  const tableData = getAllIngredients();
+export const Tables = () => {
+  const keyword = useIngredientsFiltersStore((state) => state.keyword);
+  const ingredientData = getAllIngredients();
+  const filteredIngredientData = filterIngredients({
+    ingredients: ingredientData,
+    keywordFilters: keyword,
+  });
+  const sortedIngredientData = [...filteredIngredientData].sort((a, b) =>
+    a.name.localeCompare(b.name, 'cs')
+  );
 
   return (
     <CalTablesStyled>
-      <CalTablesHeaderStylled>
-        <SectionTitle title="Kalorické tabulky" />
-        <Button>
-          <FilterListAltIcon fontSize="large" />
-        </Button>
-      </CalTablesHeaderStylled>
-      <Box sx={{ display: { sm: 'flex', md: 'none' }, width: '100%' }}>
-        <CalTablesBoxSmall data={tableData} />
-      </Box>
-      <Box sx={{ display: { sm: 'none', md: 'block' }, width: '100%' }}>
-        <CalTablesTable data={tableData} />
-      </Box>
+      <CalTablesHeaderStyled>
+        <SectionTitle title="Kalorické tabulky (na 100g)" />
+      </CalTablesHeaderStyled>
+
+      <CalTablesBoxHeaderStyled>
+        <SearchBarBoxStyled>
+          <IngredientSearchBar />
+          <IngredientFilterBar />
+        </SearchBarBoxStyled>
+        {/* <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+          <Button
+            variant="contained"
+            color="primary"
+            sx={{ p: { xs: 1, sm: 2 } }}
+            onClick={() => setIsDialogOpen(true)}
+          >
+            <Typography
+              variant="subtitle2"
+              color="secondary"
+            >{`Přidat ingredienci`}</Typography>
+          </Button>
+        </Box> */}
+      </CalTablesBoxHeaderStyled>
+
+      <CalTablesContentStyled>
+        {sortedIngredientData.map((ingredient) => (
+          <IngredientCard key={ingredient.id} data={ingredient} />
+        ))}
+      </CalTablesContentStyled>
     </CalTablesStyled>
   );
-}
+};

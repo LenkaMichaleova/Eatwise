@@ -1,5 +1,6 @@
 import type { Filter } from '../models/filter';
 import type { Food } from '../models/food';
+import type { Ingredient } from '../models/ingredient';
 import { ingredientsDb } from '../pages/Tables/calTables';
 
 const ingredientNameById = new Map(
@@ -51,5 +52,27 @@ export const filterMeals = ({
     }
 
     return true;
+  });
+};
+
+export const filterIngredients = ({
+  ingredients,
+  keywordFilters,
+}: {
+  ingredients: Ingredient[];
+  keywordFilters: Filter[];
+}) => {
+  return ingredients.filter((ingredient) => {
+    if (keywordFilters.length === 0) {
+      return true;
+    }
+
+    const ingredientName = ingredient.name.toLowerCase();
+
+    return keywordFilters.every((filter) => {
+      const keyword = String(filter.value).trim().toLowerCase();
+      if (!keyword) return true;
+      return ingredientName.includes(keyword);
+    });
   });
 };
