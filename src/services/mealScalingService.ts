@@ -29,7 +29,7 @@ export const scaleMealToDailyKj = (meal: Food, targetDailyKj: number): Food => {
     baseDailyKj,
     ingredients: meal.ingredients.map((ingredient) => ({
       ...ingredient,
-      amount: roundToOneDecimal(ingredient.amount * factor),
+      amount: Math.round(ingredient.amount * factor),
     })),
     calories: scaleValue(meal.calories, factor, true),
     kj: scaleValue(meal.kj, factor, true),
