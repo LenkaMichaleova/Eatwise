@@ -3,6 +3,14 @@ import type { Food } from '../models/food';
 import type { Ingredient } from '../models/ingredient';
 import { ingredientsDb } from '../pages/Tables/calTables';
 
+const mealTypeKeywords: Record<Food['type'], string[]> = {
+  breakfast: ['breakfast', 'snídaně', 'snidane'],
+  snack1: ['snack1', 'svačina 1', 'svacina 1', 'svačina', 'svacina'],
+  lunch: ['lunch', 'oběd', 'obed'],
+  snack2: ['snack2', 'svačina 2', 'svacina 2', 'svačina', 'svacina'],
+  dinner: ['dinner', 'večeře', 'vecere'],
+};
+
 const ingredientNameById = new Map(
   ingredientsDb.map((ingredient) => [
     ingredient.id,
@@ -37,6 +45,7 @@ export const filterMeals = ({
 
     if (keywordFilters.length > 0) {
       const mealTitle = meal.title.toLowerCase();
+      const mealTypeValues = mealTypeKeywords[meal.type];
       const ingredientNames = meal.ingredients
         .map((ing) => ingredientNameById.get(ing.ingredientId))
         .filter((name): name is string => Boolean(name));
@@ -45,6 +54,9 @@ export const filterMeals = ({
         const keyword = String(filter.value).trim().toLowerCase();
         if (!keyword) return true;
         if (mealTitle.includes(keyword)) return true;
+        if (mealTypeValues.some((typeValue) => typeValue.includes(keyword))) {
+          return true;
+        }
         return ingredientNames.some((name) => name.includes(keyword));
       });
 

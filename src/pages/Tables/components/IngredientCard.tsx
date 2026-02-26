@@ -25,7 +25,7 @@ export const IngredientCard = ({ data }: IngredientCardProps) => {
         <CardHeader
           sx={{ width: '100%', alignSelf: 'start', display: 'flex' }}
           title={
-            <Typography variant="body2" color="primary" width="80%">
+            <Typography variant="subtitle1" color="primary" width="80%">
               {name}
             </Typography>
           }

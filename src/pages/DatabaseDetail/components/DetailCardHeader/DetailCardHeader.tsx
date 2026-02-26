@@ -42,14 +42,14 @@ export const DetailCardHeader = ({
                 />
               </Typography>
             </EditableBoxStyled>
-            <Tooltip title="Upravit typ jídla" placement="left">
+            <Tooltip title="Upravit typ jídla" placement="bottom-end">
               <IconButton
                 onClick={() => setIsEditTypeDialogOpen(true)}
-                sx={{ position: 'absolute', top: -10, right: 0 }}
+                sx={{ position: 'absolute', top: -10, right: -10 }}
               >
                 <IconLabel
                   type={type}
-                  width={{ xs: '45px', sm: '70px', md: '90px' }}
+                  width={{ xs: '55px', sm: '70px', md: '90px' }}
                 />
               </IconButton>
             </Tooltip>
