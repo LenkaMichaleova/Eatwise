@@ -22,6 +22,8 @@ import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
 import { ChangeOneMealDialog } from './ChangeOneMealDialog';
 import type { Food } from '../../../models/food';
 import { getReplacementMealsByType } from '../utils/mealReplacement';
+import { generatePath, useLocation, useNavigate } from 'react-router-dom';
+import { ROUTES } from '../../../constants/routes';
 
 type DailyMenuResult = ReturnType<typeof generateDailyMenu>;
 
@@ -40,6 +42,8 @@ export const DailyMenu = ({
   allMeals,
   onMealReplace,
 }: DailyMenuProps) => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const handleGenerateMenu = useCallback(() => {
     onMenuChange();
   }, [onMenuChange]);
@@ -67,7 +71,24 @@ export const DailyMenu = ({
       <CardContent>
         <DailyMenuMealsBox>
           {menu.meals.map((meal) => (
-            <DailyMenuMealPaper key={meal.id} variant="outlined" elevation={3}>
+            <DailyMenuMealPaper
+              key={meal.id}
+              variant="outlined"
+              elevation={3}
+              sx={{ cursor: 'pointer', '&:hover': { boxShadow: 2 } }}
+              onClick={() =>
+                navigate(
+                  generatePath(ROUTES.databaseDetail, {
+                    databaseId: meal.id.toString(),
+                  }),
+                  {
+                    state: {
+                      from: `${location.pathname}${location.search}${location.hash}`,
+                    },
+                  }
+                )
+              }
+            >
               <Box display="flex" alignItems="center" gap={1}>
                 <IconLabel type={meal.type} />
                 <Typography variant="caption">{meal.title}</Typography>
@@ -81,7 +102,12 @@ export const DailyMenu = ({
                   {`(${meal.kj} kJ)`}
                 </Typography>
                 <Tooltip title="Změnit jídlo" placement="bottom">
-                  <IconButton onClick={() => setMealToChange(meal)}>
+                  <IconButton
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      setMealToChange(meal);
+                    }}
+                  >
                     <ChangeCircleIcon color="primary" fontSize="small" />
                   </IconButton>
                 </Tooltip>

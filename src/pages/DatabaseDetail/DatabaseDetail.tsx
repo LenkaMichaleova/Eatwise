@@ -1,4 +1,4 @@
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { DetailCard } from './components/DetailCard';
 import { Box, IconButton, Tooltip, Typography } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -18,6 +18,7 @@ import { KjPerDayForm } from '../../components/KjPerDayForm/KjPerDayForm';
 import type { KjPerDayValue } from '../../models/kjPerDayOptions';
 
 export const DatabaseDetail = () => {
+  const location = useLocation();
   const { databaseId } = useParams<{ databaseId: string }>();
   const [selectedDailyKj, setSelectedDailyKj] =
     useState<KjPerDayValue>(getDailyKj());
@@ -28,6 +29,10 @@ export const DatabaseDetail = () => {
     : null;
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const navigate = useNavigate();
+  const backTarget =
+    typeof location.state?.from === 'string'
+      ? location.state.from
+      : ROUTES.database;
 
   const handleDelete = () => {
     if (!foodItem) {
@@ -43,11 +48,10 @@ export const DatabaseDetail = () => {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
       <DatabaseDetailHeaderStyled>
-        <Tooltip title="Zpět na databázi jídel" placement="right">
+        <Tooltip title="Zpět" placement="right">
           <IconButton
             color="primary"
-            component={Link}
-            to={ROUTES.database}
+            onClick={() => navigate(backTarget)}
             sx={{ margin: '2rem 0 0 0' }}
           >
             <ArrowBackIcon fontSize="large" />
