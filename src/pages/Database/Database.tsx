@@ -62,11 +62,11 @@ export const Database = () => {
           <Button
             variant="contained"
             color="primary"
-            sx={{ p: { xs: 1, sm: 2 } }}
+            sx={{ p: { xs: 0.2, sm: 1.2 } }}
             onClick={() => setIsDialogOpen(true)}
           >
             <Typography
-              variant="subtitle2"
+              variant="h6"
               color="secondary"
             >{`Přidat jídlo`}</Typography>
           </Button>

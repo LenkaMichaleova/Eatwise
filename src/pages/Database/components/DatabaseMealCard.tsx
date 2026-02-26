@@ -40,7 +40,7 @@ export const DatabaseMealCard = ({ data }: DatabaseMealCardProps) => {
           title={
             <Box>
               <Typography
-                variant="body2"
+                variant="subtitle1"
                 color="primary"
                 width="80%"
                 gutterBottom

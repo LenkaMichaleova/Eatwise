@@ -68,7 +68,11 @@ export const DatabaseDetail = () => {
           <Typography variant="h2" color="primary">
             {`Detail jídla`}
           </Typography>
-          <Box display="flex" alignItems="center" gap={10}>
+          <Box
+            display="flex"
+            alignItems="center"
+            gap={{ xs: 1, sm: 3, md: 10 }}
+          >
             <KjPerDayForm
               value={selectedDailyKj}
               onChange={(value) => {
