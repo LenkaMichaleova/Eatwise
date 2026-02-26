@@ -8,10 +8,19 @@ import { SearchBarBoxStyled } from '../Database/styles/SearchBarStyles';
 import { SectionTitle } from '../../components/SectionTitle/SectionTitle';
 import { getAllIngredients } from '../../services/ingredientsService';
 import { IngredientCard } from './components/IngredientCard';
+import { IngredientSearchBar } from './components/IngredientSearchBar';
+import { IngredientFilterBar } from './components/IngredientFilterBar';
+import { filterIngredients } from '../../services/filterService';
+import { useIngredientsFiltersStore } from '../../store/ingredientsFiltersStore';
 
 export const Tables = () => {
+  const keyword = useIngredientsFiltersStore((state) => state.keyword);
   const ingredientData = getAllIngredients();
-  const sortedIngredientData = [...ingredientData].sort((a, b) =>
+  const filteredIngredientData = filterIngredients({
+    ingredients: ingredientData,
+    keywordFilters: keyword,
+  });
+  const sortedIngredientData = [...filteredIngredientData].sort((a, b) =>
     a.name.localeCompare(b.name, 'cs')
   );
 
@@ -23,8 +32,8 @@ export const Tables = () => {
 
       <CalTablesBoxHeaderStyled>
         <SearchBarBoxStyled>
-          {/* <IngredientSearchBar />
-          <IngredientFilterBar /> */}
+          <IngredientSearchBar />
+          <IngredientFilterBar />
         </SearchBarBoxStyled>
         {/* <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
           <Button
