@@ -4,13 +4,16 @@ import {
   CalTablesHeaderStyled,
   CalTablesStyled,
 } from './styles/calTablesStyles';
+import { SearchBarBoxStyled } from '../Database/styles/SearchBarStyles';
 import { SectionTitle } from '../../components/SectionTitle/SectionTitle';
 import { getAllIngredients } from '../../services/ingredientsService';
 import { IngredientCard } from './components/IngredientCard';
-import { SearchBarBoxStyled } from '../Database/styles/SearchBarStyles';
 
 export const Tables = () => {
   const ingredientData = getAllIngredients();
+  const sortedIngredientData = [...ingredientData].sort((a, b) =>
+    a.name.localeCompare(b.name, 'cs')
+  );
 
   return (
     <CalTablesStyled>
@@ -39,7 +42,7 @@ export const Tables = () => {
       </CalTablesBoxHeaderStyled>
 
       <CalTablesContentStyled>
-        {ingredientData.map((ingredient) => (
+        {sortedIngredientData.map((ingredient) => (
           <IngredientCard key={ingredient.id} data={ingredient} />
         ))}
       </CalTablesContentStyled>
