@@ -1,4 +1,4 @@
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { DetailCard } from './components/DetailCard';
 import { Box, IconButton, Tooltip, Typography } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -12,13 +12,27 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useState } from 'react';
 import { DeleteConfirmDialog } from '../../components/Buttons/DeleteButton/DeleteConfirmDialog';
 import { removeMeal, useMeals } from '../../services/mealsService';
+import { getDailyKj, setDailyKj } from '../../services/dailyKjService';
+import { scaleMealToDailyKj } from '../../services/mealScalingService';
+import { KjPerDayForm } from '../../components/KjPerDayForm/KjPerDayForm';
+import type { KjPerDayValue } from '../../models/kjPerDayOptions';
 
 export const DatabaseDetail = () => {
+  const location = useLocation();
   const { databaseId } = useParams<{ databaseId: string }>();
+  const [selectedDailyKj, setSelectedDailyKj] =
+    useState<KjPerDayValue>(getDailyKj());
   const meals = useMeals();
   const foodItem = meals.find((food) => food.id === Number(databaseId));
+  const scaledFoodItem = foodItem
+    ? scaleMealToDailyKj(foodItem, selectedDailyKj)
+    : null;
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const navigate = useNavigate();
+  const backTarget =
+    typeof location.state?.from === 'string'
+      ? location.state.from
+      : ROUTES.database;
 
   const handleDelete = () => {
     if (!foodItem) {
@@ -34,11 +48,10 @@ export const DatabaseDetail = () => {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
       <DatabaseDetailHeaderStyled>
-        <Tooltip title="Zpět na databázi jídel" placement="right">
+        <Tooltip title="Zpět" placement="right">
           <IconButton
             color="primary"
-            component={Link}
-            to={ROUTES.database}
+            onClick={() => navigate(backTarget)}
             sx={{ margin: '2rem 0 0 0' }}
           >
             <ArrowBackIcon fontSize="large" />
@@ -55,14 +68,23 @@ export const DatabaseDetail = () => {
           <Typography variant="h2" color="primary">
             {`Detail jídla`}
           </Typography>
-          <Tooltip title="Smazat jídlo" placement="left">
-            <IconButton
-              color="primary"
-              onClick={() => setIsDeleteDialogOpen(true)}
-            >
-              <DeleteIcon />
-            </IconButton>
-          </Tooltip>
+          <Box display="flex" alignItems="center" gap={10}>
+            <KjPerDayForm
+              value={selectedDailyKj}
+              onChange={(value) => {
+                setSelectedDailyKj(value);
+                setDailyKj(value);
+              }}
+            />
+            <Tooltip title="Smazat jídlo" placement="left">
+              <IconButton
+                color="primary"
+                onClick={() => setIsDeleteDialogOpen(true)}
+              >
+                <DeleteIcon />
+              </IconButton>
+            </Tooltip>
+          </Box>
         </Box>
       </DatabaseDetailHeaderStyled>
 
@@ -79,9 +101,12 @@ export const DatabaseDetail = () => {
       )}
 
       <Box sx={{ width: '100%', display: 'flex' }}>
-        {foodItem && (
+        {foodItem && scaledFoodItem && (
           <Box sx={{ width: '100%', display: 'flex' }}>
-            <DetailCard data={foodItem} />
+            <DetailCard
+              data={scaledFoodItem}
+              baseIngredients={foodItem.ingredients}
+            />
           </Box>
         )}
       </Box>

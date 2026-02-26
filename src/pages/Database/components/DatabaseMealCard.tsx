@@ -6,7 +6,7 @@ import {
   Typography,
 } from '@mui/material';
 import { IconLabel } from '../../../components/IconLabel/IconLabel';
-import { generatePath, Link } from 'react-router-dom';
+import { generatePath, Link, useLocation } from 'react-router-dom';
 import { ROUTES } from '../../../constants/routes';
 import {
   databaseMealCardActionAreaStyles,
@@ -20,6 +20,7 @@ interface DatabaseMealCardProps {
 }
 
 export const DatabaseMealCard = ({ data }: DatabaseMealCardProps) => {
+  const location = useLocation();
   const { id, title, type, calories, kj, proteins, carbohydrates, fats } = data;
 
   return (
@@ -29,6 +30,9 @@ export const DatabaseMealCard = ({ data }: DatabaseMealCardProps) => {
         to={generatePath(ROUTES.databaseDetail, {
           databaseId: id.toString(),
         })}
+        state={{
+          from: `${location.pathname}${location.search}${location.hash}`,
+        }}
         sx={databaseMealCardActionAreaStyles}
       >
         <CardHeader

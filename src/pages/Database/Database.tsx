@@ -12,12 +12,18 @@ import {
 import { SearchBarBoxStyled } from './styles/SearchBarStyles';
 import { useFiltersStore } from '../../store/store';
 import { useMemo, useState } from 'react';
-import { Button, Typography } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import { AddNewMealDialog } from './components/AddNewMealDialog';
 import { useMeals } from '../../services/mealsService';
+import { scaleMealsToDailyKj } from '../../services/mealScalingService';
+import { KjPerDayForm } from '../../components/KjPerDayForm/KjPerDayForm';
+import { getDailyKj, setDailyKj } from '../../services/dailyKjService';
+import type { KjPerDayValue } from '../../models/kjPerDayOptions';
 
 export const Database = () => {
   const { type, ingredient, keyword } = useFiltersStore();
+  const [selectedDailyKj, setSelectedDailyKj] =
+    useState<KjPerDayValue>(getDailyKj());
   const meals = useMeals();
   const filteredMeals = filterMeals({
     meals,
@@ -27,8 +33,10 @@ export const Database = () => {
   });
   const mealsDataSorted = useMemo(
     () =>
-      [...filteredMeals].sort((a, b) => a.title.localeCompare(b.title, 'cs')),
-    [filteredMeals]
+      scaleMealsToDailyKj(filteredMeals, selectedDailyKj).sort((a, b) =>
+        a.title.localeCompare(b.title, 'cs')
+      ),
+    [filteredMeals, selectedDailyKj]
   );
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
@@ -43,17 +51,26 @@ export const Database = () => {
           <MealSearchBar />
           <MealFilterBar />
         </SearchBarBoxStyled>
-        <Button
-          variant="contained"
-          color="primary"
-          sx={{ p: { xs: 1, sm: 2 } }}
-          onClick={() => setIsDialogOpen(true)}
-        >
-          <Typography
-            variant="subtitle2"
-            color="secondary"
-          >{`Přidat jídlo`}</Typography>
-        </Button>
+        <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+          <KjPerDayForm
+            value={selectedDailyKj}
+            onChange={(value) => {
+              setSelectedDailyKj(value);
+              setDailyKj(value);
+            }}
+          />
+          <Button
+            variant="contained"
+            color="primary"
+            sx={{ p: { xs: 1, sm: 2 } }}
+            onClick={() => setIsDialogOpen(true)}
+          >
+            <Typography
+              variant="subtitle2"
+              color="secondary"
+            >{`Přidat jídlo`}</Typography>
+          </Button>
+        </Box>
       </DatabaseBoxHeaderStyled>
 
       <DatabaseContentStyled>

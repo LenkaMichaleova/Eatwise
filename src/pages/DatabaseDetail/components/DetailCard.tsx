@@ -1,6 +1,7 @@
 import { Box, CardContent, Divider } from '@mui/material';
 import { NutritionValueChip } from '../../Database/components/NutritionValueChip';
 import type { Food } from '../../../models/food';
+import type { FoodIngredient } from '../../../models/foodIngredient';
 import { DetailCardHeader } from './DetailCardHeader/DetailCardHeader';
 import {
   DetailCardContentBoxStyled,
@@ -11,9 +12,10 @@ import { DetailCardIngredients } from './DetailCardIngredients/DetailCardIngredi
 
 export interface DetailCardProps {
   data: Food;
+  baseIngredients?: FoodIngredient[];
 }
 
-export const DetailCard = ({ data }: DetailCardProps) => {
+export const DetailCard = ({ data, baseIngredients }: DetailCardProps) => {
   const {
     id,
     title,
@@ -47,7 +49,12 @@ export const DetailCard = ({ data }: DetailCardProps) => {
         <Divider sx={{ marginTop: 2, marginBottom: 2 }} />
 
         <DetailCardContentBoxStyled>
-          <DetailCardIngredients mealId={id} ingredients={ingredients} />
+          <DetailCardIngredients
+            mealId={id}
+            ingredients={ingredients}
+            baseIngredients={baseIngredients}
+            baseDailyKj={data.baseDailyKj}
+          />
 
           <DetailCardRecipe mealId={id} recipe={recipe} />
         </DetailCardContentBoxStyled>

@@ -7,9 +7,9 @@ import { formatDateKey } from '../utils/dateUtils';
 
 const STORAGE_KEY_PREFIX = 'mealPlan';
 
-export const getMealPlanForDay = (date: Dayjs) => {
+export const getMealPlanForDay = (date: Dayjs): GeneratedDailyMenu | null => {
   const key = `${STORAGE_KEY_PREFIX}_${formatDateKey(date)}`;
-  return storageService.getItem(key);
+  return storageService.getItem(key) as GeneratedDailyMenu | null;
 };
 
 export const saveMealPlanForDay = (date: Dayjs, data: GeneratedDailyMenu) => {

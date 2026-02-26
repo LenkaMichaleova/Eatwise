@@ -10,7 +10,12 @@ import { AddNewMealForm } from './AddNewMealForm';
 
 export const AddNewMealDialog = ({ onClose }: { onClose: VoidFunction }) => {
   return (
-    <Dialog fullWidth maxWidth={'md'} open={true} onClose={onClose}>
+    <Dialog
+      fullWidth
+      maxWidth={'md'}
+      open={true}
+      onClose={(_, reason) => reason !== 'backdropClick' && onClose()}
+    >
       <DialogTitle variant="h3" color="primary.main">
         {`Založení nového jídla`}
       </DialogTitle>

@@ -42,6 +42,9 @@ export const IngredientChipStyled = styled(Chip)(({ theme }) => ({
     opacity: 0,
     transition: 'opacity 0.2s ease',
     alignSelf: 'center',
+    [theme.breakpoints.down('sm')]: {
+      opacity: 1,
+    },
   },
   '&:hover .MuiChip-deleteIcon': {
     opacity: 1,

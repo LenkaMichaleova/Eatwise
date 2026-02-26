@@ -6,6 +6,7 @@ export type Food = {
   title: string;
   recipe: string;
   type: FoodType;
+  baseDailyKj?: number;
   calories: number;
   kj: number;
   proteins: number;

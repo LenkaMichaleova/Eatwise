@@ -1,12 +1,12 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { generateDailyMenu } from '../utils/generateDailyMenu';
 import {
   Box,
   Button,
   CardContent,
   CardHeader,
-  // IconButton,
-  // Tooltip,
+  IconButton,
+  Tooltip,
   Typography,
 } from '@mui/material';
 import {
@@ -18,7 +18,12 @@ import {
 import { IconLabel } from '../../../components/IconLabel/IconLabel';
 import type { Dayjs } from 'dayjs';
 import { formatWeekday, formatDate } from '../../../utils/dateUtils';
-// import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
+import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
+import { ChangeOneMealDialog } from './ChangeOneMealDialog';
+import type { Food } from '../../../models/food';
+import { getReplacementMealsByType } from '../utils/mealReplacement';
+import { generatePath, useLocation, useNavigate } from 'react-router-dom';
+import { ROUTES } from '../../../constants/routes';
 
 type DailyMenuResult = ReturnType<typeof generateDailyMenu>;
 
@@ -26,12 +31,27 @@ interface DailyMenuProps {
   date: Dayjs;
   menu: DailyMenuResult;
   onMenuChange: () => void;
+  allMeals: Food[];
+  onMealReplace: (currentMealId: number, nextMealId: number) => void;
 }
 
-export const DailyMenu = ({ date, menu, onMenuChange }: DailyMenuProps) => {
+export const DailyMenu = ({
+  date,
+  menu,
+  onMenuChange,
+  allMeals,
+  onMealReplace,
+}: DailyMenuProps) => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const handleGenerateMenu = useCallback(() => {
     onMenuChange();
   }, [onMenuChange]);
+  const [mealToChange, setMealToChange] = useState<Food | null>(null);
+
+  const replacementMeals = mealToChange
+    ? getReplacementMealsByType(mealToChange, allMeals)
+    : [];
 
   return (
     <DailyMenuCard>
@@ -51,7 +71,24 @@ export const DailyMenu = ({ date, menu, onMenuChange }: DailyMenuProps) => {
       <CardContent>
         <DailyMenuMealsBox>
           {menu.meals.map((meal) => (
-            <DailyMenuMealPaper key={meal.id} variant="outlined" elevation={3}>
+            <DailyMenuMealPaper
+              key={meal.id}
+              variant="outlined"
+              elevation={3}
+              sx={{ cursor: 'pointer', '&:hover': { boxShadow: 2 } }}
+              onClick={() =>
+                navigate(
+                  generatePath(ROUTES.databaseDetail, {
+                    databaseId: meal.id.toString(),
+                  }),
+                  {
+                    state: {
+                      from: `${location.pathname}${location.search}${location.hash}`,
+                    },
+                  }
+                )
+              }
+            >
               <Box display="flex" alignItems="center" gap={1}>
                 <IconLabel type={meal.type} />
                 <Typography variant="caption">{meal.title}</Typography>
@@ -60,15 +97,20 @@ export const DailyMenu = ({ date, menu, onMenuChange }: DailyMenuProps) => {
                 <Typography
                   variant="caption"
                   color="grey.500"
-                  sx={{ flexShrink: 0 }}
+                  sx={{ flexShrink: 0, ml: 1 }}
                 >
                   {`(${meal.kj} kJ)`}
                 </Typography>
-                {/* <Tooltip title="Změnit jídlo" placement="bottom">
-                    <IconButton>
-                      <ChangeCircleIcon color="primary" />
-                    </IconButton>
-                  </Tooltip> */}
+                <Tooltip title="Změnit jídlo" placement="bottom">
+                  <IconButton
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      setMealToChange(meal);
+                    }}
+                  >
+                    <ChangeCircleIcon color="primary" fontSize="small" />
+                  </IconButton>
+                </Tooltip>
               </DailyMenuMealKjBox>
             </DailyMenuMealPaper>
           ))}
@@ -82,6 +124,18 @@ export const DailyMenu = ({ date, menu, onMenuChange }: DailyMenuProps) => {
           {`Vygenerovat nový jídelníček`}
         </Button>
       </CardContent>
+
+      {mealToChange && (
+        <ChangeOneMealDialog
+          onClose={() => setMealToChange(null)}
+          currentMeal={mealToChange}
+          replacementMeals={replacementMeals}
+          onSave={(nextMealId) => {
+            onMealReplace(mealToChange.id, nextMealId);
+            setMealToChange(null);
+          }}
+        />
+      )}
     </DailyMenuCard>
   );
 };
