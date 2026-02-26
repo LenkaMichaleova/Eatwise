@@ -1,4 +1,4 @@
-import { MealCard } from '../../../components/MealCard';
+import { MealCard } from './MealCard';
 import { UploadLarge } from './UploadLarge';
 import { Box } from '@mui/material';
 import { UploadSmall } from './UploadSmall';

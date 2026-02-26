@@ -3,7 +3,7 @@ import type { IngredientType } from '../../../models/ingredientType';
 
 interface NutritionChipProps {
   type: IngredientType;
-  value: number;
+  value?: number;
 }
 
 const NutritionConfig: Record<
@@ -21,7 +21,7 @@ export const NutritionValueChip = ({ type, value }: NutritionChipProps) => {
   return (
     <Chip
       label={
-        <Typography variant="caption">{`${config.name}: ${value} g`}</Typography>
+        <Typography variant="caption">{`${config.name}: ${value ?? '-'} g`}</Typography>
       }
       size="small"
       sx={{
